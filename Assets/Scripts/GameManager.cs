@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     private int[] spinnerNums = {1, 2, 3, 3, 4, 5, 5, 6};
     private int moveSpaces;
 
-    public GameObject background;
+    public Canvas screen;
+    public GameObject background3, background4, background5, background6;
     public int[][] playerInfo;
     public InputField player1, player2, player3, player4, player5, player6;
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
@@ -46,7 +47,11 @@ public class GameManager : MonoBehaviour
         playerInputs.Add(player4);
         playerInputs.Add(player5);
         playerInputs.Add(player6);
-        for(int i = 0; i < playerInputs.Count; i++)
+        background3.GetComponent<Image>().enabled = true;
+        background4.GetComponent<Image>().enabled = false;
+        background5.GetComponent<Image>().enabled = false;
+        background6.GetComponent<Image>().enabled = false;
+        for (int i = 0; i < playerInputs.Count; i++)
         {
             playerNames.Add(playerInputs[i].textComponent.text);
         }
@@ -116,31 +121,36 @@ public class GameManager : MonoBehaviour
             case 1:
             case 2:
             case 3:
-                temp = new Vector3(addPlayerButton.transform.position.x, 271.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.25f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 395f, background.transform.position.z);
-                
+                background3.GetComponent<Image>().enabled = true;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 4:
-                temp = new Vector3(addPlayerButton.transform.position.x, 221.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.43f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 369.8f, background.transform.position.z);
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = true;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 5:
-                temp = new Vector3(addPlayerButton.transform.position.x, 171.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.61f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 344.8f, background.transform.position.z);
-
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = true;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 6:
-                temp = new Vector3(addPlayerButton.transform.position.x, 125.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.79f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 320.5f, background.transform.position.z);
-
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = true;
                 break;
         }
     }
