@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     private List<InputField> playerInputs = new List<InputField>();
     private List<Button> bulldogButtons = new List<Button>();
     private int currPlayers = 3;
-    private int[] spinnerNums = {1, 2, 3, 3, 4, 5, 5, 6};
-    private int moveSpaces;
 
     public GameObject background;
     public int[][] playerInfo;
@@ -30,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
     public Button addPlayerButton, removePlayerButton, playButton;
 
+    public int currPlayerTurn = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -144,11 +143,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    private void playerSpin()
-    {
-        int randSpin = Mathf.FloorToInt(Random.Range(0, 8));
-        moveSpaces = spinnerNums[randSpin];
-    }
-
 }
