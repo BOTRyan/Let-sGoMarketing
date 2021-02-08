@@ -25,11 +25,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (yourPlayerNum == GameManager.instance.currPlayerTurn)
         {
-            if (GameManager.instance.buttonPressed && !isMoving)
+            if (Spinner.instance.numPicked && !isMoving)
             {
                 isMoving = true;
-                GameManager.instance.buttonPressed = false;
-                targetPos += GameManager.instance.targetNum;
+                Spinner.instance.numPicked = false;
+                targetPos += Spinner.instance.targetNum;
             }
 
             if (currPos < targetPos && currPos < 55)
@@ -48,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
                         if (currPos == targetPos)
                         {
                             GameManager.instance.currPlayerTurn++;
-                            GameManager.instance.canPressButton = true;
+                            Spinner.instance.canSpin = true;
+                            Spinner.instance.spinStarted = false;
                         }
                     }
                 }

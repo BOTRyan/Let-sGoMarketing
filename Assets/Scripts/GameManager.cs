@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -30,10 +29,6 @@ public class GameManager : MonoBehaviour
     public Button addPlayerButton, removePlayerButton, playButton;
 
     public int currPlayerTurn = 1;
-    private int[] spinnerNums = { 1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6 };
-    public int targetNum;
-    public bool buttonPressed = false;
-    public bool canPressButton = true;
 
     // Start is called before the first frame update
     void Start()
@@ -76,8 +71,6 @@ public class GameManager : MonoBehaviour
         {
             currPlayerTurn = 1;
         }
-        
-        print(targetNum);
     }
     public void openBulldogSelection(Button b)
     {
@@ -155,16 +148,6 @@ public class GameManager : MonoBehaviour
                 background.transform.position = new Vector3(background.transform.position.x, 320.5f, background.transform.position.z);
 
                 break;
-        }
-    }
-    public void setTargetNum()
-    {
-        if (canPressButton)
-        {
-            buttonPressed = true;
-            int randSpin = Mathf.FloorToInt(Random.Range(0, 13));
-            targetNum = spinnerNums[randSpin];
-            canPressButton = false;
         }
     }
 }
