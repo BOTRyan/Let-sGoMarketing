@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -21,8 +22,6 @@ public class GameManager : MonoBehaviour
     private List<InputField> playerInputs = new List<InputField>();
     private List<Button> bulldogButtons = new List<Button>();
     private int currPlayers = 3;
-    private int[] spinnerNums = {1, 2, 3, 3, 4, 5, 5, 6};
-    private int moveSpaces;
 
     public Canvas screen;
     public GameObject background3, background4, background5, background6;
@@ -31,10 +30,16 @@ public class GameManager : MonoBehaviour
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
     public Button addPlayerButton, removePlayerButton, playButton;
 
+    public int currPlayerTurn = 1;
+    private int[] spinnerNums = { 1, 2, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6 };
+    public int targetNum;
+    public bool buttonPressed = false;
+    public bool canPressButton = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         bulldogButtons.Add(bulldog1);
         bulldogButtons.Add(bulldog2);
         bulldogButtons.Add(bulldog3);
@@ -53,14 +58,29 @@ public class GameManager : MonoBehaviour
         background6.GetComponent<Image>().enabled = false;
         for (int i = 0; i < playerInputs.Count; i++)
         {
-            playerNames.Add(playerInputs[i].textComponent.text);
+            bulldogButtons.Add(bulldog1);
+            bulldogButtons.Add(bulldog2);
+            bulldogButtons.Add(bulldog3);
+            bulldogButtons.Add(bulldog4);
+            bulldogButtons.Add(bulldog5);
+            bulldogButtons.Add(bulldog6);
+            playerInputs.Add(player1);
+            playerInputs.Add(player2);
+            playerInputs.Add(player3);
+            playerInputs.Add(player4);
+            playerInputs.Add(player5);
+            playerInputs.Add(player6);
+            for (int i = 0; i < playerInputs.Count; i++)
+            {
+                playerNames.Add(playerInputs[i].textComponent.text);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             playerNames[0] = player1.textComponent.text;
             playerNames[1] = player2.textComponent.text;
@@ -70,6 +90,12 @@ public class GameManager : MonoBehaviour
             playerNames[5] = player6.textComponent.text;
         }
 
+        if (currPlayerTurn > 6)
+        {
+            currPlayerTurn = 1;
+        }
+        
+        print(targetNum);
     }
     public void openBulldogSelection(Button b)
     {
@@ -78,10 +104,10 @@ public class GameManager : MonoBehaviour
 
     public void addNewPlayer()
     {
-        if(currPlayers < 6)
+        if (currPlayers < 6)
         {
             currPlayers++;
-            for(int i = 0; i < currPlayers; i++)
+            for (int i = 0; i < currPlayers; i++)
             {
                 bulldogButtons[i].GetComponent<Image>().enabled = true;
                 bulldogButtons[i].GetComponent<Button>().enabled = true;
@@ -96,10 +122,10 @@ public class GameManager : MonoBehaviour
     }
     public void removePlayer()
     {
-        if(currPlayers > 1)
+        if (currPlayers > 1)
         {
             currPlayers--;
-            for(int i = 5; i > currPlayers - 1; i--)
+            for (int i = 5; i > currPlayers - 1; i--)
             {
                 bulldogButtons[i].GetComponent<Image>().enabled = false;
                 bulldogButtons[i].GetComponent<Button>().enabled = false;
@@ -123,6 +149,9 @@ public class GameManager : MonoBehaviour
             case 3:
                 temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
+                background.transform.localScale = new Vector3(1.25f, 1.25f, 1);
+                background.transform.position = new Vector3(background.transform.position.x, 395f, background.transform.position.z);
+
                 background3.GetComponent<Image>().enabled = true;
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = false;
@@ -154,11 +183,14 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    private void playerSpin()
+    public void setTargetNum()
     {
-        int randSpin = Mathf.FloorToInt(Random.Range(0, 8));
-        moveSpaces = spinnerNums[randSpin];
+        if (canPressButton)
+        {
+            buttonPressed = true;
+            int randSpin = Mathf.FloorToInt(Random.Range(0, 13));
+            targetNum = spinnerNums[randSpin];
+            canPressButton = false;
+        }
     }
-
 }
