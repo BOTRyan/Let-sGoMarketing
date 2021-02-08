@@ -19,14 +19,21 @@ public class GameManager : MonoBehaviour
 
     private List<string> playerNames = new List<string>();
     private List<InputField> playerInputs = new List<InputField>();
-    private List<Button> bulldogButtons = new List<Button>();
+    public List<Button> bulldogButtons = new List<Button>();
     private int currPlayers = 3;
 
-    public GameObject background;
-    public int[][] playerInfo;
+    public Canvas screen;
+    public GameObject background3, background4, background5, background6;
+    public GameObject bulldogMenu;
+    public int[][] playerInfo = new int[2][];
+
     public InputField player1, player2, player3, player4, player5, player6;
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
     public Button addPlayerButton, removePlayerButton, playButton;
+    public Sprite redDog, blueDog, greenDog, yellowDog, brownDog, indigoDog, blank;
+    public GameObject player1Avatar, player2Avatar, player3Avatar, player4Avatar, player5Avatar, player6Avatar;
+    public List<Sprite> avatars = new List<Sprite>();
+    public List<GameObject> avatarObjects = new List<GameObject>();
 
     public int currPlayerTurn = 1;
 
@@ -47,11 +54,44 @@ public class GameManager : MonoBehaviour
             playerInputs.Add(player4);
             playerInputs.Add(player5);
             playerInputs.Add(player6);
+            avatars.Add(redDog);
+            avatars.Add(blueDog);
+            avatars.Add(greenDog);
+            avatars.Add(yellowDog);
+            avatars.Add(brownDog);
+            avatars.Add(indigoDog);
+            avatars.Add(blank);
+            background3.GetComponent<Image>().enabled = true;
+            background4.GetComponent<Image>().enabled = false;
+            background5.GetComponent<Image>().enabled = false;
+            background6.GetComponent<Image>().enabled = false;
+            avatarObjects.Add(player1Avatar);
+            avatarObjects.Add(player2Avatar);
+            avatarObjects.Add(player3Avatar);
+            avatarObjects.Add(player4Avatar);
+            avatarObjects.Add(player5Avatar);
+            avatarObjects.Add(player6Avatar);
+            for (int i = 0; i < avatarObjects.Count; i++)
+            {
+                avatarObjects[i].GetComponent<Image>().enabled = false;
+            }
+
+            playerInfo[0] = new int[6];
+            playerInfo[1] = new int[6];
+            
+            for(int i = 0; i < playerInfo[1].Length; i++)
+            {
+                playerInfo[1][i] = 6;
+            }
+            
             for (int i = 0; i < playerInputs.Count; i++)
             {
                 playerNames.Add(playerInputs[i].textComponent.text);
             }
+            setBulldogVis(false);
         }
+       
+        
     }
 
     // Update is called once per frame
@@ -65,6 +105,12 @@ public class GameManager : MonoBehaviour
             playerNames[3] = player4.textComponent.text;
             playerNames[4] = player5.textComponent.text;
             playerNames[5] = player6.textComponent.text;
+            for (int i = 0; i < avatarObjects.Count; i++) 
+            {
+                if (avatarObjects[i].GetComponent<Image>().enabled) avatarObjects[i].GetComponent<Image>().sprite = avatars[playerInfo[1][i]];
+                else avatarObjects[i].GetComponent<Image>().sprite = null;
+            }
+            //print(avatarObjects[0].GetComponent<Image>().sprite == null);
         }
 
         if (currPlayerTurn > 6)
@@ -74,7 +120,8 @@ public class GameManager : MonoBehaviour
     }
     public void openBulldogSelection(Button b)
     {
-
+        bulldogMenu.GetComponent<AvatarMenu>().currButton = b;
+        setBulldogVis(!bulldogMenu.activeSelf);
     }
 
     public void addNewPlayer()
@@ -93,6 +140,7 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = true;
             }
             updateButtonLocations();
+            print(currPlayers);
         }
     }
     public void removePlayer()
@@ -109,6 +157,7 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().interactable = false;
                 playerInputs[i].GetComponent<InputField>().enabled = false;
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = false;
+                if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
             }
             updateButtonLocations();
         }
@@ -116,37 +165,41 @@ public class GameManager : MonoBehaviour
     private void updateButtonLocations()
     {
         Vector3 temp = addPlayerButton.transform.position;
-        Vector3 temp2 = playButton.transform.position;
         switch (currPlayers)
         {
             case 1:
             case 2:
             case 3:
-                temp = new Vector3(addPlayerButton.transform.position.x, 271.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.25f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 395f, background.transform.position.z);
-
+                background3.GetComponent<Image>().enabled = true;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 4:
-                temp = new Vector3(addPlayerButton.transform.position.x, 221.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.43f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 369.8f, background.transform.position.z);
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = true;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 5:
-                temp = new Vector3(addPlayerButton.transform.position.x, 171.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.61f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 344.8f, background.transform.position.z);
-
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = true;
+                background6.GetComponent<Image>().enabled = false;
                 break;
             case 6:
-                temp = new Vector3(addPlayerButton.transform.position.x, 125.5f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
-                background.transform.localScale = new Vector3(1.25f, 1.79f, 1);
-                background.transform.position = new Vector3(background.transform.position.x, 320.5f, background.transform.position.z);
-
+                background3.GetComponent<Image>().enabled = false;
+                background4.GetComponent<Image>().enabled = false;
+                background5.GetComponent<Image>().enabled = false;
+                background6.GetComponent<Image>().enabled = true;
                 break;
         }
     }
