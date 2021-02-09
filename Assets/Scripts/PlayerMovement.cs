@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int yourPlayerNum;
 
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +47,34 @@ public class PlayerMovement : MonoBehaviour
 
                         if (currPos == targetPos || currPos >= 55)
                         {
+                            switch (currPos)
+                            {
+                                case 1:
+                                case 9:
+                                case 17:
+                                case 22:
+                                case 33:
+                                case 43:
+                                case 51:
+                                    print("You're The Boss");
+                                    break;
+                                case 4:
+                                case 12:
+                                case 25:
+                                case 37:
+                                case 53:
+                                    print("Career Point");
+                                    break;
+                                case 7:
+                                case 15:
+                                case 48:
+                                    print("Brand Crisis");
+                                    break;
+                                default:
+                                    print("blank");
+                                    break;
+                            }
+                                
                             GameManager.instance.currPlayerTurn++;
                             Spinner.instance.canSpin = true;
                             Spinner.instance.spinStarted = false;
