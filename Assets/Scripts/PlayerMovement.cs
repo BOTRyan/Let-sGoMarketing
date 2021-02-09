@@ -69,9 +69,11 @@ public class PlayerMovement : MonoBehaviour
                                 case 15:
                                 case 48:
                                     print("Brand Crisis");
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp",true);
                                     break;
                                 default:
                                     print("blank");
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                     break;
                             }
                                 
