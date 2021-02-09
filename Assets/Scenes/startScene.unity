@@ -1578,7 +1578,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currButton: {fileID: 0}
-  dogChoice: []
   red: {fileID: 518790920}
   blue: {fileID: 1780651570}
   green: {fileID: 1158615218}
@@ -3529,7 +3528,7 @@ GameObject:
   - component: {fileID: 1124379861}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: sceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3611,9 +3610,6 @@ MonoBehaviour:
   avatars: []
   avatarObjects: []
   currPlayerTurn: 1
-  targetNum: 0
-  buttonPressed: 0
-  canPressButton: 1
 --- !u!1 &1128528683
 GameObject:
   m_ObjectHideFlags: 0

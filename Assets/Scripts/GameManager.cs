@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("sceneManager");
+            if (objs.Length > 1) Destroy(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -78,20 +81,20 @@ public class GameManager : MonoBehaviour
 
             playerInfo[0] = new int[6];
             playerInfo[1] = new int[6];
-            
-            for(int i = 0; i < playerInfo[1].Length; i++)
+
+            for (int i = 0; i < playerInfo[1].Length; i++)
             {
                 playerInfo[1][i] = 6;
             }
-            
+
             for (int i = 0; i < playerInputs.Count; i++)
             {
                 playerNames.Add(playerInputs[i].textComponent.text);
             }
             setBulldogVis(false);
         }
-       
-        
+
+
     }
 
     // Update is called once per frame
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
             playerNames[3] = player4.textComponent.text;
             playerNames[4] = player5.textComponent.text;
             playerNames[5] = player6.textComponent.text;
-            for (int i = 0; i < avatarObjects.Count; i++) 
+            for (int i = 0; i < avatarObjects.Count; i++)
             {
                 if (avatarObjects[i].GetComponent<Image>().enabled) avatarObjects[i].GetComponent<Image>().sprite = avatars[playerInfo[1][i]];
                 else avatarObjects[i].GetComponent<Image>().sprite = null;
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
             //print(avatarObjects[0].GetComponent<Image>().sprite == null);
         }
 
-        if (currPlayerTurn > 6)
+        if (currPlayerTurn > currPlayers)
         {
             currPlayerTurn = 1;
         }
@@ -140,7 +143,6 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = true;
             }
             updateButtonLocations();
-            print(currPlayers);
         }
     }
     public void removePlayer()
@@ -168,7 +170,11 @@ public class GameManager : MonoBehaviour
         switch (currPlayers)
         {
             case 1:
+                currPlayers = 1;
+                break;
             case 2:
+                currPlayers = 2;
+                break;
             case 3:
                 temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.transform.position = temp;
@@ -176,6 +182,7 @@ public class GameManager : MonoBehaviour
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = false;
                 background6.GetComponent<Image>().enabled = false;
+                currPlayers = 3;
                 break;
             case 4:
                 temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
@@ -184,6 +191,7 @@ public class GameManager : MonoBehaviour
                 background4.GetComponent<Image>().enabled = true;
                 background5.GetComponent<Image>().enabled = false;
                 background6.GetComponent<Image>().enabled = false;
+                currPlayers = 4;
                 break;
             case 5:
                 temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
@@ -192,6 +200,7 @@ public class GameManager : MonoBehaviour
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = true;
                 background6.GetComponent<Image>().enabled = false;
+                currPlayers = 5;
                 break;
             case 6:
                 temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
@@ -200,7 +209,20 @@ public class GameManager : MonoBehaviour
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = false;
                 background6.GetComponent<Image>().enabled = true;
+                currPlayers = 6;
                 break;
+        }
+    }
+
+    public void setBulldogVis(bool vis)
+    {
+        if (vis)
+        {
+            bulldogMenu.SetActive(true);
+        }
+        else
+        {
+            bulldogMenu.SetActive(false);
         }
     }
 }

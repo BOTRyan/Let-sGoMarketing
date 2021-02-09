@@ -12,12 +12,6 @@ public class GrabPositions : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        GameObject[] boardPos = GameObject.FindGameObjectsWithTag("boardPos");
-        for (int i = 0; i < boardPos.Length; i++)
-        {
-            boardPositions.Add(boardPos[i].transform);
-        }
     }
 
     #endregion

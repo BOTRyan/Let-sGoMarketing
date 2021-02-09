@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AvatarMenu : MonoBehaviour
 {
     public Button currButton;
-    public List<Button> dogChoice = new List<Button>();
+    private List<Button> dogChoice = new List<Button>();
     public Button red, blue, green, yellow, brown, indigo;
 
     private bool[] isChosen = { false, false, false, false, false, false };
@@ -47,16 +47,15 @@ public class AvatarMenu : MonoBehaviour
     {
         if(!isChosen[dogChoice.IndexOf(b)])
         {
+            for (int i = 0; i < isChosen.Length; i++)
+            {
+                isChosen[i] = false;
+            }
+            
             GameManager.instance.playerInfo[1][GameManager.instance.bulldogButtons.IndexOf(currButton)] = dogChoice.IndexOf(b);
-            //isChosen[dogChoice.IndexOf(b)] = true;
             GameManager.instance.setBulldogVis(false);
             GameManager.instance.avatarObjects[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<Image>().enabled = true;
-            for(int i = 0; i < isChosen.Length; i++)
-            {
-                print(isChosen[i] + " " + i);
-            }
-           
-
+            currButton = null;
         }
 
     }

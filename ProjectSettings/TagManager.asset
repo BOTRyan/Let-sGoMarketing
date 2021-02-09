@@ -6,6 +6,7 @@ TagManager:
   tags:
   - boardPos
   - players
+  - sceneManager
   layers:
   - Default
   - TransparentFX

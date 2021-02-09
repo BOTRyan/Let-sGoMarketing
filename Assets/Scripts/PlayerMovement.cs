@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
                         alpha = 0;
                         currPos++;
 
-                        if (currPos == targetPos)
+                        if (currPos == targetPos || currPos >= 55)
                         {
                             GameManager.instance.currPlayerTurn++;
                             Spinner.instance.canSpin = true;
