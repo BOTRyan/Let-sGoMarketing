@@ -9,7 +9,9 @@ public class AvatarMenu : MonoBehaviour
     private List<Button> dogChoice = new List<Button>();
     public Button red, blue, green, yellow, brown, indigo;
 
-    private bool[] isChosen = { false, false, false, false, false, false };
+    private List<Sprite> avatars = new List<Sprite>();
+    private Sprite blank = null;
+    private bool[] isChosen = { false, false, false, false, false, false , false};
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,12 @@ public class AvatarMenu : MonoBehaviour
         dogChoice.Add(yellow);
         dogChoice.Add(brown);
         dogChoice.Add(indigo);
+       
+        for (int i = 0; i < dogChoice.Count; i++)
+        {
+            avatars.Add(dogChoice[i].GetComponent<Image>().sprite);
+        }
+        print(avatars.Count);
     }
 
     // Update is called once per frame
@@ -28,36 +36,31 @@ public class AvatarMenu : MonoBehaviour
         Vector3 temp = transform.position;
         temp.y = currButton.transform.position.y;
         transform.position = temp;
-        for (int i = 0; i < GameManager.instance.avatarObjects.Count; i++)
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
-            if(GameManager.instance.avatarObjects[i].GetComponent<Image>().sprite == GameManager.instance.avatars[GameManager.instance.playerInfo[1][i]] && GameManager.instance.avatarObjects[i].GetComponent<Image>().enabled)
+            if(avatars.Contains(GameManager.instance.players[i].GetComponent<PlayerInfo>().avatar)) 
             {
-                isChosen[i] = true;
-            }
-            else
-            {
-                isChosen[i] = false;
-            }
-            
+                isChosen[avatars.IndexOf(GameManager.instance.players[i].GetComponent<PlayerInfo>().avatar)] = true;
+            } 
         }
+        
         
     }
 
     public void setPlayerAvatar(Button b)
     {
-        if(!isChosen[dogChoice.IndexOf(b)])
+        
+        if(isChosen[dogChoice.IndexOf(b)] == false)
         {
-            for (int i = 0; i < isChosen.Length; i++)
-            {
-                isChosen[i] = false;
-            }
-            
-            GameManager.instance.playerInfo[1][GameManager.instance.bulldogButtons.IndexOf(currButton)] = dogChoice.IndexOf(b);
+
+            GameManager.instance.players[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<PlayerInfo>().avatar = b.GetComponent<Image>().sprite;
             GameManager.instance.setBulldogVis(false);
             GameManager.instance.avatarObjects[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<Image>().enabled = true;
-            currButton = null;
         }
-
+        for (int i = 0; i < isChosen.Length; i++)
+        {
+            isChosen[i] = false;
+        }
     }
     
 }
