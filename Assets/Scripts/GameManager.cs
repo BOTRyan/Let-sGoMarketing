@@ -28,14 +28,13 @@ public class GameManager : MonoBehaviour
     public Canvas screen;
     public GameObject background3, background4, background5, background6;
     public GameObject bulldogMenu;
-    public int[][] playerInfo = new int[2][];
+    public List<GameObject> players = new List<GameObject>();
 
-    public InputField player1, player2, player3, player4, player5, player6;
+    public InputField player1Name, player2Name, player3Name, player4Name, player5Name, player6Name;
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
     public Button addPlayerButton, removePlayerButton, playButton;
-    public Sprite redDog, blueDog, greenDog, yellowDog, brownDog, indigoDog, blank;
+    public GameObject player1, player2, player3, player4, player5, player6;
     public GameObject player1Avatar, player2Avatar, player3Avatar, player4Avatar, player5Avatar, player6Avatar;
-    public List<Sprite> avatars = new List<Sprite>();
     public List<GameObject> avatarObjects = new List<GameObject>();
 
     public int currPlayerTurn = 1;
@@ -51,40 +50,31 @@ public class GameManager : MonoBehaviour
             bulldogButtons.Add(bulldog4);
             bulldogButtons.Add(bulldog5);
             bulldogButtons.Add(bulldog6);
-            playerInputs.Add(player1);
-            playerInputs.Add(player2);
-            playerInputs.Add(player3);
-            playerInputs.Add(player4);
-            playerInputs.Add(player5);
-            playerInputs.Add(player6);
-            avatars.Add(redDog);
-            avatars.Add(blueDog);
-            avatars.Add(greenDog);
-            avatars.Add(yellowDog);
-            avatars.Add(brownDog);
-            avatars.Add(indigoDog);
-            avatars.Add(blank);
+            playerInputs.Add(player1Name);
+            playerInputs.Add(player2Name);
+            playerInputs.Add(player3Name);
+            playerInputs.Add(player4Name);
+            playerInputs.Add(player5Name);
+            playerInputs.Add(player6Name);
             background3.GetComponent<Image>().enabled = true;
             background4.GetComponent<Image>().enabled = false;
             background5.GetComponent<Image>().enabled = false;
             background6.GetComponent<Image>().enabled = false;
+            players.Add(player1);
+            players.Add(player2);
+            players.Add(player3);
+            players.Add(player4);
+            players.Add(player5);
+            players.Add(player6);
             avatarObjects.Add(player1Avatar);
             avatarObjects.Add(player2Avatar);
             avatarObjects.Add(player3Avatar);
             avatarObjects.Add(player4Avatar);
             avatarObjects.Add(player5Avatar);
             avatarObjects.Add(player6Avatar);
-            for (int i = 0; i < avatarObjects.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
-                avatarObjects[i].GetComponent<Image>().enabled = false;
-            }
-
-            playerInfo[0] = new int[6];
-            playerInfo[1] = new int[6];
-
-            for (int i = 0; i < playerInfo[1].Length; i++)
-            {
-                playerInfo[1][i] = 6;
+                players[i].GetComponent<PlayerInfo>().avatar = null;
             }
 
             for (int i = 0; i < playerInputs.Count; i++)
@@ -102,19 +92,19 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            playerNames[0] = player1.textComponent.text;
-            playerNames[1] = player2.textComponent.text;
-            playerNames[2] = player3.textComponent.text;
-            playerNames[3] = player4.textComponent.text;
-            playerNames[4] = player5.textComponent.text;
-            playerNames[5] = player6.textComponent.text;
+            playerNames[0] = player1Name.textComponent.text;
+            playerNames[1] = player2Name.textComponent.text;
+            playerNames[2] = player3Name.textComponent.text;
+            playerNames[3] = player4Name.textComponent.text;
+            playerNames[4] = player5Name.textComponent.text;
+            playerNames[5] = player6Name.textComponent.text;
+
             for (int i = 0; i < avatarObjects.Count; i++)
             {
-                if (avatarObjects[i].GetComponent<Image>().enabled) avatarObjects[i].GetComponent<Image>().sprite = avatars[playerInfo[1][i]];
-                else avatarObjects[i].GetComponent<Image>().sprite = null;
+                avatarObjects[i].GetComponent<Image>().sprite = players[i].GetComponent<PlayerInfo>().avatar;
             }
-            //print(avatarObjects[0].GetComponent<Image>().sprite == null);
         }
+
 
         if (currPlayerTurn > currPlayers)
         {
@@ -159,6 +149,8 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().interactable = false;
                 playerInputs[i].GetComponent<InputField>().enabled = false;
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = false;
+                players[i].GetComponent<PlayerInfo>().avatar = null;
+                avatarObjects[i].GetComponent<Image>().enabled = false;
                 if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
             }
             updateButtonLocations();
