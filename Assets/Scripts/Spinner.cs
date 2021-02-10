@@ -16,6 +16,7 @@ public class Spinner : MonoBehaviour
     #endregion
 
     private float rotSpeed = 0;
+    private float accSpeed = 0;
     private float dragAmt = 0.98f;
 
     public bool canSpin = true;
@@ -28,19 +29,24 @@ public class Spinner : MonoBehaviour
     void Start()
     {
         rotSpeed = 0;
+        accSpeed = 0;
         transform.rotation = Quaternion.Euler(0, 0, -10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotSpeed *= dragAmt;
+        rotSpeed += accSpeed * Time.deltaTime;
 
         transform.Rotate(0, 0, rotSpeed);
+
+        rotSpeed *= dragAmt;
+        accSpeed *= dragAmt;
 
         if (rotSpeed <= 0.5f && spinStarted)
         {
             rotSpeed = 0;
+            accSpeed = 0;
             spinStarted = false;
             float tempAngle = transform.rotation.eulerAngles.z;
 
@@ -101,8 +107,8 @@ public class Spinner : MonoBehaviour
     {
         if (!spinStarted && canSpin)
         {
-            rotSpeed = Random.Range(20, 40);
-            dragAmt = Random.Range(0.97f, 0.99f);
+            accSpeed = Random.Range(400, 500);
+            dragAmt = Random.Range(0.93f, 0.96f);
             spinStarted = true;
             canSpin = false;
         }

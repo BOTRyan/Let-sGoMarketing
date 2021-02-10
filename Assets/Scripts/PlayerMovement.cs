@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
                                 case 43:
                                 case 51:
                                     print("You're The Boss");
+                                    CardAnimation.instance.SpriteSwap(1);
                                     break;
                                 case 4:
                                 case 12:
@@ -64,16 +65,18 @@ public class PlayerMovement : MonoBehaviour
                                 case 37:
                                 case 53:
                                     print("Career Point");
+                                    CardAnimation.instance.SpriteSwap(2);
                                     break;
                                 case 7:
                                 case 15:
                                 case 48:
                                     print("Brand Crisis");
                                     CardAnimation.instance.CardAnimator.SetBool("CardIsUp",true);
+                                    CardAnimation.instance.SpriteSwap(3);
                                     break;
                                 default:
-                                    print("blank");
                                     CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    print("blank");
                                     break;
                             }
                                 

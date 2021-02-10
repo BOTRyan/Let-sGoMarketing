@@ -23,4 +23,9 @@ public class CardAnimation : MonoBehaviour
     {
         CardAnimator.SetBool("CardIsUp", false);
     }
+
+    public void SpriteSwap(int card)
+    {
+
+    }
 }
