@@ -49,15 +49,14 @@ public class PlayerMovement : MonoBehaviour
                         {
                             switch (currPos)
                             {
-                                case 1:
-                                case 9:
-                                case 17:
-                                case 22:
-                                case 33:
-                                case 43:
-                                case 51:
+                                case 7:
+                                case 15:
+                                case 20:
+                                case 34:
+                                case 48:
                                     print("You're The Boss");
                                     CardAnimation.instance.SpriteSwap(1);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                     break;
                                 case 4:
                                 case 12:
@@ -66,16 +65,52 @@ public class PlayerMovement : MonoBehaviour
                                 case 53:
                                     print("Career Point");
                                     CardAnimation.instance.SpriteSwap(2);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                     break;
-                                case 7:
-                                case 15:
-                                case 48:
+                                case 6:
+                                case 18:
+                                case 30:
+                                case 45:
                                     print("Brand Crisis");
-                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp",true);
                                     CardAnimation.instance.SpriteSwap(3);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp",true);
+                                    break;
+                                case 1:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(4);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 10:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(5);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 17:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(6);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 27:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(7);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 32:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(8);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 41:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(9);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                    break;
+                                case 50:
+                                    print("Did You Know");
+                                    CardAnimation.instance.SpriteSwap(10);
+                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                     break;
                                 default:
-                                    CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                     print("blank");
                                     break;
                             }

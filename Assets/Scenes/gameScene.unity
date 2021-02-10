@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 570.8, y: -589.7}
+  m_AnchoredPosition: {x: 514, y: 242}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &46633948
@@ -558,6 +558,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardAnimator: {fileID: 71458450}
+  didYouKnowCardBackBlue: {fileID: 21300000, guid: 01e2c3185fea86e48a8be83f4f070143,
+    type: 3}
+  didYouKnowCardBackGreen: {fileID: 21300000, guid: 03cd24a782aa7d140a9a83c18ad80c4a,
+    type: 3}
+  didYouKnowCardBackYellow: {fileID: 21300000, guid: ff712ddbbb1761b46a7a79b265b76050,
+    type: 3}
+  didYouKnowCardBackRed: {fileID: 21300000, guid: c4d95bba5b8b4b44ea0b08de7dd09e0c,
+    type: 3}
+  didYouKnowCardBackOrange: {fileID: 21300000, guid: 394d430229f774a4dbf855feb98b5b20,
+    type: 3}
+  didYouKnowCardBackPink: {fileID: 21300000, guid: 99402cc0c08dade4092b8cee34f6c51c,
+    type: 3}
+  didYouKnowCardBackPurple: {fileID: 21300000, guid: b3f415f7879092f4c973bc37eccfeb63,
+    type: 3}
+  brandCrisisCardBack: {fileID: 21300000, guid: 99d2a8a0f3311144abd578a439360e98,
+    type: 3}
+  careerPointCardBack: {fileID: 21300000, guid: dc18a12546dbe0b4389b231dc8066bb4,
+    type: 3}
+  cardBack: {fileID: 971858826}
+  cardFront: {fileID: 1492804511}
+  brandCrisisCardFront:
+  - {fileID: 21300000, guid: 0773fcb5fa623d348a07a11ab71846a1, type: 3}
+  - {fileID: 21300000, guid: 25f521b5850445248afa702ca8262138, type: 3}
+  - {fileID: 21300000, guid: 791a73b82a0c2bd4dbef5dc000bc83ec, type: 3}
+  didYouKnowCardFront: {fileID: 21300000, guid: 7e1c31a74bae9a845bc8cbd838ec2da1,
+    type: 3}
+  careerPointCardFront: {fileID: 21300000, guid: a873e943cfc701c4fa0025df99930402,
+    type: 3}
 --- !u!1 &95360940
 GameObject:
   m_ObjectHideFlags: 0
