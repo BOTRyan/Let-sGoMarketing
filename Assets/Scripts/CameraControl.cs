@@ -5,6 +5,18 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
 
+    #region Singleton
+
+    private CameraControl instance;
+
+    private void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    #endregion
+
     public Camera cam;
 
     public GameObject player1;

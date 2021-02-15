@@ -25,6 +25,7 @@ public class CardAnimation : MonoBehaviour
     public Sprite didYouKnowCardBackPurple;
     public Sprite brandCrisisCardBack;
     public Sprite careerPointCardBack;
+    public Sprite youreTheBoss;
     public GameObject cardBack;
     public GameObject cardFront;
     public Sprite[] brandCrisisCardFront;

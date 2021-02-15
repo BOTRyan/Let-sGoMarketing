@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private List<string> playerNames = new List<string>();
     private List<InputField> playerInputs = new List<InputField>();
     public List<Button> bulldogButtons = new List<Button>();
-    private int currPlayers = 3;
+    public int currPlayers = 3;
 
     public Canvas screen;
     public GameObject background3, background4, background5, background6;
@@ -102,6 +102,10 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < avatarObjects.Count; i++)
             {
                 avatarObjects[i].GetComponent<Image>().sprite = players[i].GetComponent<PlayerInfo>().avatar;
+            }
+            for (int i = 0; i < playerNames.Count; i++)
+            {
+                players[i].GetComponent<PlayerInfo>().name = playerNames[i];
             }
         }
 

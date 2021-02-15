@@ -107,7 +107,7 @@ public class Spinner : MonoBehaviour
     {
         if (!spinStarted && canSpin)
         {
-            accSpeed = Random.Range(400, 500);
+            accSpeed = Random.Range(500, 600);
             dragAmt = Random.Range(0.93f, 0.96f);
             spinStarted = true;
             canSpin = false;
