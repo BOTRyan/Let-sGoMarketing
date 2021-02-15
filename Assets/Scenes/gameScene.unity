@@ -489,8 +489,60 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0773fcb5fa623d348a07a11ab71846a1, type: 3}
   - {fileID: 21300000, guid: 25f521b5850445248afa702ca8262138, type: 3}
   - {fileID: 21300000, guid: 791a73b82a0c2bd4dbef5dc000bc83ec, type: 3}
-  didYouKnowCardFront: {fileID: 21300000, guid: 7e1c31a74bae9a845bc8cbd838ec2da1,
-    type: 3}
+  didYouKnowCardFrontBlue:
+  - {fileID: 21300000, guid: dd80a36ce302c584ba60edce4b557746, type: 3}
+  - {fileID: 21300000, guid: f02e4f36b00e90945a9c84bf37924062, type: 3}
+  - {fileID: 21300000, guid: 237d652a596561542912e1d687be37b6, type: 3}
+  - {fileID: 21300000, guid: f6a2c0ca542f0e0458255f90cdb584b4, type: 3}
+  - {fileID: 21300000, guid: eea5a19d9c0c4e941be465979aa56bf4, type: 3}
+  - {fileID: 21300000, guid: c1bac685f5a38b441950e904e5bd8039, type: 3}
+  didYouKnowCardFrontGreen:
+  - {fileID: 21300000, guid: 9421643811ace534c800df76b876e92d, type: 3}
+  - {fileID: 21300000, guid: 215c9877fa1c82f42a7277f60bcb86d0, type: 3}
+  - {fileID: 21300000, guid: 14956c18835731c419ce20b06ba48497, type: 3}
+  - {fileID: 21300000, guid: 126e77eb592ea6044a831779cf7e3da4, type: 3}
+  - {fileID: 21300000, guid: a54fa8b1495dbad4890c29e4b0063004, type: 3}
+  - {fileID: 21300000, guid: f50a985bbd1f53a4287384c25fda9529, type: 3}
+  - {fileID: 21300000, guid: 4651dda29432da6449625859ca8814ac, type: 3}
+  didYouKnowCardFrontYellow:
+  - {fileID: 21300000, guid: 984acd05824370543bedceaf0554976b, type: 3}
+  - {fileID: 21300000, guid: f13145d503efb3a42907ae5c06e08d15, type: 3}
+  - {fileID: 21300000, guid: 52579cde4da2bf74789c9cb0ad026625, type: 3}
+  - {fileID: 21300000, guid: e75f200bf582b9241a7dd9737c77d37f, type: 3}
+  - {fileID: 21300000, guid: 266b42d0aa9b6bf4880d8133febbca41, type: 3}
+  - {fileID: 21300000, guid: 385c729e35f6b414f8ca7a75c084d58a, type: 3}
+  didYouKnowCardFrontRed:
+  - {fileID: 21300000, guid: 3f5ff1119f4f9a44183c1b1b93438ed1, type: 3}
+  - {fileID: 21300000, guid: ad0fd15306456904885229785453c7f7, type: 3}
+  - {fileID: 21300000, guid: 766a8d6a6bd82744ea55c097a489b47e, type: 3}
+  - {fileID: 21300000, guid: 8252559a1a715304a86762da193e45c9, type: 3}
+  - {fileID: 21300000, guid: b22adf89632de4343b2ebe3e6e0a407d, type: 3}
+  - {fileID: 21300000, guid: f078f5219cbe7bc4aa02937582a1c7ae, type: 3}
+  - {fileID: 21300000, guid: c96ceef5842bfa6409be80b2a417112d, type: 3}
+  didYouKnowCardFrontOrange:
+  - {fileID: 21300000, guid: e0fcb3ac00bd4a94eb2ee212d1677603, type: 3}
+  - {fileID: 21300000, guid: d9618e7d31398174696318e19313e47b, type: 3}
+  - {fileID: 21300000, guid: ae5b24aa177604f408ac6fd208dc27e0, type: 3}
+  - {fileID: 21300000, guid: 6d46b97d3b3e75f4386bdb89fafc28e8, type: 3}
+  - {fileID: 21300000, guid: da2ba2bfc24ceb849927f018a76ddb2a, type: 3}
+  - {fileID: 21300000, guid: ddb1ec8161d903345b7d1fe2d84c4fdd, type: 3}
+  didYouKnowCardFrontPink:
+  - {fileID: 21300000, guid: 9ad23d7d9579fb64ba087c00753b4cc7, type: 3}
+  - {fileID: 21300000, guid: 68094767b033bce429e0ca50c8f86eb1, type: 3}
+  - {fileID: 21300000, guid: 23491950dfa4f0d4698f3e61ca70e9bc, type: 3}
+  - {fileID: 21300000, guid: 9cbde71819364eb4bb08cc842e08df7e, type: 3}
+  - {fileID: 21300000, guid: 68d1d6cd82803e048b14e2eb183cbc28, type: 3}
+  - {fileID: 21300000, guid: ebfad6b02bd41354d93b4dffac67c7b4, type: 3}
+  - {fileID: 21300000, guid: bedb29797cbf9734c8ece6ea42679b4d, type: 3}
+  didYouKnowCardFrontPurple:
+  - {fileID: 21300000, guid: 46df71301a1623e41adada380d9d9e23, type: 3}
+  - {fileID: 21300000, guid: 46342e7e7b65c3f4098655446728b028, type: 3}
+  - {fileID: 21300000, guid: e0b146d1912e9bb4a943abdba998ccf8, type: 3}
+  - {fileID: 21300000, guid: a7281fa90eb708742bf9250a0c3dce81, type: 3}
+  - {fileID: 21300000, guid: 834e5c14b61bf20439575faf7873f39c, type: 3}
+  - {fileID: 21300000, guid: 1770fc9569ffe914dab4939b093ba588, type: 3}
+  - {fileID: 21300000, guid: 8c27f9a9cc6b84e41876a1fb7ab403ec, type: 3}
+  - {fileID: 21300000, guid: 72c4f7e301f9bac4d8daf0c70251d1e5, type: 3}
   careerPointCardFront: {fileID: 21300000, guid: a873e943cfc701c4fa0025df99930402,
     type: 3}
 --- !u!1 &95360940
