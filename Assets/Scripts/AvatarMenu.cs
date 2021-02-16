@@ -27,7 +27,6 @@ public class AvatarMenu : MonoBehaviour
         {
             avatars.Add(dogChoice[i].GetComponent<Image>().sprite);
         }
-        print(avatars.Count);
     }
 
     // Update is called once per frame
