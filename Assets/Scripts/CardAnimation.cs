@@ -16,6 +16,7 @@ public class CardAnimation : MonoBehaviour
 
     #endregion
     public Animator CardAnimator;
+
     public Sprite didYouKnowCardBackBlue;
     public Sprite didYouKnowCardBackGreen;
     public Sprite didYouKnowCardBackYellow;
@@ -23,12 +24,22 @@ public class CardAnimation : MonoBehaviour
     public Sprite didYouKnowCardBackOrange;
     public Sprite didYouKnowCardBackPink;
     public Sprite didYouKnowCardBackPurple;
+
     public Sprite brandCrisisCardBack;
+
     public Sprite careerPointCardBack;
+
     public Sprite youreTheBoss;
+
     public GameObject cardBack;
     public GameObject cardFront;
+
     public Sprite[] brandCrisisCardFront;
+
+    public Sprite[] careerPointCardFront;
+
+    public Sprite[] youreTheBossFront;
+
     public Sprite[] didYouKnowCardFrontBlue;
     public Sprite[] didYouKnowCardFrontGreen;
     public Sprite[] didYouKnowCardFrontYellow;
@@ -36,8 +47,14 @@ public class CardAnimation : MonoBehaviour
     public Sprite[] didYouKnowCardFrontOrange;
     public Sprite[] didYouKnowCardFrontPink;
     public Sprite[] didYouKnowCardFrontPurple;
-    public Sprite careerPointCardFront;
+
+    
     private int currentBrandCrisisNumber = 0;
+
+    private int currentCareerPointNumber = 0;
+
+    private int currentYoureTheBossNumber = 0;
+    
     private int currentDidYouKnowBlueNumber = 0;
     private int currentDidYouKnowGreenNumber = 0;
     private int currentDidYouKnowYellowNumber = 0;
@@ -55,6 +72,22 @@ public class CardAnimation : MonoBehaviour
             int r = Random.Range(t, brandCrisisCardFront.Length);
             brandCrisisCardFront[t] = brandCrisisCardFront[r];
             brandCrisisCardFront[r] = tmp;
+        }
+        //career point
+        for (int t = 0; t < careerPointCardFront.Length; t++)
+        {
+            Sprite tmp = careerPointCardFront[t];
+            int r = Random.Range(t, careerPointCardFront.Length);
+            careerPointCardFront[t] = careerPointCardFront[r];
+            careerPointCardFront[r] = tmp;
+        }
+        //youre the boss
+        for (int t = 0; t < youreTheBossFront.Length; t++)
+        {
+            Sprite tmp = youreTheBossFront[t];
+            int r = Random.Range(t, youreTheBossFront.Length);
+            youreTheBossFront[t] = youreTheBossFront[r];
+            youreTheBossFront[r] = tmp;
         }
         //did you know blue
         for (int t = 0; t < didYouKnowCardFrontBlue.Length; t++)
@@ -124,16 +157,21 @@ public class CardAnimation : MonoBehaviour
         switch (card)
         {
             case 1:
-                //the boss
+                cardBack.GetComponent<Image>().sprite = youreTheBoss;
+                cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
+                if (currentCareerPointNumber < 9) currentYoureTheBossNumber++;
+                else currentYoureTheBossNumber = 0;
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
-                cardFront.GetComponent<Image>().sprite = careerPointCardFront;
+                cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
+                if (currentCareerPointNumber < 2) currentCareerPointNumber++;
+                else currentCareerPointNumber = 0;
                 break;
             case 3:
                 cardBack.GetComponent<Image>().sprite = brandCrisisCardBack;
                 cardFront.GetComponent<Image>().sprite = brandCrisisCardFront[currentBrandCrisisNumber];
-                if (currentBrandCrisisNumber < 2) currentBrandCrisisNumber++;
+                if (currentBrandCrisisNumber < 14) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
                 break;
             case 4:
