@@ -19,9 +19,11 @@ public class PlayerInfo : MonoBehaviour
     #endregion
 
     public bool isPlaying;
-    public string name;
+    public string playerName;
     public Sprite avatar;
-    public int[] points;
+    public int[] tokens;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,7 @@ public class PlayerInfo : MonoBehaviour
     void Update()
     {
         GetComponent<SpriteRenderer>().sprite = avatar;
-        GetComponentInChildren<TMPro.TextMeshPro>().text = name;
+        GetComponentInChildren<TMPro.TextMeshPro>().text = playerName;
         if(GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
         {
             gameObject.SetActive(false);

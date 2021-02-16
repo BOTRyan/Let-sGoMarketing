@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             }
             for (int i = 0; i < playerNames.Count; i++)
             {
-                players[i].GetComponent<PlayerInfo>().name = playerNames[i];
+                players[i].GetComponent<PlayerInfo>().playerName = playerNames[i];
             }
         }
 

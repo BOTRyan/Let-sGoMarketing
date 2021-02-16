@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool moveOnce = true;
 
+    public bool landedOnCard = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,10 +58,11 @@ public class PlayerMovement : MonoBehaviour
                     if (delay <= 0)
                     {
                         alpha += Time.deltaTime * 2;
-                        transform.position = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, alpha);
+                        //transform.position = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, alpha);
+                        transform.position = CalcPositionOnCurve(alpha);
                         if (alpha >= 1)
                         {
-                            delay = 0.2f;
+                            delay = 0.05f;
                             alpha = 0;
                             currPos++;
 
@@ -75,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
                                         print("You're The Boss");
                                         CardAnimation.instance.SpriteSwap(1);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 4:
                                     case 12:
@@ -84,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
                                         print("Career Point");
                                         CardAnimation.instance.SpriteSwap(2);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 6:
                                     case 18:
@@ -92,50 +97,57 @@ public class PlayerMovement : MonoBehaviour
                                         print("Brand Crisis");
                                         CardAnimation.instance.SpriteSwap(3);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 1:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(4);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 10:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(5);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 17:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(6);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 27:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(7);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 32:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(8);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 41:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(9);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     case 50:
                                         print("Did You Know");
                                         CardAnimation.instance.SpriteSwap(10);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        landedOnCard = true;
                                         break;
                                     default:
-                                        print("blank");
+                                        landedOnCard = false;
+                                        GameManager.instance.currPlayerTurn++;
+                                        Spinner.instance.canSpin = true;
+                                        Spinner.instance.spinStarted = false;
                                         break;
                                 }
-
-                                GameManager.instance.currPlayerTurn++;
-                                Spinner.instance.canSpin = true;
-                                Spinner.instance.spinStarted = false;
                             }
                         }
                     }
@@ -143,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (currPos >= 55)
                 {
                     isMoving = false;
+                    landedOnCard = false;
                     GameManager.instance.currPlayerTurn++;
                     Spinner.instance.canSpin = true;
                     Spinner.instance.spinStarted = false;
@@ -151,7 +164,32 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isMoving = false;
+                landedOnCard = false;
             }
         }
+    }
+
+    private Vector3 CalcPositionOnCurve(float percent)
+    {
+        // midway point between positions
+        Vector3 handle;
+
+        // get midway point for x, y, and z, add bounce in y axis
+        handle.x = GrabPositions.instance.boardPositions[currPos].position.x + (GrabPositions.instance.boardPositions[currPos + 1].position.x - GrabPositions.instance.boardPositions[currPos].position.x) / 2;
+        handle.y = GrabPositions.instance.boardPositions[currPos].position.y + (GrabPositions.instance.boardPositions[currPos + 1].position.y - GrabPositions.instance.boardPositions[currPos].position.y) / 2;
+        handle.z = GrabPositions.instance.boardPositions[currPos].position.z + (GrabPositions.instance.boardPositions[currPos + 1].position.z - GrabPositions.instance.boardPositions[currPos].position.z) / 2;
+        handle.y += 0.5f;
+
+        // pC = lerp between pA and midway point (handle)
+        Vector3 positionC = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, handle, percent);
+
+        // pD = lerp between midway point (handle) and pB
+        Vector3 positionD = AnimMath.Lerp(handle, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
+
+        // pE = lerp between pC and pD
+        Vector3 positionE = AnimMath.Lerp(positionC, positionD, percent);
+
+        // return pE
+        return positionE;
     }
 }
