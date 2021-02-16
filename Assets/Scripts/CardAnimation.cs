@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CardAnimation : MonoBehaviour
 {
-    
+
     #region Singleton
 
     public static CardAnimation instance;
@@ -35,6 +35,7 @@ public class CardAnimation : MonoBehaviour
     public GameObject cardFront;
 
     public Sprite[] brandCrisisCardFront;
+    public Sprite[] brandCrisisCardFrontCopy;
 
     public Sprite[] careerPointCardFront;
 
@@ -48,13 +49,13 @@ public class CardAnimation : MonoBehaviour
     public Sprite[] didYouKnowCardFrontPink;
     public Sprite[] didYouKnowCardFrontPurple;
 
-    
+
     private int currentBrandCrisisNumber = 0;
 
     private int currentCareerPointNumber = 0;
 
     private int currentYoureTheBossNumber = 0;
-    
+
     private int currentDidYouKnowBlueNumber = 0;
     private int currentDidYouKnowGreenNumber = 0;
     private int currentDidYouKnowYellowNumber = 0;
@@ -159,20 +160,34 @@ public class CardAnimation : MonoBehaviour
             case 1:
                 cardBack.GetComponent<Image>().sprite = youreTheBoss;
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
-                if (currentCareerPointNumber < 9) currentYoureTheBossNumber++;
+                if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                 else currentYoureTheBossNumber = 0;
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
-                if (currentCareerPointNumber < 2) currentCareerPointNumber++;
+                if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
                 else currentCareerPointNumber = 0;
                 break;
             case 3:
                 cardBack.GetComponent<Image>().sprite = brandCrisisCardBack;
                 cardFront.GetComponent<Image>().sprite = brandCrisisCardFront[currentBrandCrisisNumber];
-                if (currentBrandCrisisNumber < 14) currentBrandCrisisNumber++;
+                if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[0] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[2] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[4] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[8])
+                {
+                    print("Go back 1");
+                }
+                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[11] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[12])
+                {
+                    print("Go back 2");
+                }
+                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[1] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[9])
+                {
+                    print("Go back 3");
+                }
+                print(brandCrisisCardFront[currentBrandCrisisNumber].ToString());
+                if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
+
                 break;
             case 4:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackPurple;

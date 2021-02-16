@@ -499,7 +499,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b6960bdb95c38634fa58ca9465ce3cbd, type: 3}
   - {fileID: 21300000, guid: fab08dda1580a894ba4103751fd95ab1, type: 3}
   - {fileID: 21300000, guid: 9569a6acc782ecc4fb49f9492938db6f, type: 3}
-  careerPointCardFront: []
+  brandCrisisCardFrontCopy:
+  - {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
+  - {fileID: 21300000, guid: a60be9a88f625c14da33cb0492a0ecf9, type: 3}
+  - {fileID: 21300000, guid: d80ae87156f269f4e8233a472fce3f9e, type: 3}
+  - {fileID: 21300000, guid: 15d3ce0f66df95d4e9fe40aa8ab34d08, type: 3}
+  - {fileID: 21300000, guid: dc009dcc7c26d604ab474014d56b19ec, type: 3}
+  - {fileID: 21300000, guid: 64fc3bf03516fde4396b006902792b28, type: 3}
+  - {fileID: 21300000, guid: 2131e9b5e0016954b95335f44872cf10, type: 3}
+  - {fileID: 21300000, guid: e4989ea113428e743995ca85c8cea067, type: 3}
+  - {fileID: 21300000, guid: 94418960932646b459f0e1bba4b0e88e, type: 3}
+  - {fileID: 21300000, guid: fcbcedf84fdd02d43aecb964935167b3, type: 3}
+  - {fileID: 21300000, guid: b6960bdb95c38634fa58ca9465ce3cbd, type: 3}
+  - {fileID: 21300000, guid: fab08dda1580a894ba4103751fd95ab1, type: 3}
+  - {fileID: 21300000, guid: 9569a6acc782ecc4fb49f9492938db6f, type: 3}
+  careerPointCardFront:
+  - {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
   youreTheBossFront:
   - {fileID: 21300000, guid: 98959cf52540a0b47ab720d751208407, type: 3}
   - {fileID: 21300000, guid: 383a4b85672efed48a6cb9eecf719cac, type: 3}

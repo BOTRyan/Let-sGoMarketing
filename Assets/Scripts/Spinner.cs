@@ -98,7 +98,8 @@ public class Spinner : MonoBehaviour
             {
                 targetNum = 4;
             }
-
+            ///get rid of!!!!!
+            targetNum = 6;
             numPicked = true;
         }
     }
