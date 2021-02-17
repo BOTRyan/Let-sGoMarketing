@@ -493,7 +493,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &141377307
 MonoBehaviour:
@@ -911,6 +911,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 343482292}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &343482293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,7 +1326,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 386647187}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -1460,6 +1482,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1124379861}
         m_MethodName: openBulldogSelection
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 394736140}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 394736140}
@@ -1891,6 +1924,7 @@ GameObject:
   - component: {fileID: 483985461}
   - component: {fileID: 483985460}
   - component: {fileID: 483985459}
+  - component: {fileID: 483985463}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2008,6 +2042,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &483985463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483985458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bedda29b02944e4ea44863c0575bce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &489444304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,9 +2151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!114 &489444308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,9 +2168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 1
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &518790916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,7 +2409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -484}
+  m_AnchoredPosition: {x: 0, y: -458}
   m_SizeDelta: {x: 275, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599652930
@@ -2555,6 +2603,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1124379861}
         m_MethodName: openBulldogSelection
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 610264663}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 610264663}
@@ -2762,6 +2821,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 636911978}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &665717798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,9 +2997,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!4 &682993666
 Transform:
   m_ObjectHideFlags: 0
@@ -2959,9 +3029,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 2
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,7 +3221,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 743462054}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -3244,7 +3327,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759031726
 MonoBehaviour:
@@ -3694,7 +3777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3894,6 +3977,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 880720136}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &880720137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3981,7 +4075,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888062492
 MonoBehaviour:
@@ -4308,7 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4431,7 +4525,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 987911250}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -4541,7 +4646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4831,7 +4936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf4f13c19410d04c9da817b7c9dfb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputs: []
   bulldogButtons: []
+  currPlayers: 3
   screen: {fileID: 483985461}
   background3: {fileID: 2099393945}
   background4: {fileID: 1914690835}
@@ -4963,7 +5070,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1128528685}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -5346,7 +5464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5409,7 +5527,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1310355918
 MonoBehaviour:
@@ -5677,7 +5795,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1380587111}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -5767,9 +5896,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!4 &1442589158
 Transform:
   m_ObjectHideFlags: 0
@@ -5799,9 +5928,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 5
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &1470842181
 GameObject:
   m_ObjectHideFlags: 0
@@ -5949,7 +6080,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeTextColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1470842186}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -5992,7 +6134,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496047995
 MonoBehaviour:
@@ -6372,7 +6514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6750,7 +6892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 0.5019608}
+  m_Color: {r: 0.8156863, g: 0.76862746, b: 0.77254903, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7127,6 +7269,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 483985463}
+        m_MethodName: changeButtonColorBack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1781932003}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1799223574
 GameObject:
   m_ObjectHideFlags: 0
@@ -7162,7 +7315,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799223576
 MonoBehaviour:
@@ -7791,9 +7944,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!4 &1966473980
 Transform:
   m_ObjectHideFlags: 0
@@ -7823,9 +7976,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 3
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &2002584901
 GameObject:
   m_ObjectHideFlags: 0
@@ -7908,9 +8063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!4 &2002584904
 Transform:
   m_ObjectHideFlags: 0
@@ -7940,9 +8095,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 6
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &2047951777
 GameObject:
   m_ObjectHideFlags: 0
@@ -8025,9 +8182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaying: 0
-  name: 
+  playerName: 
   avatar: {fileID: 0}
-  points: 
+  tokens: 
 --- !u!4 &2047951780
 Transform:
   m_ObjectHideFlags: 0
@@ -8057,9 +8214,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
+  camOffset: 0
   yourPlayerNum: 4
   isMoving: 0
   moveOnce: 1
+  landedOnCard: 0
 --- !u!1 &2052751879
 GameObject:
   m_ObjectHideFlags: 0

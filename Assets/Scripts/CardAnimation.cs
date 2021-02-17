@@ -15,6 +15,7 @@ public class CardAnimation : MonoBehaviour
     }
 
     #endregion
+
     public Animator CardAnimator;
 
     public Sprite didYouKnowCardBackBlue;
@@ -49,6 +50,8 @@ public class CardAnimation : MonoBehaviour
     public Sprite[] didYouKnowCardFrontPink;
     public Sprite[] didYouKnowCardFrontPurple;
 
+    public int playerMovementEffect = 0;
+    public bool cardRead = false;
 
     private int currentBrandCrisisNumber = 0;
 
@@ -150,6 +153,7 @@ public class CardAnimation : MonoBehaviour
     public void CardDown()
     {
         CardAnimator.SetBool("CardIsUp", false);
+        cardRead = true;
     }
 
     public void SpriteSwap(int card)
@@ -174,20 +178,18 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = brandCrisisCardFront[currentBrandCrisisNumber];
                 if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[0] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[2] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[4] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[8])
                 {
-                    print("Go back 1");
+                    playerMovementEffect = 1;
                 }
                 else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[11] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[12])
                 {
-                    print("Go back 2");
+                    playerMovementEffect = 2;
                 }
                 else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[1] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[9])
                 {
-                    print("Go back 3");
+                    playerMovementEffect = 3;
                 }
-                print(brandCrisisCardFront[currentBrandCrisisNumber].ToString());
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
-
                 break;
             case 4:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackPurple;
