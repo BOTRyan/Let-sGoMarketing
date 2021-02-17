@@ -10,7 +10,6 @@ public class AvatarMenu : MonoBehaviour
     public Button red, blue, green, yellow, brown, indigo;
 
     private List<Sprite> avatars = new List<Sprite>();
-    private Sprite blank = null;
     private bool[] isChosen = { false, false, false, false, false, false , false};
 
     // Start is called before the first frame update
@@ -27,7 +26,6 @@ public class AvatarMenu : MonoBehaviour
         {
             avatars.Add(dogChoice[i].GetComponent<Image>().sprite);
         }
-        print(avatars.Count);
     }
 
     // Update is called once per frame

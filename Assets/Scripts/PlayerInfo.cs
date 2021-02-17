@@ -13,7 +13,7 @@ public class PlayerInfo : MonoBehaviour
     {
         instance = this;
 
-        if(SceneManager.GetActiveScene().buildIndex != 2) DontDestroyOnLoad(this.gameObject);
+        if (SceneManager.GetActiveScene().buildIndex != 2) DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -22,7 +22,6 @@ public class PlayerInfo : MonoBehaviour
     public string playerName;
     public Sprite avatar;
     public int[] tokens;
-
 
     // Start is called before the first frame update
     void Start()

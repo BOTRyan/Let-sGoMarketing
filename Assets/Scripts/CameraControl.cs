@@ -62,39 +62,76 @@ public class CameraControl : MonoBehaviour
 
         cam.transform.position = AnimMath.Slide(cam.transform.position, transform.position, 0.01f);
 
-        if (GameManager.instance.currPlayerTurn == 1 && p1.isMoving)
+        switch (GameManager.instance.currPlayerTurn)
         {
-            targetPosY = player1.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else if (GameManager.instance.currPlayerTurn == 2 && p2.isMoving)
-        {
-            targetPosY = player2.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else if (GameManager.instance.currPlayerTurn == 3 && p3.isMoving)
-        {
-            targetPosY = player3.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else if (GameManager.instance.currPlayerTurn == 4 && p4.isMoving)
-        {
-            targetPosY = player4.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else if (GameManager.instance.currPlayerTurn == 5 && p5.isMoving)
-        {
-            targetPosY = player5.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else if (GameManager.instance.currPlayerTurn == 6 && p6.isMoving)
-        {
-            targetPosY = player6.transform.position.y;
-            mouseScrollMult = 0;
-        }
-        else
-        {
-            mouseScrollMult = 10;
+            case 1:
+                if (p1.isMoving)
+                {
+                    targetPosY = p1.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            case 2:
+                if (p2.isMoving)
+                {
+                    targetPosY = p2.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            case 3:
+                if (p3.isMoving)
+                {
+                    targetPosY = p3.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            case 4:
+                if (p4.isMoving)
+                {
+                    targetPosY = p4.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            case 5:
+                if (p5.isMoving)
+                {
+                    targetPosY = p5.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            case 6:
+                if (p6.isMoving)
+                {
+                    targetPosY = p6.camOffset;
+                    mouseScrollMult = 0;
+                }
+                else
+                {
+                    mouseScrollMult = 10;
+                }
+                break;
+            default:
+                break;
         }
     }
 }

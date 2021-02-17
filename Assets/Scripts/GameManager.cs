@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     private List<string> playerNames = new List<string>();
-    private List<InputField> playerInputs = new List<InputField>();
+    public List<InputField> playerInputs = new List<InputField>();
     public List<Button> bulldogButtons = new List<Button>();
     public int currPlayers = 3;
 
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> avatarObjects = new List<GameObject>();
 
     public int currPlayerTurn = 1;
+    
 
     // Start is called before the first frame update
     void Start()
