@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private float hoverCounter = 0;
     private bool isHover = true;
     private bool isJump = true;
-    //private bool doJump = true;
 
     public int yourPlayerNum;
 
@@ -26,16 +25,6 @@ public class PlayerMovement : MonoBehaviour
     public bool moveOnce = true;
 
     public bool landedOnCard = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            transform.position = GrabPositions.instance.boardPositions[currPos].position;
-            moveOnce = true;
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -48,15 +37,13 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = GrabPositions.instance.boardPositions[currPos].position;
                 camOffset = 3.25f;
                 moveOnce = false;
+                hoverCounter = Random.Range(0, Mathf.PI * 2);
             }
-            if (isMoving) isHover = false;
-            else isHover = true;
-            if (isHover) Hover();
 
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
                 Jump();
-                
+
                 if (Spinner.instance.numPicked && !isMoving)
                 {
                     isMoving = true;
@@ -71,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
 
-                if(!isMoving && landedOnCard && CardAnimation.instance.cardRead)
+                if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     landedOnCard = false;
                     GameManager.instance.currPlayerTurn++;
@@ -232,6 +219,11 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = false;
                 isJump = true;
             }
+
+            if (isMoving) isHover = false;
+            else isHover = true;
+
+            if (isHover) Hover();
         }
     }
 
@@ -295,24 +287,34 @@ public class PlayerMovement : MonoBehaviour
     {
         hoverCounter += Time.deltaTime * 2.5f;
         Vector3 temp = transform.position;
-        temp.y += Mathf.Sin(hoverCounter)/3000;
+        temp.y += Mathf.Sin(hoverCounter) / 3000;
         transform.position = temp;
     }
 
     private void Jump()
     {
-        if(isJump)
+        if (isJump)
         {
             isHover = false;
             jumpCounter += Time.deltaTime * 5;
-            Vector3 temp =  transform.position;
-            temp.y += Mathf.Sin(jumpCounter) / 500;
+            jumpCounter = Mathf.Clamp(jumpCounter, 0, Mathf.PI * 2);
+            Vector3 temp = transform.position;
+            temp.y += Mathf.Sin(jumpCounter) / 250;
+
             transform.position = temp;
-            //transform.position = AnimMath.Slide(transform.position, temp, 0.5f);
+
             if (jumpCounter >= Mathf.PI * 2)
             {
-                isHover = true;
-                isJump = false;
+                if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.05f)
+                {
+                    transform.position = AnimMath.Slide(transform.position, GrabPositions.instance.boardPositions[currPos].position, 0.05f);
+                }
+                else
+                {
+                    jumpCounter = 0;
+                    isHover = true;
+                    isJump = false;
+                }
             }
         }
     }
