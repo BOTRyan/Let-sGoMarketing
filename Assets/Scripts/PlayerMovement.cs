@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private float alpha = 0;
     public float camOffset = 3.25f;
 
+    private float jumpCounter = 0;
+    private float hoverCounter = 0;
+    private bool isHover = true;
+    private bool isJump = true;
+    //private bool doJump = true;
+
     public int yourPlayerNum;
 
     public bool isMoving = false;
@@ -43,9 +49,14 @@ public class PlayerMovement : MonoBehaviour
                 camOffset = 3.25f;
                 moveOnce = false;
             }
+            if (isMoving) isHover = false;
+            else isHover = true;
+            if (isHover) Hover();
 
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
+                Jump();
+                
                 if (Spinner.instance.numPicked && !isMoving)
                 {
                     isMoving = true;
@@ -219,6 +230,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isMoving = false;
+                isJump = true;
             }
         }
     }
@@ -277,5 +289,31 @@ public class PlayerMovement : MonoBehaviour
 
         // return pE
         return positionE;
+    }
+
+    private void Hover()
+    {
+        hoverCounter += Time.deltaTime * 2.5f;
+        Vector3 temp = transform.position;
+        temp.y += Mathf.Sin(hoverCounter)/3000;
+        transform.position = temp;
+    }
+
+    private void Jump()
+    {
+        if(isJump)
+        {
+            isHover = false;
+            jumpCounter += Time.deltaTime * 5;
+            Vector3 temp =  transform.position;
+            temp.y += Mathf.Sin(jumpCounter) / 500;
+            transform.position = temp;
+            //transform.position = AnimMath.Slide(transform.position, temp, 0.5f);
+            if (jumpCounter >= Mathf.PI * 2)
+            {
+                isHover = true;
+                isJump = false;
+            }
+        }
     }
 }
