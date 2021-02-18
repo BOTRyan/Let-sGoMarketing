@@ -110,6 +110,11 @@ public class CameraControl : MonoBehaviour
                 }
                 break;
             case 3:
+                if (jumpToOnce)
+                {
+                    targetPosY = p3.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p3.isMoving)
                 {
                     targetPosY = p3.camOffset;
@@ -121,6 +126,11 @@ public class CameraControl : MonoBehaviour
                 }
                 break;
             case 4:
+                if (jumpToOnce)
+                {
+                    targetPosY = p4.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p4.isMoving)
                 {
                     targetPosY = p4.camOffset;
@@ -132,6 +142,11 @@ public class CameraControl : MonoBehaviour
                 }
                 break;
             case 5:
+                if (jumpToOnce)
+                {
+                    targetPosY = p5.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p5.isMoving)
                 {
                     targetPosY = p5.camOffset;
@@ -143,6 +158,11 @@ public class CameraControl : MonoBehaviour
                 }
                 break;
             case 6:
+                if (jumpToOnce)
+                {
+                    targetPosY = p6.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p6.isMoving)
                 {
                     targetPosY = p6.camOffset;

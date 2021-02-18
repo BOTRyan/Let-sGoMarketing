@@ -70,6 +70,7 @@ public class Spinner : MonoBehaviour
             else if (tempAngle > 79 && tempAngle <= 110)
             {
                 targetNum = 6;
+                Rollednumber.text = "6";
             }
             else if (tempAngle > 110 && tempAngle <= 141)
             {

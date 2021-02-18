@@ -42,7 +42,7 @@ public class PlayerInfo : MonoBehaviour
             GetComponentInChildren<TMPro.TextMeshPro>().text = "";
         }
         
-        if(GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
+        if(SceneManager.GetActiveScene().buildIndex != 0 && GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
         {
             gameObject.SetActive(false);
         }
