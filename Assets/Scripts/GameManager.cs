@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> avatarObjects = new List<GameObject>();
 
     public int currPlayerTurn = 1;
-    
+    public int playersDone = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +114,11 @@ public class GameManager : MonoBehaviour
         if (currPlayerTurn > currPlayers)
         {
             currPlayerTurn = 1;
+        }
+
+        if (playersDone >= currPlayers)
+        {
+            SceneManager.LoadScene("endScene");
         }
     }
     public void openBulldogSelection(Button b)

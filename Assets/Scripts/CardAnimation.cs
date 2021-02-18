@@ -17,6 +17,7 @@ public class CardAnimation : MonoBehaviour
     #endregion
 
     public Animator CardAnimator;
+    public Animator SettingsAnimator;
 
     public Sprite didYouKnowCardBackBlue;
     public Sprite didYouKnowCardBackGreen;
@@ -154,6 +155,18 @@ public class CardAnimation : MonoBehaviour
     {
         CardAnimator.SetBool("CardIsUp", false);
         cardRead = true;
+    }
+
+    public void SettingsDown()
+    {
+        SettingsAnimator.SetBool("isCardDown", true);
+        print(SettingsAnimator.GetBool("isCardDown"));
+    }
+
+    public void SettingsUp()
+    {
+        SettingsAnimator.SetBool("isCardDown", false);
+        print(SettingsAnimator.GetBool("isCardDown"));
     }
 
     public void SpriteSwap(int card)

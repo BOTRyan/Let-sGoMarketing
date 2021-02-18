@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spinner : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Spinner : MonoBehaviour
     public bool numPicked = false;
 
     public int targetNum;
+    public TMPro.TextMeshProUGUI Rollednumber;
 
     // Start is called before the first frame update
     void Start()
@@ -53,14 +55,17 @@ public class Spinner : MonoBehaviour
             if (tempAngle >= 350 || tempAngle <= 17)
             {
                 targetNum = 6;
+                Rollednumber.text = "6";
             }
             else if (tempAngle > 17 && tempAngle <= 48)
             {
                 targetNum = 3;
+                Rollednumber.text = "3";
             }
             else if (tempAngle > 48 && tempAngle <= 79)
             {
                 targetNum = 4;
+                Rollednumber.text = "4";
             }
             else if (tempAngle > 79 && tempAngle <= 110)
             {
@@ -69,34 +74,42 @@ public class Spinner : MonoBehaviour
             else if (tempAngle > 110 && tempAngle <= 141)
             {
                 targetNum = 5;
+                Rollednumber.text = "5";
             }
             else if (tempAngle > 141 && tempAngle <= 172)
             {
                 targetNum = 4;
+                Rollednumber.text = "4";
             }
             else if (tempAngle > 172 && tempAngle <= 195)
             {
                 targetNum = 1;
+                Rollednumber.text = "1";
             }
             else if (tempAngle > 195 && tempAngle <= 230)
             {
                 targetNum = 5;
+                Rollednumber.text = "5";
             }
             else if (tempAngle > 230 && tempAngle <= 259)
             {
                 targetNum = 6;
+                Rollednumber.text = "6";
             }
             else if (tempAngle > 259 && tempAngle <= 290)
             {
                 targetNum = 3;
+                Rollednumber.text = "3";
             }
             else if (tempAngle > 290 && tempAngle <= 320)
             {
                 targetNum = 2;
+                Rollednumber.text = "2";
             }
             else if (tempAngle > 320 && tempAngle < 350)
             {
                 targetNum = 4;
+                Rollednumber.text = "4";
             }
             numPicked = true;
         }

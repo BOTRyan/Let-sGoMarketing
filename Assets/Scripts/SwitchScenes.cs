@@ -17,14 +17,30 @@ public class SwitchScenes : MonoBehaviour
     }
 
     private bool canStart = false;
+    public bool nameChangedNeeded = false;
+
+    private PlayerInfo tempInfo;
+    private PlayerInfo tempInfoComp;
 
     public void BeginGame()
     {
         for (int i = 0; i < GameManager.instance.currPlayers; i++)
         {
-            PlayerInfo tempInfo = GameManager.instance.players[i].GetComponent<PlayerInfo>();
+            tempInfo = GameManager.instance.players[i].GetComponent<PlayerInfo>();
 
-            if (tempInfo.avatar != null && tempInfo.playerName != "Add Name" && tempInfo.playerName != "")
+            for (int j = 0; j < GameManager.instance.players.Count; j++)
+            {
+                tempInfoComp = GameManager.instance.players[j].GetComponent<PlayerInfo>();
+
+                if (tempInfo.playerName == tempInfoComp.playerName && tempInfo.GetComponent<PlayerMovement>().yourPlayerNum != tempInfoComp.GetComponent<PlayerMovement>().yourPlayerNum)
+                {
+                    nameChangedNeeded = true;
+                    GameManager.instance.playerInputs[i].textComponent.color = new Color(.75f, 0, 0);
+                    GameManager.instance.playerInputs[j].textComponent.color = new Color(.75f, 0, 0);
+                }
+            }
+
+            if (tempInfo.avatar != null && tempInfo.playerName != "Add Name" && tempInfo.playerName != "" && !nameChangedNeeded)
             {
                 canStart = true;
             }
@@ -55,5 +71,6 @@ public class SwitchScenes : MonoBehaviour
     {
         SceneManager.LoadScene("startScene");
     }
+
     #endregion
 }

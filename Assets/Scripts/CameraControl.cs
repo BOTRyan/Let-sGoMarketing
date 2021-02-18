@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraControl : MonoBehaviour
 {
 
     #region Singleton
 
-    private CameraControl instance;
+    public static CameraControl instance;
 
     private void Awake()
     {
@@ -37,6 +38,9 @@ public class CameraControl : MonoBehaviour
     private float targetPosY = 3.25f;
     private float mouseScrollMult = 10;
 
+    public bool jumpToOnce = true;
+    private bool doOnce = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +55,15 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1 && doOnce)
+        {
+            posY = 3.25f;
+            targetPosY = 3.25f;
+            transform.position = new Vector3(0, 3.25f, 0);
+            cam.transform.position = new Vector3(0, 3.25f, 0);
+            doOnce = false;
+        }
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         targetPosY += scroll * mouseScrollMult;
@@ -65,6 +78,11 @@ public class CameraControl : MonoBehaviour
         switch (GameManager.instance.currPlayerTurn)
         {
             case 1:
+                if (jumpToOnce)
+                {
+                    targetPosY = p1.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p1.isMoving)
                 {
                     targetPosY = p1.camOffset;
@@ -76,6 +94,11 @@ public class CameraControl : MonoBehaviour
                 }
                 break;
             case 2:
+                if (jumpToOnce)
+                {
+                    targetPosY = p2.camOffset;
+                    jumpToOnce = false;
+                }
                 if (p2.isMoving)
                 {
                     targetPosY = p2.camOffset;

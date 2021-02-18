@@ -18,12 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isHover = true;
     private bool isJump = true;
 
+    private bool addOnce = true;
+
     public int yourPlayerNum;
-
     public bool isMoving = false;
-
     public bool moveOnce = true;
-
     public bool landedOnCard = false;
 
     // Update is called once per frame
@@ -61,10 +60,12 @@ public class PlayerMovement : MonoBehaviour
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     landedOnCard = false;
+                    CameraControl.instance.jumpToOnce = true;
                     GameManager.instance.currPlayerTurn++;
                     CardAnimation.instance.cardRead = false;
                     Spinner.instance.canSpin = true;
                     Spinner.instance.spinStarted = false;
+                    Spinner.instance.Rollednumber.text = "";
                 }
 
                 if (currPos > targetPos && currPos > 0 && landedOnCard && CardAnimation.instance.cardRead)
@@ -85,10 +86,12 @@ public class PlayerMovement : MonoBehaviour
                             {
                                 landedOnCard = false;
                                 isMoving = false;
+                                CameraControl.instance.jumpToOnce = true;
                                 GameManager.instance.currPlayerTurn++;
                                 CardAnimation.instance.cardRead = false;
                                 Spinner.instance.canSpin = true;
                                 Spinner.instance.spinStarted = false;
+                                Spinner.instance.Rollednumber.text = "";
                             }
                         }
                     }
@@ -179,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
                                         CardAnimation.instance.SpriteSwap(8);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                         break;
-                                    case 41:
+                                    case 42:
                                         //print("Did You Know");
                                         landedOnCard = true;
                                         isMoving = false;
@@ -196,9 +199,11 @@ public class PlayerMovement : MonoBehaviour
                                     default:
                                         landedOnCard = false;
                                         isMoving = false;
+                                        CameraControl.instance.jumpToOnce = true;
                                         GameManager.instance.currPlayerTurn++;
                                         Spinner.instance.canSpin = true;
                                         Spinner.instance.spinStarted = false;
+                                        Spinner.instance.Rollednumber.text = "";
                                         break;
                                 }
                             }
@@ -209,9 +214,17 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isMoving = false;
                     landedOnCard = false;
+                    CameraControl.instance.jumpToOnce = true;
                     GameManager.instance.currPlayerTurn++;
                     Spinner.instance.canSpin = true;
                     Spinner.instance.spinStarted = false;
+                    Spinner.instance.Rollednumber.text = "";
+
+                    if (addOnce)
+                    {
+                        GameManager.instance.playersDone++;
+                        addOnce = false;
+                    }
                 }
             }
             else

@@ -2054,6 +2054,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bedda29b02944e4ea44863c0575bce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allInputs:
+  - {fileID: 1470842186}
+  - {fileID: 386647187}
+  - {fileID: 1380587111}
+  - {fileID: 987911250}
+  - {fileID: 743462054}
+  - {fileID: 1128528685}
 --- !u!1 &489444304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,6 +4931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneIndex: 0
+  nameChangedNeeded: 0
 --- !u!114 &1124379861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,6 +4983,7 @@ MonoBehaviour:
   player6Avatar: {fileID: 1849815449}
   avatarObjects: []
   currPlayerTurn: 1
+  playersDone: 0
 --- !u!1 &1128528683
 GameObject:
   m_ObjectHideFlags: 0
@@ -8255,6 +8264,7 @@ MonoBehaviour:
   player4: {fileID: 2047951777}
   player5: {fileID: 1442589155}
   player6: {fileID: 2002584901}
+  jumpToOnce: 1
 --- !u!4 &2052751881
 Transform:
   m_ObjectHideFlags: 0
