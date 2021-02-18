@@ -2463,7 +2463,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1124379860}
-        m_MethodName: BeginGame
+        m_MethodName: goToHowTo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8264,6 +8264,8 @@ MonoBehaviour:
   player4: {fileID: 2047951777}
   player5: {fileID: 1442589155}
   player6: {fileID: 2002584901}
+  p1: {fileID: 0}
+  targetPosY: 3.25
   jumpToOnce: 1
 --- !u!4 &2052751881
 Transform:

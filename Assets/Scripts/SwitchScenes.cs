@@ -22,7 +22,8 @@ public class SwitchScenes : MonoBehaviour
     private PlayerInfo tempInfo;
     private PlayerInfo tempInfoComp;
 
-    public void BeginGame()
+
+    public void goToHowTo()
     {
         for (int i = 0; i < GameManager.instance.currPlayers; i++)
         {
@@ -63,8 +64,13 @@ public class SwitchScenes : MonoBehaviour
 
         if (canStart)
         {
-            SceneManager.LoadScene("gameScene");
+            SceneManager.LoadScene("howToScene");
         }
+    }
+
+    public void BeginGame()
+    {
+        SceneManager.LoadScene("gameScene");
     }
 
     public void ToMainMenu()
