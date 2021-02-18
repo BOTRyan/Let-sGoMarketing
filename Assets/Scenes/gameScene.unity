@@ -1091,7 +1091,7 @@ MonoBehaviour:
     type: 3}
   brandCrisisCardBack: {fileID: 21300000, guid: c811293324dbe0747849f56526ed46d4,
     type: 3}
-  careerPointCardBack: {fileID: 21300000, guid: ec25296ed5dc04f4facaf3a0e594f000,
+  careerPointCardBack: {fileID: 21300000, guid: 3b194ed9fb882ed448570fe57248499f,
     type: 3}
   youreTheBoss: {fileID: 21300000, guid: ec25296ed5dc04f4facaf3a0e594f000, type: 3}
   cardBack: {fileID: 971858826}
@@ -1126,6 +1126,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9569a6acc782ecc4fb49f9492938db6f, type: 3}
   careerPointCardFront:
   - {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
+  - {fileID: 21300000, guid: 6fe0455434d62374da4ded561b3ff60c, type: 3}
+  - {fileID: 21300000, guid: 8fc06aa07996daf41b3864de9f70abe9, type: 3}
+  - {fileID: 21300000, guid: c7e832c9cfe85e34da471362c56ffe56, type: 3}
+  - {fileID: 21300000, guid: ae932e2285382f3429a7b238222ed1f1, type: 3}
+  - {fileID: 21300000, guid: 9c950b74e24753e4ab11706d7431f798, type: 3}
+  - {fileID: 21300000, guid: a7d9f9cc92dfeb748a49d5d18505a3a6, type: 3}
+  - {fileID: 21300000, guid: 1b21adce8028cba4e823b5ea6a7c7cc1, type: 3}
   youreTheBossFront:
   - {fileID: 21300000, guid: 98959cf52540a0b47ab720d751208407, type: 3}
   - {fileID: 21300000, guid: 383a4b85672efed48a6cb9eecf719cac, type: 3}
@@ -9280,7 +9287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e3dce37d1713bb64b8f671f6aaf0602b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1580c4e8ca92114bb6748e4e3c81b25, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

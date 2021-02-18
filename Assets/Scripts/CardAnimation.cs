@@ -160,13 +160,11 @@ public class CardAnimation : MonoBehaviour
     public void SettingsDown()
     {
         SettingsAnimator.SetBool("isCardDown", true);
-        print(SettingsAnimator.GetBool("isCardDown"));
     }
 
     public void SettingsUp()
     {
         SettingsAnimator.SetBool("isCardDown", false);
-        print(SettingsAnimator.GetBool("isCardDown"));
     }
 
     public void SpriteSwap(int card)

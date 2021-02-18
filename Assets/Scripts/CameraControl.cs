@@ -27,7 +27,7 @@ public class CameraControl : MonoBehaviour
     public GameObject player5;
     public GameObject player6;
 
-    private PlayerMovement p1;
+    public PlayerMovement p1;
     private PlayerMovement p2;
     private PlayerMovement p3;
     private PlayerMovement p4;
@@ -35,7 +35,7 @@ public class CameraControl : MonoBehaviour
     private PlayerMovement p6;
 
     private float posY = 3.25f;
-    private float targetPosY = 3.25f;
+    public float targetPosY = 3.25f;
     private float mouseScrollMult = 10;
 
     public bool jumpToOnce = true;
@@ -175,6 +175,6 @@ public class CameraControl : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        } 
     }
 }
