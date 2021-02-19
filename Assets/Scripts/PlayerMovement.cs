@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
                     CardAnimation.instance.cardRead = false;
                     Spinner.instance.canSpin = true;
                     Spinner.instance.spinStarted = false;
-                    Spinner.instance.Rollednumber.text = "";
+                    //Spinner.instance.Rollednumber.text = "";
                 }
 
                 if (currPos > targetPos && currPos > 0 && landedOnCard && CardAnimation.instance.cardRead)
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                                 CardAnimation.instance.cardRead = false;
                                 Spinner.instance.canSpin = true;
                                 Spinner.instance.spinStarted = false;
-                                Spinner.instance.Rollednumber.text = "";
+                                //Spinner.instance.Rollednumber.text = "";
                             }
                         }
                     }
@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                                         GameManager.instance.currPlayerTurn++;
                                         Spinner.instance.canSpin = true;
                                         Spinner.instance.spinStarted = false;
-                                        Spinner.instance.Rollednumber.text = "";
+                                        //Spinner.instance.Rollednumber.text = "";
                                         break;
                                 }
                             }
