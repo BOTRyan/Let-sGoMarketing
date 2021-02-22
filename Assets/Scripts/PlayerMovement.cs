@@ -50,22 +50,26 @@ public class PlayerMovement : MonoBehaviour
                     targetPos += Spinner.instance.targetNum;
                 }
 
-                if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard)
+                if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard)
                 {
-                    targetPos -= CardAnimation.instance.playerMovementEffect;
+                    targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
+                }
+                else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard)
+                {
+                    targetPos += CardAnimation.instance.playerMovementEffect;
+                    isMoving = true;
+                    CardAnimation.instance.playerMovementEffect = 0;
+                }
+                else if (CardAnimation.instance.playerDoesntMove && landedOnCard)
+                {
+                    swapTurns(1);
                 }
 
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    landedOnCard = false;
-                    CameraControl.instance.jumpToOnce = true;
-                    GameManager.instance.currPlayerTurn++;
-                    CardAnimation.instance.cardRead = false;
-                    Spinner.instance.canSpin = true;
-                    Spinner.instance.spinStarted = false;
-                    //Spinner.instance.Rollednumber.text = "";
+                    swapTurns(0);
                 }
 
                 if (currPos > targetPos && currPos > 0 && landedOnCard && CardAnimation.instance.cardRead)
@@ -84,150 +88,117 @@ public class PlayerMovement : MonoBehaviour
 
                             if (currPos == targetPos || currPos <= 0)
                             {
-                                landedOnCard = false;
-                                isMoving = false;
-                                CameraControl.instance.jumpToOnce = true;
-                                GameManager.instance.currPlayerTurn++;
-                                CardAnimation.instance.cardRead = false;
-                                Spinner.instance.canSpin = true;
-                                Spinner.instance.spinStarted = false;
-                                //Spinner.instance.Rollednumber.text = "";
+                                swapTurns(1);
                             }
                         }
                     }
                 }
 
-                if (currPos < targetPos && currPos < 55 && !landedOnCard)
+                if (currPos < targetPos && currPos < 55)
                 {
-                    delay -= Time.deltaTime;
-                    if (delay <= 0)
+                    if (landedOnCard)
                     {
-                        alpha += Time.deltaTime * 2;
-                        transform.position = CalcPositionOnCurveForwards(alpha);
-
-                        if (alpha >= 1)
+                        if (CardAnimation.instance.cardRead)
                         {
-                            delay = 0.05f;
-                            alpha = 0;
-                            currPos++;
-
-                            if (currPos == targetPos || currPos >= 55)
+                            delay -= Time.deltaTime;
+                            if (delay <= 0)
                             {
-                                switch (currPos)
+                                alpha += Time.deltaTime * 2;
+                                transform.position = CalcPositionOnCurveForwards(alpha);
+
+                                if (alpha >= 1)
                                 {
-                                    case 7:
-                                    case 15:
-                                    case 20:
-                                    case 34:
-                                    case 48:
-                                        //print("You're The Boss");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(1);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 4:
-                                    case 12:
-                                    case 25:
-                                    case 37:
-                                    case 53:
-                                        //print("Career Point");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(2);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 6:
-                                    case 18:
-                                    case 30:
-                                    case 45:
-                                        //print("Brand Crisis");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(3);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 1:
-                                    case 10:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(4);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 17:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(6);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 27:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(7);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 32:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(8);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 42:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(9);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    case 50:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(10);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-                                        break;
-                                    default:
-                                        landedOnCard = false;
-                                        isMoving = false;
-                                        CameraControl.instance.jumpToOnce = true;
-                                        GameManager.instance.currPlayerTurn++;
-                                        Spinner.instance.canSpin = true;
-                                        Spinner.instance.spinStarted = false;
-                                        //Spinner.instance.Rollednumber.text = "";
-                                        break;
+                                    delay = 0.05f;
+                                    alpha = 0;
+                                    currPos++;
+
+                                    if (currPos == targetPos || currPos >= 55)
+                                    {
+                                        swapTurns(1);
+                                    }
                                 }
                             }
+                        }
+                    }
+                    else
+                    {
+                        delay -= Time.deltaTime;
+                        if (delay <= 0)
+                        {
+                            alpha += Time.deltaTime * 2;
+                            transform.position = CalcPositionOnCurveForwards(alpha);
+
+                            if (alpha >= 1)
+                            {
+                                delay = 0.05f;
+                                alpha = 0;
+                                currPos++;
+
+                                if (currPos == targetPos || currPos >= 55)
+                                {
+                                    switch (currPos)
+                                    {
+                                        case 7:
+                                        case 15:
+                                        case 20:
+                                        case 34:
+                                        case 48:
+                                            //print("You're The Boss");
+                                            FlipCard(1);
+                                            break;
+                                        case 4:
+                                        case 12:
+                                        case 25:
+                                        case 37:
+                                        case 53:
+                                            //print("Career Point");
+                                            FlipCard(2);
+                                            break;
+                                        case 6:
+                                        case 18:
+                                        case 30:
+                                        case 45:
+                                            //print("Brand Crisis");
+                                            FlipCard(3);
+                                            break;
+                                        case 1:
+                                        case 10:
+                                            //print("Did You Know");
+                                            FlipCard(4);
+                                            break;
+                                        case 17:
+                                            //print("Did You Know");
+                                            FlipCard(5);
+                                            break;
+                                        case 27:
+                                            //print("Did You Know");
+                                            FlipCard(6);
+                                            break;
+                                        case 32:
+                                            //print("Did You Know");
+                                            FlipCard(7);
+                                            break;
+                                        case 42:
+                                            //print("Did You Know");
+                                            FlipCard(8);
+                                            break;
+                                        case 50:
+                                            //print("Did You Know");
+                                            FlipCard(9);
+                                            break;
+                                        default:
+                                            swapTurns(0);
+                                            break;
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }
                 else if (currPos >= 55)
                 {
-                    isMoving = false;
-                    landedOnCard = false;
-                    CameraControl.instance.jumpToOnce = true;
-                    GameManager.instance.currPlayerTurn++;
-                    Spinner.instance.canSpin = true;
-                    Spinner.instance.spinStarted = false;
-                    Spinner.instance.Rollednumber.text = "";
-
-                    if (addOnce)
-                    {
-                        GameManager.instance.playersDone++;
-                        addOnce = false;
-                    }
+                    swapTurns(2);
                 }
             }
             else
@@ -240,6 +211,40 @@ public class PlayerMovement : MonoBehaviour
             else isHover = true;
 
             if (isHover) Hover();
+        }
+    }
+
+    private void FlipCard(int val)
+    {
+        landedOnCard = true;
+        isMoving = false;
+        CardAnimation.instance.SpriteSwap(val);
+        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
+    }
+
+    private void swapTurns(int val)
+    {
+        landedOnCard = false;
+        if (val >= 1)
+        {
+            isMoving = false;
+            CardAnimation.instance.playerDoesntMove = false;
+        }
+        CameraControl.instance.jumpToOnce = true;
+        GameManager.instance.currPlayerTurn++;
+        CardAnimation.instance.cardRead = false;
+        Spinner.instance.canSpin = true;
+        Spinner.instance.spinStarted = false;
+        if (val >= 2)
+        {
+            Spinner.instance.Rollednumber.text = "";
+
+            if (addOnce)
+            {
+                GameManager.instance.playersDone++;
+                addOnce = false;
+            }
         }
     }
 

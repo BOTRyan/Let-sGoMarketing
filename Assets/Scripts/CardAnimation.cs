@@ -36,12 +36,18 @@ public class CardAnimation : MonoBehaviour
     public GameObject cardBack;
     public GameObject cardFront;
 
+    public GameObject careerButtons;
+    public GameObject didYouButtons;
+    public GameObject youreTheButtons;
+
     public Sprite[] brandCrisisCardFront;
-    public Sprite[] brandCrisisCardFrontCopy;
+    public Sprite[] brandCrisisCardFrontIdentity;
 
     public Sprite[] careerPointCardFront;
+    public Sprite[] careerPointCardFrontIdentity;
 
     public Sprite[] youreTheBossFront;
+    public Sprite[] youreTheBossFrontIdentity;
 
     public Sprite[] didYouKnowCardFrontBlue;
     public Sprite[] didYouKnowCardFrontGreen;
@@ -52,6 +58,7 @@ public class CardAnimation : MonoBehaviour
 
     public int playerMovementEffect = 0;
     public bool cardRead = false;
+    public bool playerDoesntMove;
 
     private int currentBrandCrisisNumber = 0;
 
@@ -65,6 +72,8 @@ public class CardAnimation : MonoBehaviour
     private int currentDidYouKnowRedNumber = 0;
     private int currentDidYouKnowPinkNumber = 0;
     private int currentDidYouKnowPurpleNumber = 0;
+
+
     public void Start()
     {
         // Knuth shuffle algorithms
@@ -145,6 +154,9 @@ public class CardAnimation : MonoBehaviour
     {
         CardAnimator.SetBool("CardIsUp", false);
         cardRead = true;
+        youreTheButtons.SetActive(false);
+        careerButtons.SetActive(false);
+        didYouButtons.SetActive(false);
     }
 
     public void SettingsDown()
@@ -157,6 +169,142 @@ public class CardAnimation : MonoBehaviour
         SettingsAnimator.SetBool("isCardDown", false);
     }
 
+    public void CardButtonPressed(int buttonPressed)
+    {
+        switch (buttonPressed)
+        {
+            case 1:
+                if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[0])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-1A");
+                    playerMovementEffect = 2;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[1])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-2A");
+                    playerMovementEffect = -2;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[2])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-3A");
+                    playerMovementEffect = -1;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[3])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-4A");
+                    playerMovementEffect = 1;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[4])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5A");
+                    playerDoesntMove = true;
+                    print("5A NOT AVAILABLE");
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-6A");
+                    playerMovementEffect = 2;
+
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[6])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-7A");
+                    playerMovementEffect = -1;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[7])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-8A");
+                    playerDoesntMove = true;
+                }
+                if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
+                else currentCareerPointNumber = 0;
+                break;
+            case 2:
+                if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[0])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-1B");
+                    playerDoesntMove = true;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[1])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-2B");
+                    playerDoesntMove = true;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[2])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-3B");
+                    playerDoesntMove = true;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[3])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-4B");
+                    playerMovementEffect = -1;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[4])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5B");
+                    playerDoesntMove = true;
+                    print("5B NOT AVAILABLE");
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-6B");
+                    playerDoesntMove = true;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[6])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-7B");
+                    playerMovementEffect = 2;
+                }
+                else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[7])
+                {
+                    cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-8B");
+                    playerMovementEffect = 2;
+                }
+                if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
+                else currentCareerPointNumber = 0;
+                break;
+            case 3:
+                print("BUTTON 3 PRESSED!");
+                break;
+            case 4:
+                print("BUTTON 4 PRESSED!");
+                break;
+            case 5:
+                print("BUTTON 5 PRESSED!");
+                break;
+            case 6:
+                print("BUTTON 6 PRESSED!");
+                break;
+            case 7:
+                print("BUTTON 7 PRESSED!");
+                break;
+            case 8:
+                print("BUTTON 8 PRESSED!");
+                break;
+            case 9:
+                print("BUTTON 9 PRESSED!");
+                break;
+            case 10:
+                print("BUTTON 10 PRESSED!");
+                break;
+            case 11:
+                print("BUTTON 11 PRESSED!");
+                break;
+            case 12:
+                print("BUTTON 12 PRESSED!");
+                break;
+            case 13:
+                print("BUTTON 13 PRESSED!");
+                break;
+            case 14:
+                print("BUTTON 14 PRESSED!");
+                break;
+            default:
+                break;
+        }
+    }
+
     public void SpriteSwap(int card)
     {
 
@@ -167,35 +315,32 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                 else currentYoureTheBossNumber = 0;
-                //YoureTheBossSFX.Play();
+                youreTheButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
-                if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
-                else currentCareerPointNumber = 0;
-                //CareerPointSFX.Play();
+                careerButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Career Point");
                 break;
             case 3:
                 cardBack.GetComponent<Image>().sprite = brandCrisisCardBack;
                 cardFront.GetComponent<Image>().sprite = brandCrisisCardFront[currentBrandCrisisNumber];
-                if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[0] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[2] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[4] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[8])
+                if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[0] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[2] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[4] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[8])
                 {
-                    playerMovementEffect = 1;
+                    playerMovementEffect = -1;
                 }
-                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[11] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[12])
+                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[11] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[12])
                 {
-                    playerMovementEffect = 2;
+                    playerMovementEffect = -2;
                 }
-                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[1] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontCopy[9])
+                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[1] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[9])
                 {
-                    playerMovementEffect = 3;
+                    playerMovementEffect = -3;
                 }
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
-                //BrandCrisisSFX.Play();
                 FindObjectOfType<AudioManager>().Play("Brand Crisis");
                 break;
             case 4:
@@ -203,47 +348,47 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPurple[currentDidYouKnowPurpleNumber];
                 if (currentDidYouKnowPurpleNumber < (didYouKnowCardFrontPurple.Length - 1)) currentDidYouKnowPurpleNumber++;
                 else currentDidYouKnowPurpleNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
-            case 6:
+            case 5:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackGreen;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontGreen[currentDidYouKnowGreenNumber];
                 if (currentDidYouKnowGreenNumber < (didYouKnowCardFrontGreen.Length - 1)) currentDidYouKnowGreenNumber++;
                 else currentDidYouKnowGreenNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
-            case 7:
+            case 6:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackRed;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontRed[currentDidYouKnowRedNumber];
                 if (currentDidYouKnowRedNumber < (didYouKnowCardFrontRed.Length - 1)) currentDidYouKnowRedNumber++;
                 else currentDidYouKnowRedNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
-            case 8:
+            case 7:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackPink;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPink[currentDidYouKnowPinkNumber];
                 if (currentDidYouKnowPinkNumber < (didYouKnowCardFrontPink.Length - 1)) currentDidYouKnowPinkNumber++;
                 else currentDidYouKnowPinkNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
-            case 9:
+            case 8:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackYellow;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontYellow[currentDidYouKnowYellowNumber];
                 if (currentDidYouKnowYellowNumber < (didYouKnowCardFrontYellow.Length - 1)) currentDidYouKnowYellowNumber++;
                 else currentDidYouKnowYellowNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
-            case 10:
+            case 9:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackBlue;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontBlue[currentDidYouKnowBlueNumber];
                 if (currentDidYouKnowBlueNumber < (didYouKnowCardFrontBlue.Length - 1)) currentDidYouKnowBlueNumber++;
                 else currentDidYouKnowBlueNumber = 0;
-                //DidYouKnowSFX.Play();
+                didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             default:

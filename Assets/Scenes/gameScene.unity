@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 46633949}
   - component: {fileID: 46633948}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,6 +1094,9 @@ MonoBehaviour:
   youreTheBoss: {fileID: 21300000, guid: ec25296ed5dc04f4facaf3a0e594f000, type: 3}
   cardBack: {fileID: 971858826}
   cardFront: {fileID: 1492804511}
+  careerButtons: {fileID: 1170996778}
+  didYouButtons: {fileID: 327621335}
+  youreTheButtons: {fileID: 356110936}
   brandCrisisCardFront:
   - {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
   - {fileID: 21300000, guid: a60be9a88f625c14da33cb0492a0ecf9, type: 3}
@@ -1108,7 +1111,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b6960bdb95c38634fa58ca9465ce3cbd, type: 3}
   - {fileID: 21300000, guid: fab08dda1580a894ba4103751fd95ab1, type: 3}
   - {fileID: 21300000, guid: 9569a6acc782ecc4fb49f9492938db6f, type: 3}
-  brandCrisisCardFrontCopy:
+  brandCrisisCardFrontIdentity:
   - {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
   - {fileID: 21300000, guid: a60be9a88f625c14da33cb0492a0ecf9, type: 3}
   - {fileID: 21300000, guid: d80ae87156f269f4e8233a472fce3f9e, type: 3}
@@ -1130,6 +1133,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c950b74e24753e4ab11706d7431f798, type: 3}
   - {fileID: 21300000, guid: a7d9f9cc92dfeb748a49d5d18505a3a6, type: 3}
   - {fileID: 21300000, guid: 1b21adce8028cba4e823b5ea6a7c7cc1, type: 3}
+  careerPointCardFrontIdentity:
+  - {fileID: 21300000, guid: 6fe0455434d62374da4ded561b3ff60c, type: 3}
+  - {fileID: 21300000, guid: 8fc06aa07996daf41b3864de9f70abe9, type: 3}
+  - {fileID: 21300000, guid: c7e832c9cfe85e34da471362c56ffe56, type: 3}
+  - {fileID: 21300000, guid: ae932e2285382f3429a7b238222ed1f1, type: 3}
+  - {fileID: 21300000, guid: 9c950b74e24753e4ab11706d7431f798, type: 3}
+  - {fileID: 21300000, guid: a7d9f9cc92dfeb748a49d5d18505a3a6, type: 3}
+  - {fileID: 21300000, guid: 1b21adce8028cba4e823b5ea6a7c7cc1, type: 3}
   youreTheBossFront:
   - {fileID: 21300000, guid: 98959cf52540a0b47ab720d751208407, type: 3}
   - {fileID: 21300000, guid: 383a4b85672efed48a6cb9eecf719cac, type: 3}
@@ -1138,6 +1149,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: db9cb3c46d585dd45b1575433ed2c595, type: 3}
   - {fileID: 21300000, guid: 1f03d89bfdc74a14982fa7178ba1a581, type: 3}
   - {fileID: 21300000, guid: 4b9606beff0ff8348a15190493986b5b, type: 3}
+  youreTheBossFrontIdentity:
+  - {fileID: 21300000, guid: 98959cf52540a0b47ab720d751208407, type: 3}
+  - {fileID: 21300000, guid: 383a4b85672efed48a6cb9eecf719cac, type: 3}
+  - {fileID: 21300000, guid: 602938c988e9ea54f8141fe3d5bc1b6e, type: 3}
+  - {fileID: 21300000, guid: 31833f765429a2f46a646df61aa89d0d, type: 3}
+  - {fileID: 21300000, guid: db9cb3c46d585dd45b1575433ed2c595, type: 3}
+  - {fileID: 21300000, guid: 1f03d89bfdc74a14982fa7178ba1a581, type: 3}
+  - {fileID: 21300000, guid: 4b9606beff0ff8348a15190493986b5b, type: 3}
+  - {fileID: 21300000, guid: fe0dbdbaf617a4e448d136877c3ce78f, type: 3}
   didYouKnowCardFrontBlue:
   - {fileID: 21300000, guid: dd80a36ce302c584ba60edce4b557746, type: 3}
   - {fileID: 21300000, guid: f02e4f36b00e90945a9c84bf37924062, type: 3}
@@ -1505,16 +1525,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149694261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00000333786}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000070929527}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 809191558}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.949997, y: -23.76}
+  m_AnchoredPosition: {x: -22.089996, y: -21.800003}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &149694263
@@ -1559,7 +1579,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 149694264}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &149694264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2160,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 196029053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &196029053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,6 +2977,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 533541473}
   - {fileID: 503056762}
   - {fileID: 149694262}
   - {fileID: 1384077836}
@@ -4120,16 +4163,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503056761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 896246040}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.55, y: -23.76}
+  m_AnchoredPosition: {x: -37.09, y: -21.8}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503056763
@@ -4174,7 +4217,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 503056764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &503056764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4396,7 +4450,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 521685004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &521685004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4433,6 +4498,80 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521685001}
+  m_CullTransparentMesh: 0
+--- !u!1 &533541472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533541473}
+  - component: {fileID: 533541475}
+  - component: {fileID: 533541474}
+  m_Layer: 0
+  m_Name: Extra Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &533541473
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533541472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 327621336}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -21.3}
+  m_SizeDelta: {x: 100, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &533541474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533541472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.11764707, g: 0.1137255, b: 0.11764707, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &533541475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533541472}
   m_CullTransparentMesh: 0
 --- !u!1 &550322898
 GameObject:
@@ -6139,7 +6278,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 807936741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &807936741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6211,7 +6361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.399994}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809191559
@@ -6262,8 +6412,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6835,7 +6985,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 856649478}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 14
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &856649478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7388,7 +7549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.399994}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896246041
@@ -7439,8 +7600,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7679,16 +7840,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930856301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000007390976}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1639599221}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9699974, y: -23.76}
+  m_AnchoredPosition: {x: 8.23, y: -21.800003}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930856303
@@ -7733,7 +7894,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 930856304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &930856304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7969,16 +8141,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969073254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000007390976}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000008881092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2107496316}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.769997, y: -23.76}
+  m_AnchoredPosition: {x: 38.23, y: -21.800003}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &969073256
@@ -8023,7 +8195,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 969073257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &969073257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11570,16 +11753,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384077835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00000333786}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000070929527}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1396415333}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.249999, y: -23.76}
+  m_AnchoredPosition: {x: -7.089996, y: -21.800003}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1384077837
@@ -11624,7 +11807,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1384077838}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1384077838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11771,7 +11965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.399994}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1396415334
@@ -11822,8 +12016,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12370,7 +12564,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1465567550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1465567550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12911,7 +13116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4ef004278755c8044aa0b26795ed91d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9433c250aca608642ac5e386cc4b0132, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -13165,7 +13370,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1500619620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1500619620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13266,16 +13482,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538414153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000014901161}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1595199967}
   m_Father: {fileID: 327621336}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.67, y: -23.76}
+  m_AnchoredPosition: {x: 23.229998, y: -21.800003}
   m_SizeDelta: {x: 8.01, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538414155
@@ -13320,7 +13536,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1538414156}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1538414156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13638,7 +13865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.4}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1595199968
@@ -13689,8 +13916,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13982,7 +14209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.399994}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1639599222
@@ -14033,8 +14260,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14674,7 +14901,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1728161181}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1728161181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16978,7 +17216,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005935102}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71458451}
+        m_MethodName: CardButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 13
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2005935102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17867,7 +18116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.51}
+  m_AnchoredPosition: {x: 0, y: -6.399994}
   m_SizeDelta: {x: 15, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107496317
@@ -17918,8 +18167,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 2.6
+  m_fontSizeBase: 2.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
