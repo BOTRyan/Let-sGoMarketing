@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private List<string> playerNames = new List<string>();
     public List<InputField> playerInputs = new List<InputField>();
     public List<Button> bulldogButtons = new List<Button>();
     public int currPlayers = 3;
@@ -32,10 +31,12 @@ public class GameManager : MonoBehaviour
 
     public InputField player1Name, player2Name, player3Name, player4Name, player5Name, player6Name;
     public Button bulldog1, bulldog2, bulldog3, bulldog4, bulldog5, bulldog6;
-    public Button addPlayerButton, removePlayerButton, playButton;
+    public Button addPlayerButton, playButton;
+    public Button remove2, remove3, remove4, remove5, remove6;
     public GameObject player1, player2, player3, player4, player5, player6;
     public GameObject player1Avatar, player2Avatar, player3Avatar, player4Avatar, player5Avatar, player6Avatar;
     public List<GameObject> avatarObjects = new List<GameObject>();
+    private List<Button> removers = new List<Button>();
 
     public int currPlayerTurn = 1;
     public int playersDone = 0;
@@ -73,14 +74,21 @@ public class GameManager : MonoBehaviour
             avatarObjects.Add(player4Avatar);
             avatarObjects.Add(player5Avatar);
             avatarObjects.Add(player6Avatar);
+            removers.Add(remove2);
+            removers.Add(remove3);
+            removers.Add(remove4);
+            removers.Add(remove5);
+            removers.Add(remove6);
             for (int i = 0; i < players.Count; i++)
             {
                 players[i].GetComponent<PlayerInfo>().avatar = null;
             }
 
-            for (int i = 0; i < playerInputs.Count; i++)
+            for (int i = removers.Count - 1; i > 1; i--)
             {
-                playerNames.Add(playerInputs[i].textComponent.text);
+                removers[i].GetComponent<Image>().enabled = false;
+                removers[i].GetComponent<Button>().enabled = false;
+                removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
             }
             setBulldogVis(false);
         }
@@ -93,20 +101,14 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            playerNames[0] = player1Name.textComponent.text;
-            playerNames[1] = player2Name.textComponent.text;
-            playerNames[2] = player3Name.textComponent.text;
-            playerNames[3] = player4Name.textComponent.text;
-            playerNames[4] = player5Name.textComponent.text;
-            playerNames[5] = player6Name.textComponent.text;
 
             for (int i = 0; i < avatarObjects.Count; i++)
             {
                 avatarObjects[i].GetComponent<Image>().sprite = players[i].GetComponent<PlayerInfo>().avatar;
             }
-            for (int i = 0; i < playerNames.Count; i++)
+            for (int i = 0; i < playerInputs.Count; i++)
             {
-                players[i].GetComponent<PlayerInfo>().playerName = playerNames[i];
+                players[i].GetComponent<PlayerInfo>().playerName = playerInputs[i].GetComponent<InputField>().textComponent.text;
             }
         }
 
@@ -143,14 +145,27 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().interactable = true;
                 playerInputs[i].GetComponent<InputField>().enabled = true;
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = true;
+                if(i > 0)
+                {
+                    removers[i - 1].GetComponent<Image>().enabled = true;
+                    removers[i - 1].GetComponent<Button>().enabled = true;
+                    removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
+                }
+                
             }
             updateButtonLocations();
         }
     }
-    public void removePlayer()
+    public void removePlayer(Button b)
     {
         if (currPlayers > 1)
         {
+            int temp = 0;
+            for(int i = 0; i < removers.Count; i++)
+            {
+                if (b == removers[i]) temp = i + 1;
+            }
+            shiftInfo(temp);
             currPlayers--;
             for (int i = 5; i > currPlayers - 1; i--)
             {
@@ -161,8 +176,16 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().interactable = false;
                 playerInputs[i].GetComponent<InputField>().enabled = false;
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = false;
+                playerInputs[i].GetComponent<InputField>().textComponent.text = "Add Name";
+                playerInputs[i].GetComponent<InputField>().text = "Add Name";
                 players[i].GetComponent<PlayerInfo>().avatar = null;
                 avatarObjects[i].GetComponent<Image>().enabled = false;
+                if (i > 0) 
+                {
+                    removers[i - 1].GetComponent<Image>().enabled = false;
+                    removers[i - 1].GetComponent<Button>().enabled = false;
+                    removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+                }
                 if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
             }
             updateButtonLocations();
@@ -227,6 +250,17 @@ public class GameManager : MonoBehaviour
         else
         {
             bulldogMenu.SetActive(false);
+        }
+    }
+
+    private void shiftInfo(int pos)
+    {
+        for (int i = pos; i < currPlayers - 1; i++)
+        {
+            playerInputs[i].GetComponent<InputField>().textComponent.text = playerInputs[i + 1].GetComponent<InputField>().textComponent.text;
+            playerInputs[i].GetComponent<InputField>().text = playerInputs[i + 1].GetComponent<InputField>().text;
+            players[i].GetComponent<PlayerInfo>().name = players[i + 1].GetComponent<PlayerInfo>().name;
+            players[i].GetComponent<PlayerInfo>().avatar = players[i + 1].GetComponent<PlayerInfo>().avatar;
         }
     }
 }

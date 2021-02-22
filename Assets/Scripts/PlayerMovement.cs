@@ -11,12 +11,15 @@ public class PlayerMovement : MonoBehaviour
 
     private float delay = .2f;
     private float alpha = 0;
+    private float grav = -9.8f;
+    private float velY = 0;
     public float camOffset = 3.25f;
 
     private float jumpCounter = 0;
     private float hoverCounter = 0;
     private bool isHover = true;
     private bool isJump = true;
+    private bool jumping = false;
 
     private bool addOnce = true;
 
@@ -314,17 +317,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        print(jumping);
         if (isJump)
         {
+            velY = 4;
+            jumping = true;
+            isJump = false;
+        }
+        else if (jumping)
+        {
             isHover = false;
-            jumpCounter += Time.deltaTime * 5;
-            jumpCounter = Mathf.Clamp(jumpCounter, 0, Mathf.PI * 2);
-            Vector3 temp = transform.position;
-            temp.y += Mathf.Sin(jumpCounter) / 250;
+            if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
+            {
 
-            transform.position = temp;
-
-            if (jumpCounter >= Mathf.PI * 2)
+                Vector3 temp = transform.position;
+                velY += grav * Time.deltaTime;
+                temp.y += velY * Time.deltaTime;
+                transform.position = temp;
+            }
+            else
             {
                 if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.05f)
                 {
@@ -332,11 +343,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    jumpCounter = 0;
-                    isHover = true;
-                    isJump = false;
+                    jumping = false;
                 }
             }
         }
+        else isHover = true;
+        
     }
 }
