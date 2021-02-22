@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
                                             FlipCard(9);
                                             break;
                                         default:
-                                            swapTurns(0);
+                                            swapTurns(1);
                                             break;
                                     }
                                 }
@@ -232,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
         if (val >= 1)
         {
             isMoving = false;
+            isJump = true;
             CardAnimation.instance.playerDoesntMove = false;
         }
         CameraControl.instance.jumpToOnce = true;
@@ -347,7 +348,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else isHover = true;
-        
+        else isHover = true; 
     }
 }
