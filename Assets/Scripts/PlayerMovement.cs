@@ -125,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(1);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 4:
                                     case 12:
@@ -136,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(2);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 6:
                                     case 18:
@@ -146,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(3);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 1:
                                     case 10:
@@ -154,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(4);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 17:
                                         //print("Did You Know");
@@ -161,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(6);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 27:
                                         //print("Did You Know");
@@ -168,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(7);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 32:
                                         //print("Did You Know");
@@ -175,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(8);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 42:
                                         //print("Did You Know");
@@ -182,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(9);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     case 50:
                                         //print("Did You Know");
@@ -189,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
                                         isMoving = false;
                                         CardAnimation.instance.SpriteSwap(10);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
+                                        FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
                                         break;
                                     default:
                                         landedOnCard = false;
