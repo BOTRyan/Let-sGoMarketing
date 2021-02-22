@@ -178,6 +178,7 @@ public class CardAnimation : MonoBehaviour
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-1A");
                     playerMovementEffect = 2;
+
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[1])
                 {
@@ -197,8 +198,7 @@ public class CardAnimation : MonoBehaviour
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[4])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5A");
-                    playerDoesntMove = true;
-                    print("5A NOT AVAILABLE");
+                    playerMovementEffect = -1;
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
                 {
@@ -244,7 +244,6 @@ public class CardAnimation : MonoBehaviour
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5B");
                     playerDoesntMove = true;
-                    print("5B NOT AVAILABLE");
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
                 {

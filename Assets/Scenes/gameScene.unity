@@ -1130,6 +1130,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8fc06aa07996daf41b3864de9f70abe9, type: 3}
   - {fileID: 21300000, guid: c7e832c9cfe85e34da471362c56ffe56, type: 3}
   - {fileID: 21300000, guid: ae932e2285382f3429a7b238222ed1f1, type: 3}
+  - {fileID: 21300000, guid: a3a24d319bc7a3e48a5ee2e17164a9f3, type: 3}
   - {fileID: 21300000, guid: 9c950b74e24753e4ab11706d7431f798, type: 3}
   - {fileID: 21300000, guid: a7d9f9cc92dfeb748a49d5d18505a3a6, type: 3}
   - {fileID: 21300000, guid: 1b21adce8028cba4e823b5ea6a7c7cc1, type: 3}
@@ -1138,6 +1139,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8fc06aa07996daf41b3864de9f70abe9, type: 3}
   - {fileID: 21300000, guid: c7e832c9cfe85e34da471362c56ffe56, type: 3}
   - {fileID: 21300000, guid: ae932e2285382f3429a7b238222ed1f1, type: 3}
+  - {fileID: 21300000, guid: a3a24d319bc7a3e48a5ee2e17164a9f3, type: 3}
   - {fileID: 21300000, guid: 9c950b74e24753e4ab11706d7431f798, type: 3}
   - {fileID: 21300000, guid: a7d9f9cc92dfeb748a49d5d18505a3a6, type: 3}
   - {fileID: 21300000, guid: 1b21adce8028cba4e823b5ea6a7c7cc1, type: 3}
@@ -1207,6 +1209,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 72c4f7e301f9bac4d8daf0c70251d1e5, type: 3}
   playerMovementEffect: 0
   cardRead: 0
+  playerDoesntMove: 0
 --- !u!1 &94107799
 GameObject:
   m_ObjectHideFlags: 0

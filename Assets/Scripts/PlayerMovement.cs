@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private float velY = 0;
     public float camOffset = 3.25f;
 
-    private float jumpCounter = 0;
     private float hoverCounter = 0;
     private bool isHover = true;
     private bool isJump = true;
@@ -65,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
-                else if (CardAnimation.instance.playerDoesntMove && landedOnCard)
+                else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     swapTurns(1);
                 }
@@ -232,9 +231,9 @@ public class PlayerMovement : MonoBehaviour
         if (val >= 1)
         {
             isMoving = false;
-            isJump = true;
             CardAnimation.instance.playerDoesntMove = false;
         }
+        isJump = true;
         CameraControl.instance.jumpToOnce = true;
         GameManager.instance.currPlayerTurn++;
         CardAnimation.instance.cardRead = false;
@@ -318,7 +317,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        print(jumping);
         if (isJump)
         {
             velY = 4;
@@ -330,11 +328,17 @@ public class PlayerMovement : MonoBehaviour
             isHover = false;
             if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
             {
-
-                Vector3 temp = transform.position;
-                velY += grav * Time.deltaTime;
-                temp.y += velY * Time.deltaTime;
-                transform.position = temp;
+                if(transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y - 0.05f)
+                {
+                    Vector3 temp = transform.position;
+                    velY += grav * Time.deltaTime;
+                    temp.y += velY * Time.deltaTime;
+                    transform.position = temp;
+                }
+                else
+                {
+                    velY = 0;
+                }
             }
             else
             {
