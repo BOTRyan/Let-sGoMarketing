@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class CardAnimation : MonoBehaviour
 {
@@ -19,11 +20,15 @@ public class CardAnimation : MonoBehaviour
     public Animator CardAnimator;
     public Animator SettingsAnimator;
 
+    public AudioSource BrandCrisisSFX;
+    public AudioSource CareerPointSFX;
+    public AudioSource DidYouKnowSFX;
+    public AudioSource YoureTheBossSFX;
+
     public Sprite didYouKnowCardBackBlue;
     public Sprite didYouKnowCardBackGreen;
     public Sprite didYouKnowCardBackYellow;
     public Sprite didYouKnowCardBackRed;
-    public Sprite didYouKnowCardBackOrange;
     public Sprite didYouKnowCardBackPink;
     public Sprite didYouKnowCardBackPurple;
 
@@ -47,7 +52,6 @@ public class CardAnimation : MonoBehaviour
     public Sprite[] didYouKnowCardFrontGreen;
     public Sprite[] didYouKnowCardFrontYellow;
     public Sprite[] didYouKnowCardFrontRed;
-    public Sprite[] didYouKnowCardFrontOrange;
     public Sprite[] didYouKnowCardFrontPink;
     public Sprite[] didYouKnowCardFrontPurple;
 
@@ -64,7 +68,6 @@ public class CardAnimation : MonoBehaviour
     private int currentDidYouKnowGreenNumber = 0;
     private int currentDidYouKnowYellowNumber = 0;
     private int currentDidYouKnowRedNumber = 0;
-    private int currentDidYouKnowOrangeNumber = 0;
     private int currentDidYouKnowPinkNumber = 0;
     private int currentDidYouKnowPurpleNumber = 0;
     public void Start()
@@ -126,14 +129,6 @@ public class CardAnimation : MonoBehaviour
             didYouKnowCardFrontRed[t] = didYouKnowCardFrontRed[r];
             didYouKnowCardFrontRed[r] = tmp;
         }
-        //did you know Orange
-        for (int t = 0; t < didYouKnowCardFrontOrange.Length; t++)
-        {
-            Sprite tmp = didYouKnowCardFrontOrange[t];
-            int r = Random.Range(t, didYouKnowCardFrontOrange.Length);
-            didYouKnowCardFrontOrange[t] = didYouKnowCardFrontOrange[r];
-            didYouKnowCardFrontOrange[r] = tmp;
-        }
         //did you know Pink
         for (int t = 0; t < didYouKnowCardFrontPink.Length; t++)
         {
@@ -177,12 +172,14 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                 else currentYoureTheBossNumber = 0;
+                YoureTheBossSFX.Play();
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
                 if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
                 else currentCareerPointNumber = 0;
+                CareerPointSFX.Play();
                 break;
             case 3:
                 cardBack.GetComponent<Image>().sprite = brandCrisisCardBack;
@@ -201,48 +198,49 @@ public class CardAnimation : MonoBehaviour
                 }
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
+                BrandCrisisSFX.Play();
                 break;
             case 4:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackPurple;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPurple[currentDidYouKnowPurpleNumber];
                 if (currentDidYouKnowPurpleNumber < (didYouKnowCardFrontPurple.Length - 1)) currentDidYouKnowPurpleNumber++;
                 else currentDidYouKnowPurpleNumber = 0;
-                break;
-            case 5:
-                cardBack.GetComponent<Image>().sprite = didYouKnowCardBackOrange;
-                cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontOrange[currentDidYouKnowOrangeNumber];
-                if (currentDidYouKnowOrangeNumber < (didYouKnowCardFrontOrange.Length - 1)) currentDidYouKnowOrangeNumber++;
-                else currentDidYouKnowOrangeNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             case 6:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackGreen;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontGreen[currentDidYouKnowGreenNumber];
                 if (currentDidYouKnowGreenNumber < (didYouKnowCardFrontGreen.Length - 1)) currentDidYouKnowGreenNumber++;
                 else currentDidYouKnowGreenNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             case 7:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackRed;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontRed[currentDidYouKnowRedNumber];
                 if (currentDidYouKnowRedNumber < (didYouKnowCardFrontRed.Length - 1)) currentDidYouKnowRedNumber++;
                 else currentDidYouKnowRedNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             case 8:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackPink;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPink[currentDidYouKnowPinkNumber];
                 if (currentDidYouKnowPinkNumber < (didYouKnowCardFrontPink.Length - 1)) currentDidYouKnowPinkNumber++;
                 else currentDidYouKnowPinkNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             case 9:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackYellow;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontYellow[currentDidYouKnowYellowNumber];
                 if (currentDidYouKnowYellowNumber < (didYouKnowCardFrontYellow.Length - 1)) currentDidYouKnowYellowNumber++;
                 else currentDidYouKnowYellowNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             case 10:
                 cardBack.GetComponent<Image>().sprite = didYouKnowCardBackBlue;
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontBlue[currentDidYouKnowBlueNumber];
                 if (currentDidYouKnowBlueNumber < (didYouKnowCardFrontBlue.Length - 1)) currentDidYouKnowBlueNumber++;
                 else currentDidYouKnowBlueNumber = 0;
+                DidYouKnowSFX.Play();
                 break;
             default:
                 break;

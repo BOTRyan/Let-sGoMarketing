@@ -148,17 +148,11 @@ public class PlayerMovement : MonoBehaviour
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                         break;
                                     case 1:
-                                        //print("Did You Know");
-                                        landedOnCard = true;
-                                        isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(4);
-                                        CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
-                                        break;
                                     case 10:
                                         //print("Did You Know");
                                         landedOnCard = true;
                                         isMoving = false;
-                                        CardAnimation.instance.SpriteSwap(5);
+                                        CardAnimation.instance.SpriteSwap(4);
                                         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
                                         break;
                                     case 17:
