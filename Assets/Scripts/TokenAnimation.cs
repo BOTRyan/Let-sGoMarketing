@@ -35,7 +35,7 @@ public class TokenAnimation : MonoBehaviour
 
     public Transform endPosition;
     public Sprite playerSprite;
-
+    public int playerNumber;
     public Canvas canvas;
 
     void Start()
@@ -84,31 +84,37 @@ public class TokenAnimation : MonoBehaviour
         {
             case 1:
                 //player 1
+                playerNumber = 1;
                 buttonLocation = playerButtons[0].transform.position;
                 GetEndLocation(1);
                 break;
             case 2:
                 //player 2
+                playerNumber = 2;
                 buttonLocation = playerButtons[1].transform.position;
                 GetEndLocation(2);
                 break;
             case 3:
                 //player 3
+                playerNumber = 3;
                 buttonLocation = playerButtons[2].transform.position;
                 GetEndLocation(3);
                 break;
             case 4:
                 //player 4
+                playerNumber = 4;
                 buttonLocation = playerButtons[3].transform.position;
                 GetEndLocation(4);
                 break;
             case 5:
                 //player 5
+                playerNumber = 5;
                 buttonLocation = playerButtons[4].transform.position;
                 GetEndLocation(5);
                 break;
             case 6:
                 //player 6
+                playerNumber = 6;
                 buttonLocation = playerButtons[5].transform.position;
                 GetEndLocation(6);
                 break;

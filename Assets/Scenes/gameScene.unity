@@ -1207,6 +1207,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1770fc9569ffe914dab4939b093ba588, type: 3}
   - {fileID: 21300000, guid: 8c27f9a9cc6b84e41876a1fb7ab403ec, type: 3}
   - {fileID: 21300000, guid: 72c4f7e301f9bac4d8daf0c70251d1e5, type: 3}
+  didYouKnowButtonBlue: {fileID: 21300000, guid: 50653f8f5f9cb604e8cd5e11083ef799,
+    type: 3}
+  didYouKnowButtonGreen: {fileID: 21300000, guid: 2c98d50d2a47ace4f90fa1316426736a,
+    type: 3}
+  didYouKnowButtonYellow: {fileID: 21300000, guid: 5383cc82d19e48341af60f03d5067a19,
+    type: 3}
+  didYouKnowButtonRed: {fileID: 21300000, guid: d243e5529af11fd41b754174a2883717,
+    type: 3}
+  didYouKnowButtonPink: {fileID: 21300000, guid: ba2f3f4e63ef59a40a985b51fba3694f,
+    type: 3}
+  didYouKnowButtonPurple: {fileID: 21300000, guid: de5d69cd51bd08b4d83affd08b610443,
+    type: 3}
+  didYouKnowButtons:
+  - {fileID: 503056761}
+  - {fileID: 149694261}
+  - {fileID: 1384077835}
+  - {fileID: 930856301}
+  - {fileID: 1538414153}
+  - {fileID: 969073254}
   playerMovementEffect: 0
   cardRead: 0
   playerDoesntMove: 0
@@ -11681,6 +11700,7 @@ MonoBehaviour:
   token: {fileID: 3236952379269883266, guid: 48aef16dd3634ef4ca2c5939e8deacd7, type: 3}
   endPosition: {fileID: 0}
   playerSprite: {fileID: 0}
+  playerNumber: 0
   canvas: {fileID: 1337851110}
 --- !u!1 &1371861651
 GameObject:
@@ -13515,7 +13535,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
