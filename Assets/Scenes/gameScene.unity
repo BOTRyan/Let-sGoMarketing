@@ -2968,7 +2968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &327621336
 Transform:
   m_ObjectHideFlags: 0
@@ -11622,6 +11622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ddd285dd1df6d74cab3edef1a98203d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLocation: {x: 0, y: 0, z: 0}
   playerButtons:
   - {fileID: 503056763}
   - {fileID: 149694263}
@@ -11678,6 +11679,9 @@ MonoBehaviour:
   tokenYellow: {fileID: 21300000, guid: 94ce92480f8636249a705eadb3329a52, type: 3}
   tokenBlue: {fileID: 21300000, guid: 932b70782f8eba048b2991803efc793a, type: 3}
   token: {fileID: 3236952379269883266, guid: 48aef16dd3634ef4ca2c5939e8deacd7, type: 3}
+  endPosition: {fileID: 0}
+  playerSprite: {fileID: 0}
+  canvas: {fileID: 1337851110}
 --- !u!1 &1371861651
 GameObject:
   m_ObjectHideFlags: 0

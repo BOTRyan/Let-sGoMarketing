@@ -72,7 +72,7 @@ public class CardAnimation : MonoBehaviour
     private int currentDidYouKnowRedNumber = 0;
     private int currentDidYouKnowPinkNumber = 0;
     private int currentDidYouKnowPurpleNumber = 0;
-
+    private int didYouKnowTokenColor = 0;
 
     public void Start()
     {
@@ -265,21 +265,27 @@ public class CardAnimation : MonoBehaviour
                 break;
             case 3:
                 print("BUTTON 3 PRESSED!");
+                TokenAnimation.instance.SpawnToken(1, didYouKnowTokenColor);
                 break;
             case 4:
                 print("BUTTON 4 PRESSED!");
+                TokenAnimation.instance.SpawnToken(2, didYouKnowTokenColor);
                 break;
             case 5:
                 print("BUTTON 5 PRESSED!");
+                TokenAnimation.instance.SpawnToken(3, didYouKnowTokenColor);
                 break;
             case 6:
                 print("BUTTON 6 PRESSED!");
+                TokenAnimation.instance.SpawnToken(4, didYouKnowTokenColor);
                 break;
             case 7:
                 print("BUTTON 7 PRESSED!");
+                TokenAnimation.instance.SpawnToken(5, didYouKnowTokenColor);
                 break;
             case 8:
                 print("BUTTON 8 PRESSED!");
+                TokenAnimation.instance.SpawnToken(6, didYouKnowTokenColor);
                 break;
             case 9:
                 print("BUTTON 9 PRESSED!");
@@ -306,7 +312,6 @@ public class CardAnimation : MonoBehaviour
 
     public void SpriteSwap(int card)
     {
-
         switch (card)
         {
             case 1:
@@ -347,6 +352,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPurple[currentDidYouKnowPurpleNumber];
                 if (currentDidYouKnowPurpleNumber < (didYouKnowCardFrontPurple.Length - 1)) currentDidYouKnowPurpleNumber++;
                 else currentDidYouKnowPurpleNumber = 0;
+                didYouKnowTokenColor = 1;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
@@ -355,6 +361,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontGreen[currentDidYouKnowGreenNumber];
                 if (currentDidYouKnowGreenNumber < (didYouKnowCardFrontGreen.Length - 1)) currentDidYouKnowGreenNumber++;
                 else currentDidYouKnowGreenNumber = 0;
+                didYouKnowTokenColor = 2;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
@@ -363,6 +370,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontRed[currentDidYouKnowRedNumber];
                 if (currentDidYouKnowRedNumber < (didYouKnowCardFrontRed.Length - 1)) currentDidYouKnowRedNumber++;
                 else currentDidYouKnowRedNumber = 0;
+                didYouKnowTokenColor = 3;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
@@ -371,6 +379,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontPink[currentDidYouKnowPinkNumber];
                 if (currentDidYouKnowPinkNumber < (didYouKnowCardFrontPink.Length - 1)) currentDidYouKnowPinkNumber++;
                 else currentDidYouKnowPinkNumber = 0;
+                didYouKnowTokenColor = 4;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
@@ -379,6 +388,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontYellow[currentDidYouKnowYellowNumber];
                 if (currentDidYouKnowYellowNumber < (didYouKnowCardFrontYellow.Length - 1)) currentDidYouKnowYellowNumber++;
                 else currentDidYouKnowYellowNumber = 0;
+                didYouKnowTokenColor = 5;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
@@ -387,6 +397,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = didYouKnowCardFrontBlue[currentDidYouKnowBlueNumber];
                 if (currentDidYouKnowBlueNumber < (didYouKnowCardFrontBlue.Length - 1)) currentDidYouKnowBlueNumber++;
                 else currentDidYouKnowBlueNumber = 0;
+                didYouKnowTokenColor = 6;
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
