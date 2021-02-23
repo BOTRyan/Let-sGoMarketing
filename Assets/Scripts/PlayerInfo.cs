@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -26,14 +27,15 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        tokens = new int[] { 0, 0, 0, 0, 0, 0 };
     }
 
     // Update is called once per frame
     void Update()
     {
+
         GetComponent<SpriteRenderer>().sprite = avatar;
-        if(GameManager.instance.currPlayerTurn == GetComponent<PlayerMovement>().yourPlayerNum)
+        if (GameManager.instance.currPlayerTurn == GetComponent<PlayerMovement>().yourPlayerNum)
         {
             GetComponentInChildren<TMPro.TextMeshPro>().text = playerName;
         }
@@ -41,8 +43,8 @@ public class PlayerInfo : MonoBehaviour
         {
             GetComponentInChildren<TMPro.TextMeshPro>().text = "";
         }
-        
-        if(SceneManager.GetActiveScene().buildIndex != 0 && GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
+
+        if (SceneManager.GetActiveScene().buildIndex != 0 && GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
         {
             gameObject.SetActive(false);
         }
