@@ -27,12 +27,26 @@ public class PlayerMovement : MonoBehaviour
     public bool moveOnce = true;
     public bool landedOnCard = false;
 
+    public Sprite baseDog;
+    public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
+    private List<Sprite> walkSprites = new List<Sprite>();
+    private float walkCounter;
+
+    private void Start()
+    {
+        walkSprites.Add(walk01);
+        walkSprites.Add(walk02);
+        walkSprites.Add(walk03);
+        walkSprites.Add(walk04);
+        walkSprites.Add(walk05);
+        walkSprites.Add(walk06);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-
             if (moveOnce)
             {
                 transform.position = GrabPositions.instance.boardPositions[currPos].position;
@@ -209,8 +223,17 @@ public class PlayerMovement : MonoBehaviour
                 isJump = true;
             }
 
-            if (isMoving) isHover = false;
-            else isHover = true;
+            if (isMoving)
+            {
+                animWalk();
+                isHover = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = baseDog;
+                transform.localScale = new Vector3(.2f, .2f, 1f);
+                isHover = true;
+            }
 
             if (isHover) Hover();
         }
@@ -336,7 +359,7 @@ public class PlayerMovement : MonoBehaviour
         else if (jumping)
         {
             isHover = false;
-            if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
+            if ((Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0) && transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y - .2f) 
             {
                 if (transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y)
                 {
@@ -363,5 +386,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else isHover = true;
+    }
+
+    private void animWalk()
+    {
+        if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 7.5f;
+        if (walkCounter >= walkSprites.Count) walkCounter = 0;
+        int walkIndex = Mathf.FloorToInt(walkCounter);
+        GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
+        transform.localScale = new Vector3(.05f, .05f, 1f);
     }
 }

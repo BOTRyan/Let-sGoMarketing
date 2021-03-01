@@ -2644,7 +2644,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -2688,6 +2688,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 21300000, guid: d4ec9d90edf019a4a9a4af19a4cf22a8, type: 3}
+  walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
+  walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
+  walk03: {fileID: 21300000, guid: 069e604fd61b71143956ce21ecd44316, type: 3}
+  walk04: {fileID: 21300000, guid: 65eb6d81506af0d4fbce6d63df77fcc1, type: 3}
+  walk05: {fileID: 21300000, guid: 36c3253ebabf460408cfe73483f4e2d2, type: 3}
+  walk06: {fileID: 21300000, guid: f870d5279cd20c24ba257c2925f6d402, type: 3}
 --- !u!1 &518790916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,6 +3556,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 0}
+  walk01: {fileID: 0}
+  walk02: {fileID: 0}
+  walk03: {fileID: 0}
+  walk04: {fileID: 0}
+  walk05: {fileID: 0}
+  walk06: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,6 +7226,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 0}
+  walk01: {fileID: 0}
+  walk02: {fileID: 0}
+  walk03: {fileID: 0}
+  walk04: {fileID: 0}
+  walk05: {fileID: 0}
+  walk06: {fileID: 0}
 --- !u!1 &1470842181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9212,6 +9233,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 0}
+  walk01: {fileID: 0}
+  walk02: {fileID: 0}
+  walk03: {fileID: 0}
+  walk04: {fileID: 0}
+  walk05: {fileID: 0}
+  walk06: {fileID: 0}
 --- !u!1 &1997780978
 GameObject:
   m_ObjectHideFlags: 0
@@ -9487,6 +9515,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 0}
+  walk01: {fileID: 0}
+  walk02: {fileID: 0}
+  walk03: {fileID: 0}
+  walk04: {fileID: 0}
+  walk05: {fileID: 0}
+  walk06: {fileID: 0}
 --- !u!1 &2047951777
 GameObject:
   m_ObjectHideFlags: 0
@@ -9606,6 +9641,13 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  baseDog: {fileID: 0}
+  walk01: {fileID: 0}
+  walk02: {fileID: 0}
+  walk03: {fileID: 0}
+  walk04: {fileID: 0}
+  walk05: {fileID: 0}
+  walk06: {fileID: 0}
 --- !u!1 &2052751879
 GameObject:
   m_ObjectHideFlags: 0
