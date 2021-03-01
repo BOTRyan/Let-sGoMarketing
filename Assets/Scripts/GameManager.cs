@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.jumpToOnce = false;
         }
 
-        if (playersDone >= currPlayers)
+        if (playersDone >= currPlayers && SceneManager.GetActiveScene().buildIndex == 1)
         {
             SceneManager.LoadScene("endScene");
         }
