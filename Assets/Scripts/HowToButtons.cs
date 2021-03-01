@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // ATTACHED TO: howToScene > Canvas > Slides
 
@@ -56,9 +57,16 @@ public class HowToButtons : MonoBehaviour
         if (currentSlide < 5) buttonR.SetActive(true);
     }
 
-    public void ResetHowTo()
+    public void GoToGame()
     {
-        for(int i = 1; i < 6; ++i)
+        SceneManager.LoadScene("gameScene");
+        StartCoroutine(ResetHowTo());
+    }
+
+    IEnumerator ResetHowTo()
+    {
+        yield return new WaitForSeconds(2f);
+        for (int i = 1; i < 6; ++i)
         {
             currentSlide = i;
             LowerOpacity();
