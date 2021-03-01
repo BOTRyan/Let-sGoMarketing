@@ -25,6 +25,8 @@ public class UIPlayerInfo : MonoBehaviour
     public GameObject Player5Info;
     public GameObject Player6Info;
 
+    public GameObject placeEven1, placeEven2, placeEven3, placeEven4, placeEven5, placeEven6, placeOdd1, placeOdd2, placeOdd3, placeOdd4, placeOdd5;
+
     public List<GameObject> p1Tokens = new List<GameObject>();
     public List<GameObject> p2Tokens = new List<GameObject>();
     public List<GameObject> p3Tokens = new List<GameObject>();
@@ -55,6 +57,8 @@ public class UIPlayerInfo : MonoBehaviour
         setPlayerNameAndAvatar();
 
         setTokenAmounts();
+
+        setTagLocation();
     }
 
     public void setTokenAmounts()
@@ -162,5 +166,45 @@ public class UIPlayerInfo : MonoBehaviour
             p6Tokens.Add(Player6Info.transform.GetChild(i).gameObject);
         }
         p6Tokens.RemoveAt(0);
+    }
+
+    private void setTagLocation()
+    {
+        switch(playerAmt)
+        {
+            case 1:
+                playersInfoUI[0].transform.position = placeOdd3.transform.position;
+                break;
+            case 2:
+                playersInfoUI[0].transform.position = placeEven3.transform.position;
+                playersInfoUI[1].transform.position = placeEven4.transform.position;
+                break;
+            case 3:
+                playersInfoUI[0].transform.position = placeOdd2.transform.position;
+                playersInfoUI[1].transform.position = placeOdd3.transform.position;
+                playersInfoUI[2].transform.position = placeOdd4.transform.position;
+                break;
+            case 4:
+                playersInfoUI[0].transform.position = placeEven2.transform.position;
+                playersInfoUI[1].transform.position = placeEven3.transform.position;
+                playersInfoUI[2].transform.position = placeEven4.transform.position;
+                playersInfoUI[3].transform.position = placeEven5.transform.position;
+                break;
+            case 5:
+                playersInfoUI[0].transform.position = placeOdd1.transform.position;
+                playersInfoUI[1].transform.position = placeOdd2.transform.position;
+                playersInfoUI[2].transform.position = placeOdd3.transform.position;
+                playersInfoUI[3].transform.position = placeOdd4.transform.position;
+                playersInfoUI[4].transform.position = placeOdd5.transform.position;
+                break;
+            case 6:
+                playersInfoUI[0].transform.position = placeEven1.transform.position;
+                playersInfoUI[1].transform.position = placeEven2.transform.position;
+                playersInfoUI[2].transform.position = placeEven3.transform.position;
+                playersInfoUI[3].transform.position = placeEven4.transform.position;
+                playersInfoUI[4].transform.position = placeEven5.transform.position;
+                playersInfoUI[5].transform.position = placeEven6.transform.position;
+                break;
+        }
     }
 }

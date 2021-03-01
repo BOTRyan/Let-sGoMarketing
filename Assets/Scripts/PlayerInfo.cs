@@ -34,7 +34,7 @@ public class PlayerInfo : MonoBehaviour
     void Update()
     {
 
-        GetComponent<SpriteRenderer>().sprite = avatar;
+        //GetComponent<SpriteRenderer>().sprite = avatar;
         if (GameManager.instance.currPlayerTurn == GetComponent<PlayerMovement>().yourPlayerNum)
         {
             GetComponentInChildren<TMPro.TextMeshPro>().text = playerName;

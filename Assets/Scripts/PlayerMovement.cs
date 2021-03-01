@@ -27,12 +27,26 @@ public class PlayerMovement : MonoBehaviour
     public bool moveOnce = true;
     public bool landedOnCard = false;
 
+    public Sprite baseDog;
+    public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
+    private List<Sprite> walkSprites = new List<Sprite>();
+    private float walkCounter;
+
+    void Start()
+    {
+        walkSprites.Add(walk01);
+        walkSprites.Add(walk02);
+        walkSprites.Add(walk03);
+        walkSprites.Add(walk04);
+        walkSprites.Add(walk05);
+        walkSprites.Add(walk06);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-
             if (moveOnce)
             {
                 transform.position = GrabPositions.instance.boardPositions[currPos].position;
@@ -40,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
                 moveOnce = false;
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
             }
-
+            baseDog = GetComponent<PlayerInfo>().avatar;
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
                 Jump();
@@ -206,11 +220,21 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isMoving = false;
-                isJump = true;
+                //isJump = true;
             }
 
-            if (isMoving) isHover = false;
-            else isHover = true;
+            if (isMoving || Input.GetKey(KeyCode.A))
+            {
+                animWalk();
+                isHover = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = baseDog;
+                transform.localScale = new Vector3(.2f, .2f, 1f);
+                GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
+                isHover = true;
+            }
 
             if (isHover) Hover();
         }
@@ -332,36 +356,42 @@ public class PlayerMovement : MonoBehaviour
             velY = 4;
             jumping = true;
             isJump = false;
+            //print("Jump");
         }
         else if (jumping)
         {
             isHover = false;
-            if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
+            print(velY);
+            Vector3 temp = transform.position;
+            velY += grav * Time.fixedDeltaTime;
+            temp.y += velY * Time.fixedDeltaTime;
+            transform.position = temp;
+                
+            if(transform.position.y <= GrabPositions.instance.boardPositions[currPos].position.y) velY = 0;
+            
+            if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.02f && velY == 0)
             {
-                if (transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y)
+                transform.position = AnimMath.Slide(transform.position, GrabPositions.instance.boardPositions[currPos].position, 0.05f);
+                if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) < 0.02f)
                 {
-                    Vector3 temp = transform.position;
-                    velY += grav * Time.fixedDeltaTime;
-                    temp.y += velY * Time.fixedDeltaTime;
-                    transform.position = temp;
-                }
-                else
-                {
-                    velY = 0;
-                }
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.05f)
-                {
-                    transform.position = AnimMath.Slide(transform.position, GrabPositions.instance.boardPositions[currPos].position, 0.05f);
-                }
-                else
-                {
+                    transform.position = GrabPositions.instance.boardPositions[currPos].position;
                     jumping = false;
                 }
             }
+            
         }
         else isHover = true;
+    }
+
+    private void animWalk()
+    {
+        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 41) || (currPos >= 46 && currPos < 51)) GetComponent<SpriteRenderer>().flipX = true;
+        else GetComponent<SpriteRenderer>().flipX = false;
+        if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 7.5f;
+        if (walkCounter >= walkSprites.Count) walkCounter = 0;
+        int walkIndex = Mathf.FloorToInt(walkCounter);
+        GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
+        transform.localScale = new Vector3(.05f, .05f, 1f);
+        GetComponentInChildren<RectTransform>().localScale = new Vector3(4.5f, 4.5f, 4.5f);
     }
 }
