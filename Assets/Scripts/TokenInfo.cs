@@ -31,28 +31,28 @@ public class TokenInfo : MonoBehaviour
         playersInfo = GameObject.FindObjectsOfType<PlayerInfo>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (startLerp)
         {
             if (Vector3.Distance(transform.position, endPosition) <= 4)
             {
                 GiveTokenToPlayer();
-                FindObjectOfType<AudioManager>().Play("Token Added");
+                FindObjectOfType<AudioManager>().PlayUninterrupted("Token Added");
                 Destroy(this.gameObject);
             }
             else
             {
-                animAlpha += Time.deltaTime;
+                animAlpha += Time.fixedDeltaTime;
                 transform.position = CalculatePosition(animAlpha);
                 transform.localScale = CalculateScale(animAlpha);
             }
         }
         else
         {
-            alpha += Time.deltaTime;
+            alpha += Time.fixedDeltaTime;
             transform.position = new Vector3(transform.position.x, AnimMath.Slide(transform.position.y, startPosition.y + 100, alpha), transform.position.z);
-            animDelay -= Time.deltaTime;
+            animDelay -= Time.fixedDeltaTime;
             if (animDelay <= 0)
             {
                 animDelay = 0;

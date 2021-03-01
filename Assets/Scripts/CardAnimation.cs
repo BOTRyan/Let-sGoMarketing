@@ -84,7 +84,7 @@ public class CardAnimation : MonoBehaviour
     private int currentDidYouKnowPurpleNumber = 0;
     private int didYouKnowTokenColor = 0;
 
-    private PlayerInfo[] playersInfo;
+    private PlayerInfo[] playersInfo = new PlayerInfo[6];
 
     private bool p1hasTakenToken = true;
     private bool p2hasTakenToken = true;
@@ -172,8 +172,10 @@ public class CardAnimation : MonoBehaviour
             didYouKnowCardFrontPurple[r] = tmp;
         }
 
-        playersInfo = GameObject.FindObjectsOfType<PlayerInfo>();
-
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            playersInfo[i] = GameManager.instance.players[i].GetComponent<PlayerInfo>();
+        }
         for (int i = 0; i < GameManager.instance.currPlayers; i++)
         {
             didYouKnowButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[i].playerName;
@@ -183,6 +185,7 @@ public class CardAnimation : MonoBehaviour
             didYouKnowButtons[i].SetActive(false);
         }
     }
+
     public void CardDown()
     {
         CardAnimator.SetBool("CardIsUp", false);
@@ -219,36 +222,42 @@ public class CardAnimation : MonoBehaviour
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-1A");
                     playerMovementEffect = 2;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[1])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-2A");
                     playerMovementEffect = -2;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[2])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-3A");
                     playerMovementEffect = -1;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[3])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-4A");
                     playerMovementEffect = 1;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[4])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5A");
                     playerMovementEffect = -1;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-6A");
                     playerMovementEffect = 2;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
 
                 }
@@ -256,12 +265,14 @@ public class CardAnimation : MonoBehaviour
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-7A");
                     playerMovementEffect = -1;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[7])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-8A");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
@@ -272,48 +283,56 @@ public class CardAnimation : MonoBehaviour
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-1B");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[1])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-2B");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[2])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-3B");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[3])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-4B");
                     playerMovementEffect = -1;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[4])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-5B");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[5])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-6B");
                     playerDoesntMove = true;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[6])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-7B");
                     playerMovementEffect = 2;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 else if (careerPointCardFront[currentCareerPointNumber] == careerPointCardFrontIdentity[7])
                 {
                     cardFront.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Cards/Front/Career Point/cp-card-8B");
                     playerMovementEffect = 2;
+                    careerButtons.SetActive(false);
                     CardAnimation.instance.continueButton.SetActive(true);
                 }
                 if (currentCareerPointNumber < (careerPointCardFront.Length - 1)) currentCareerPointNumber++;
@@ -326,13 +345,6 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.SpawnToken(1, didYouKnowTokenColor);
                     p1hasTakenToken = false;
                 }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(1, didYouKnowTokenColor);
-                    playersInfo[0].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p1hasTakenToken = true;
-                }
                 break;
             case 4:
                 if (p2hasTakenToken)
@@ -340,13 +352,6 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.isBoss = false;
                     TokenAnimation.instance.SpawnToken(2, didYouKnowTokenColor);
                     p2hasTakenToken = false;
-                }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(2, didYouKnowTokenColor);
-                    playersInfo[1].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p2hasTakenToken = true;
                 }
                 break;
             case 5:
@@ -356,13 +361,6 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.SpawnToken(3, didYouKnowTokenColor);
                     p3hasTakenToken = false;
                 }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(3, didYouKnowTokenColor);
-                    playersInfo[2].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p3hasTakenToken = true;
-                }
                 break;
             case 6:
                 if (p4hasTakenToken)
@@ -370,13 +368,6 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.isBoss = false;
                     TokenAnimation.instance.SpawnToken(4, didYouKnowTokenColor);
                     p4hasTakenToken = false;
-                }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(4, didYouKnowTokenColor);
-                    playersInfo[3].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p4hasTakenToken = true;
                 }
                 break;
             case 7:
@@ -386,13 +377,6 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.SpawnToken(5, didYouKnowTokenColor);
                     p5hasTakenToken = false;
                 }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(5, didYouKnowTokenColor);
-                    playersInfo[4].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p5hasTakenToken = true;
-                }
                 break;
             case 8:
                 if (p6hasTakenToken)
@@ -401,49 +385,72 @@ public class CardAnimation : MonoBehaviour
                     TokenAnimation.instance.SpawnToken(6, didYouKnowTokenColor);
                     p6hasTakenToken = false;
                 }
-                else
-                {
-                    TokenAnimation.instance.SpriteSwap(6, didYouKnowTokenColor);
-                    playersInfo[5].tokens[didYouKnowTokenColor - 1]--;
-                    UIPlayerInfo.instance.setTokenAmounts();
-                    p6hasTakenToken = true;
-                }
                 break;
             case 9:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(1);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             case 10:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(2);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             case 11:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(3);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             case 12:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(4);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             case 13:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(5);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             case 14:
                 TokenAnimation.instance.isBoss = true;
                 checkBossCard(6);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers) CardAnimation.instance.continueButton.SetActive(true);
+                if (playersPressed >= GameManager.instance.currPlayers)
+                {
+                    CardAnimation.instance.continueButton.SetActive(true);
+                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                    else currentYoureTheBossNumber = 0;
+                }
                 break;
             default:
                 break;
@@ -454,27 +461,21 @@ public class CardAnimation : MonoBehaviour
     {
         if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[0])
         {
-            print("0");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("green");
                     bossColor = 2;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
@@ -485,31 +486,24 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[1])
         {
-            print("1");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("green");
                     bossColor = 2;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
-                    print("red");
                     bossColor = 3;
                     break;
                 default:
@@ -518,31 +512,24 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[2])
         {
-            print("2");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("green");
                     bossColor = 2;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
-                    print("red");
                     bossColor = 3;
                     break;
                 default:
@@ -551,27 +538,21 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[3])
         {
-            print("3");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("red");
                     bossColor = 3;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
@@ -582,61 +563,48 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[4])
         {
-            print("4");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("green");
                     bossColor = 2;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
-                    print("red");
                     bossColor = 3;
                     break;
                 default:
                     break;
             }
         }
-        
+
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[5])
         {
-            print("5");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("red");
                     bossColor = 3;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
@@ -647,31 +615,24 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[6])
         {
-            print("6");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("green");
                     bossColor = 2;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 6:
-                    print("red");
                     bossColor = 3;
                     break;
                 default:
@@ -680,23 +641,18 @@ public class CardAnimation : MonoBehaviour
         }
         else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[7])
         {
-            print("7");
             switch (val)
             {
                 case 1:
-                    print("blue");
                     bossColor = 6;
                     break;
                 case 2:
-                    print("purple");
                     bossColor = 1;
                     break;
                 case 3:
-                    print("pink");
                     bossColor = 4;
                     break;
                 case 4:
-                    print("yellow");
                     bossColor = 5;
                     break;
                 case 5:
@@ -708,7 +664,6 @@ public class CardAnimation : MonoBehaviour
             }
         }
         if (playersPressed < GameManager.instance.currPlayers) TokenAnimation.instance.SpawnToken(playersPressed + 1, bossColor);
-        print(youreTheBossFront[currentYoureTheBossNumber]);
     }
 
     public void SpriteSwap(int card)
@@ -718,8 +673,6 @@ public class CardAnimation : MonoBehaviour
             case 1:
                 cardBack.GetComponent<Image>().sprite = youreTheBoss;
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
-                if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
-                else currentYoureTheBossNumber = 0;
                 youreTheButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 break;

@@ -39,7 +39,7 @@ public class Spinner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (fadeTimer <= 0)
         {
@@ -47,12 +47,12 @@ public class Spinner : MonoBehaviour
         }
         else
         {
-            fadeTimer -= Time.deltaTime;
+            fadeTimer -= Time.fixedDeltaTime;
         }
 
         Rollednumber.color = new Color(1, 1, 1, alpha);
 
-        rotSpeed += accSpeed * Time.deltaTime;
+        rotSpeed += accSpeed * Time.fixedDeltaTime;
 
         transform.Rotate(0, 0, rotSpeed);
 
@@ -160,7 +160,7 @@ public class Spinner : MonoBehaviour
         if (!spinStarted && canSpin)
         {
             accSpeed = Random.Range(500, 600);
-            dragAmt = Random.Range(0.93f, 0.96f);
+            dragAmt = Random.Range(0.88f, 0.92f);
             spinStarted = true;
             canSpin = false;
         }

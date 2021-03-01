@@ -41,8 +41,6 @@ public class UIPlayerInfo : MonoBehaviour
     {
         playerAmt = GameManager.instance.currPlayers;
 
-        List<GameObject> temp = GameManager.instance.players;
-
         for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
             playersInfo[i] = GameManager.instance.players[i].GetComponent<PlayerInfo>();

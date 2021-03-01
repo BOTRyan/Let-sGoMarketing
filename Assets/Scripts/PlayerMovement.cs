@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public bool landedOnCard = false;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -76,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
 
                 if (currPos > targetPos && currPos > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    delay -= Time.deltaTime;
+                    delay -= Time.fixedDeltaTime;
                     if (delay <= 0)
                     {
-                        alpha += Time.deltaTime * 2;
+                        alpha += Time.fixedDeltaTime * 2;
                         transform.position = CalcPositionOnCurveBackwards(alpha);
 
                         if (alpha >= 1)
@@ -102,10 +102,10 @@ public class PlayerMovement : MonoBehaviour
                     {
                         if (CardAnimation.instance.cardRead)
                         {
-                            delay -= Time.deltaTime;
+                            delay -= Time.fixedDeltaTime;
                             if (delay <= 0)
                             {
-                                alpha += Time.deltaTime * 2;
+                                alpha += Time.fixedDeltaTime * 2;
                                 transform.position = CalcPositionOnCurveForwards(alpha);
 
                                 if (alpha >= 1)
@@ -124,10 +124,10 @@ public class PlayerMovement : MonoBehaviour
                     }
                     else
                     {
-                        delay -= Time.deltaTime;
+                        delay -= Time.fixedDeltaTime;
                         if (delay <= 0)
                         {
-                            alpha += Time.deltaTime * 2;
+                            alpha += Time.fixedDeltaTime * 2;
                             transform.position = CalcPositionOnCurveForwards(alpha);
 
                             if (alpha >= 1)
@@ -319,9 +319,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Hover()
     {
-        hoverCounter += Time.deltaTime * 2.5f;
+        hoverCounter += Time.fixedDeltaTime * 2.5f;
         Vector3 temp = transform.position;
-        temp.y += Mathf.Sin(hoverCounter) / 3000;
+        temp.y += Mathf.Sin(hoverCounter) / 500;
         transform.position = temp;
     }
 
@@ -338,11 +338,11 @@ public class PlayerMovement : MonoBehaviour
             isHover = false;
             if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
             {
-                if(transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y)
+                if (transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y)
                 {
                     Vector3 temp = transform.position;
-                    velY += grav * Time.deltaTime;
-                    temp.y += velY * Time.deltaTime;
+                    velY += grav * Time.fixedDeltaTime;
+                    temp.y += velY * Time.fixedDeltaTime;
                     transform.position = temp;
                 }
                 else
@@ -362,6 +362,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else isHover = true; 
+        else isHover = true;
     }
 }
