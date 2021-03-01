@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public int currPlayers = 3;
 
     public Canvas screen;
-    public GameObject background3, background4, background5, background6;
+    public GameObject background3, background4, background5;
     public GameObject bulldogMenu;
     public List<GameObject> players = new List<GameObject>();
 
@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
             background3.GetComponent<Image>().enabled = true;
             background4.GetComponent<Image>().enabled = false;
             background5.GetComponent<Image>().enabled = false;
-            background6.GetComponent<Image>().enabled = false;
             players.Add(player1);
             players.Add(player2);
             players.Add(player3);
@@ -188,6 +187,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
             }
+            SwitchScenes.instance.nameChangedNeeded = false;
             updateButtonLocations();
         }
     }
@@ -203,39 +203,41 @@ public class GameManager : MonoBehaviour
                 currPlayers = 2;
                 break;
             case 3:
-                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[3].transform.position.y, playerInputs[3].transform.position.z);
                 addPlayerButton.transform.position = temp;
+                addPlayerButton.gameObject.SetActive(true);
                 background3.GetComponent<Image>().enabled = true;
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = false;
-                background6.GetComponent<Image>().enabled = false;
                 currPlayers = 3;
                 break;
             case 4:
-                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                // temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[4].transform.position.y, playerInputs[4].transform.position.z);
                 addPlayerButton.transform.position = temp;
+                addPlayerButton.gameObject.SetActive(true);
                 background3.GetComponent<Image>().enabled = false;
                 background4.GetComponent<Image>().enabled = true;
                 background5.GetComponent<Image>().enabled = false;
-                background6.GetComponent<Image>().enabled = false;
                 currPlayers = 4;
                 break;
             case 5:
-                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[5].transform.position.y, playerInputs[5].transform.position.z);
                 addPlayerButton.transform.position = temp;
+                addPlayerButton.gameObject.SetActive(true);
                 background3.GetComponent<Image>().enabled = false;
                 background4.GetComponent<Image>().enabled = false;
                 background5.GetComponent<Image>().enabled = true;
-                background6.GetComponent<Image>().enabled = false;
                 currPlayers = 5;
                 break;
             case 6:
-                temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
-                addPlayerButton.transform.position = temp;
+                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
+                addPlayerButton.gameObject.SetActive(false);
                 background3.GetComponent<Image>().enabled = false;
                 background4.GetComponent<Image>().enabled = false;
-                background5.GetComponent<Image>().enabled = false;
-                background6.GetComponent<Image>().enabled = true;
+                background5.GetComponent<Image>().enabled = true;
                 currPlayers = 6;
                 break;
         }

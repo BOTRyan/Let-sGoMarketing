@@ -36,50 +36,57 @@ public class TokenAnimation : MonoBehaviour
     public Transform endPosition;
     public Sprite playerSprite;
     public int playerNumber;
+    public int playerWhoPressed = 0;
     public Canvas canvas;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-    }
+    public bool isBoss = false;
 
     public void SpawnToken(int player, int color)
     {
-        tokenColor = color;
+        if (!isBoss)
+        {
+            tokenColor = color;
+            playerWhoPressed = player;
+        }
+        else
+        {
+            tokenColor = CardAnimation.instance.bossColor;
+            playerWhoPressed = CardAnimation.instance.playersPressed + 1;
+        }
         GetButtonLocationsAndColor(player);
         Instantiate(token, buttonLocation, Quaternion.identity, canvas.transform);
     }
 
-    public void GetButtonLocationsAndColor(int player)
+    public void SpriteSwap(int player, int color)
     {
-        switch (tokenColor)
+        playerNumber = player;
+        switch (color)
         {
             case 1:
-                playerSprite = tokenPurple;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-purple_256x256");
                 break;
             case 2:
-                playerSprite = tokenGreen;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-green_256x256");
                 break;
             case 3:
-                playerSprite = tokenRed;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-red_256x256");
                 break;
             case 4:
-                playerSprite = tokenPink;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-pink_256x256");
                 break;
             case 5:
-                playerSprite = tokenYellow;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-yellow_256x256");
                 break;
             case 6:
-                playerSprite = tokenBlue;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-blue_256x256");
                 break;
             default:
                 break;
         }
+    }
 
+    public void GetButtonLocationsAndColor(int player)
+    {
         switch (player)
         {
             case 1:
@@ -121,10 +128,43 @@ public class TokenAnimation : MonoBehaviour
             default:
                 break;
         }
+        if (isBoss) buttonLocation = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+        switch (tokenColor)
+        {
+            case 1:
+                playerSprite = tokenPurple;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-purple");
+                break;
+            case 2:
+                playerSprite = tokenGreen;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-green");
+                break;
+            case 3:
+                playerSprite = tokenRed;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-red");
+                break;
+            case 4:
+                playerSprite = tokenPink;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-pink");
+                break;
+            case 5:
+                playerSprite = tokenYellow;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-yellow");
+                break;
+            case 6:
+                playerSprite = tokenBlue;
+                playerButtons[playerNumber - 1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/UI/button-check-blue");
+                break;
+            default:
+                break;
+        }
     }
 
     public void GetEndLocation(int player)
     {
+        if (isBoss) tokenColor = CardAnimation.instance.bossColor;
+
         switch (tokenColor)
         {
             case 1:

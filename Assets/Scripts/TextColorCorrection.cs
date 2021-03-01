@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TextColorCorrection : MonoBehaviour
 {
-
     public InputField[] allInputs;
     private PlayerInfo tempInfo;
     private PlayerInfo tempInfoComp;
