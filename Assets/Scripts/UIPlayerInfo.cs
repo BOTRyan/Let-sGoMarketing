@@ -7,6 +7,17 @@ using UnityEngine.UI;
 public class UIPlayerInfo : MonoBehaviour
 {
 
+    #region Singleton
+
+    public static UIPlayerInfo instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
     public GameObject Player1Info;
     public GameObject Player2Info;
     public GameObject Player3Info;
@@ -14,14 +25,14 @@ public class UIPlayerInfo : MonoBehaviour
     public GameObject Player5Info;
     public GameObject Player6Info;
 
-    private List<GameObject> p1Tokens = new List<GameObject>();
-    private List<GameObject> p2Tokens = new List<GameObject>();
-    private List<GameObject> p3Tokens = new List<GameObject>();
-    private List<GameObject> p4Tokens = new List<GameObject>();
-    private List<GameObject> p5Tokens = new List<GameObject>();
-    private List<GameObject> p6Tokens = new List<GameObject>();
+    public List<GameObject> p1Tokens = new List<GameObject>();
+    public List<GameObject> p2Tokens = new List<GameObject>();
+    public List<GameObject> p3Tokens = new List<GameObject>();
+    public List<GameObject> p4Tokens = new List<GameObject>();
+    public List<GameObject> p5Tokens = new List<GameObject>();
+    public List<GameObject> p6Tokens = new List<GameObject>();
 
-    private PlayerInfo[] playersInfo;
+    private PlayerInfo[] playersInfo = new PlayerInfo[6];
     private GameObject[] playersInfoUI;
 
     private int playerAmt;
@@ -30,7 +41,12 @@ public class UIPlayerInfo : MonoBehaviour
     {
         playerAmt = GameManager.instance.currPlayers;
 
-        playersInfo = GameObject.FindObjectsOfType<PlayerInfo>();
+        List<GameObject> temp = GameManager.instance.players;
+
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            playersInfo[i] = GameManager.instance.players[i].GetComponent<PlayerInfo>();
+        }
 
         playersInfoUI = new GameObject[] { Player1Info, Player2Info, Player3Info, Player4Info, Player5Info, Player6Info };
 
@@ -43,36 +59,55 @@ public class UIPlayerInfo : MonoBehaviour
         setTokenAmounts();
     }
 
-    private void setTokenAmounts()
+    public void setTokenAmounts()
     {
-        for (int i = 0; i < p1Tokens.Count; i++)
+        if (playerAmt >= 1)
         {
-            p1Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[0].tokens[i].ToString();
+            for (int i = 0; i < p1Tokens.Count; i++)
+            {
+                p1Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[0].tokens[i].ToString();
+                if (playersInfo[0].tokens[i] <= 0) p1Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
-
-        for (int i = 0; i < p2Tokens.Count; i++)
+        if (playerAmt >= 2)
         {
-            p2Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[1].tokens[i].ToString();
+            for (int i = 0; i < p2Tokens.Count; i++)
+            {
+                p2Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[1].tokens[i].ToString();
+                if (playersInfo[1].tokens[i] <= 0) p2Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
-
-        for (int i = 0; i < p3Tokens.Count; i++)
+        if (playerAmt >= 3)
         {
-            p3Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[2].tokens[i].ToString();
+            for (int i = 0; i < p3Tokens.Count; i++)
+            {
+                p3Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[2].tokens[i].ToString();
+                if (playersInfo[2].tokens[i] <= 0) p3Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
-
-        for (int i = 0; i < p4Tokens.Count; i++)
+        if (playerAmt >= 4)
         {
-            p4Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[3].tokens[i].ToString();
+            for (int i = 0; i < p4Tokens.Count; i++)
+            {
+                p4Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[3].tokens[i].ToString();
+                if (playersInfo[3].tokens[i] <= 0) p4Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
-
-        for (int i = 0; i < p5Tokens.Count; i++)
+        if (playerAmt >= 5)
         {
-            p5Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[4].tokens[i].ToString();
+            for (int i = 0; i < p5Tokens.Count; i++)
+            {
+                p5Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[4].tokens[i].ToString();
+                if (playersInfo[4].tokens[i] <= 0) p5Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
-
-        for (int i = 0; i < p6Tokens.Count; i++)
+        if (playerAmt == 6)
         {
-            p6Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[5].tokens[i].ToString();
+            for (int i = 0; i < p6Tokens.Count; i++)
+            {
+                p6Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = playersInfo[5].tokens[i].ToString();
+                if (playersInfo[5].tokens[i] <= 0) p6Tokens[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "0";
+            }
         }
     }
 

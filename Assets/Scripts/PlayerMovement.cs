@@ -223,6 +223,16 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.SpriteSwap(val);
         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
         FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
+        if (val >= 3)
+        {
+            StartCoroutine(showButtonWithDelay(1.75f));
+        }
+    }
+
+    IEnumerator showButtonWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        CardAnimation.instance.continueButton.SetActive(true);
     }
 
     private void swapTurns(int val)
@@ -328,7 +338,7 @@ public class PlayerMovement : MonoBehaviour
             isHover = false;
             if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= .01f || velY > 0)
             {
-                if(transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y - 0.05f)
+                if(transform.position.y >= GrabPositions.instance.boardPositions[currPos].position.y)
                 {
                     Vector3 temp = transform.position;
                     velY += grav * Time.deltaTime;
