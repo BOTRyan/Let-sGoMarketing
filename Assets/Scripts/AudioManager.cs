@@ -74,6 +74,7 @@ public class AudioManager : MonoBehaviour
             StartCoroutine(playSoundWithDelay(name, seconds, s));
         }
     }
+
     public void PlayUninterrupted(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -84,7 +85,7 @@ public class AudioManager : MonoBehaviour
         }
         else s.source.PlayOneShot(s.source.clip, s.source.volume);
     }
-    
+
     public void ChangeBGVolume(float vol)
     {
         mixer.SetFloat("Theme-Exposed", Mathf.Log10(vol) * 20);

@@ -168,7 +168,7 @@ public class Spinner : MonoBehaviour
 
     public void FadeText()
     {
-        if (alpha >= 0) alpha -= Time.deltaTime;
+        if (alpha >= 0) alpha -= Time.fixedDeltaTime;
         else alpha = 0;
     }
 }
