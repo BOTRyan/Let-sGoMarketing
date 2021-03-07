@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             if (moveOnce)
             {
@@ -223,9 +223,9 @@ public class PlayerMovement : MonoBehaviour
                 //isJump = true;
             }
 
-            if (isMoving || Input.GetKey(KeyCode.A))
+            if (isMoving) //|| Input.GetKey(KeyCode.A)
             {
-                animWalk();
+                //animWalk();
                 isHover = false;
             }
             else

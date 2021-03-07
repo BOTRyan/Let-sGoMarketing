@@ -55,7 +55,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1 && doOnce)
+        if (SceneManager.GetActiveScene().buildIndex == 3 && doOnce)
         {
             posY = 3.25f;
             targetPosY = 3.25f;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using System;
 
 public class ExtraButtons : MonoBehaviour
 {
@@ -12,17 +14,55 @@ public class ExtraButtons : MonoBehaviour
     
     void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+        if(SceneManager.GetActiveScene().buildIndex == 3)
         {
             button = GetComponent<Button>();
             button.onClick.AddListener(MainMenuClick);
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             button = GetComponent<Button>();
-            button.onClick.AddListener(HowtoClick);
+            button.onClick.AddListener(SwitchScenes.instance.ToMainMenu);
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            if (gameObject.CompareTag("playButton"))
+            {
+                button = GetComponent<Button>();
+                button.onClick.AddListener(gameClick);
+            }
+            if (gameObject.CompareTag("addButton"))
+            {
+                button = GetComponent<Button>();
+                button.onClick.AddListener(addPlayer);
+            }
+            if (gameObject.CompareTag("removeButton"))
+            {
+                button = GetComponent<Button>();
+                button.onClick.AddListener(removePlayer);
+            }
+            if(gameObject.CompareTag("bulldogButton"))
+            {
+                button = GetComponent<Button>();
+                button.onClick.AddListener(openMenu);
+            }
+
         }
 
+    }
+
+    void removePlayer()
+    {
+        GameManager.instance.removePlayer(button);
+    }
+    void addPlayer()
+    {
+        GameManager.instance.addNewPlayer();
+    }
+
+    void openMenu()
+    {
+        GameManager.instance.openBulldogSelection(button);
     }
 
     void MainMenuClick()
@@ -31,8 +71,8 @@ public class ExtraButtons : MonoBehaviour
         Destroy(GameManager.instance.gameObject);
     }
 
-    void HowtoClick()
+    void gameClick()
     {
-        SwitchScenes.instance.BeginGame();
+        SwitchScenes.instance.goToGame();
     }
 }

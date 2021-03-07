@@ -41,65 +41,62 @@ public class GameManager : MonoBehaviour
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
+    private bool doOnce = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        bulldogButtons.Add(bulldog1);
+        bulldogButtons.Add(bulldog2);
+        bulldogButtons.Add(bulldog3);
+        bulldogButtons.Add(bulldog4);
+        bulldogButtons.Add(bulldog5);
+        bulldogButtons.Add(bulldog6);
+        playerInputs.Add(player1Name);
+        playerInputs.Add(player2Name);
+        playerInputs.Add(player3Name);
+        playerInputs.Add(player4Name);
+        playerInputs.Add(player5Name);
+        playerInputs.Add(player6Name);
+        background3.GetComponent<Image>().enabled = true;
+        background4.GetComponent<Image>().enabled = false;
+        background5.GetComponent<Image>().enabled = false;
+        players.Add(player1);
+        players.Add(player2);
+        players.Add(player3);
+        players.Add(player4);
+        players.Add(player5);
+        players.Add(player6);
+        avatarObjects.Add(player1Avatar);
+        avatarObjects.Add(player2Avatar);
+        avatarObjects.Add(player3Avatar);
+        avatarObjects.Add(player4Avatar);
+        avatarObjects.Add(player5Avatar);
+        avatarObjects.Add(player6Avatar);
+        removers.Add(remove2);
+        removers.Add(remove3);
+        removers.Add(remove4);
+        removers.Add(remove5);
+        removers.Add(remove6);
+        for (int i = 0; i < players.Count; i++)
         {
-            bulldogButtons.Add(bulldog1);
-            bulldogButtons.Add(bulldog2);
-            bulldogButtons.Add(bulldog3);
-            bulldogButtons.Add(bulldog4);
-            bulldogButtons.Add(bulldog5);
-            bulldogButtons.Add(bulldog6);
-            playerInputs.Add(player1Name);
-            playerInputs.Add(player2Name);
-            playerInputs.Add(player3Name);
-            playerInputs.Add(player4Name);
-            playerInputs.Add(player5Name);
-            playerInputs.Add(player6Name);
-            background3.GetComponent<Image>().enabled = true;
-            background4.GetComponent<Image>().enabled = false;
-            background5.GetComponent<Image>().enabled = false;
-            players.Add(player1);
-            players.Add(player2);
-            players.Add(player3);
-            players.Add(player4);
-            players.Add(player5);
-            players.Add(player6);
-            avatarObjects.Add(player1Avatar);
-            avatarObjects.Add(player2Avatar);
-            avatarObjects.Add(player3Avatar);
-            avatarObjects.Add(player4Avatar);
-            avatarObjects.Add(player5Avatar);
-            avatarObjects.Add(player6Avatar);
-            removers.Add(remove2);
-            removers.Add(remove3);
-            removers.Add(remove4);
-            removers.Add(remove5);
-            removers.Add(remove6);
-            for (int i = 0; i < players.Count; i++)
-            {
-                players[i].GetComponent<PlayerInfo>().avatar = null;
-            }
-
-            for (int i = removers.Count - 1; i > 1; i--)
-            {
-                removers[i].GetComponent<Image>().enabled = false;
-                removers[i].GetComponent<Button>().enabled = false;
-                removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
-            }
-            setBulldogVis(false);
+            players[i].GetComponent<PlayerInfo>().avatar = null;
         }
 
-
+        for (int i = removers.Count - 1; i > 1; i--)
+        {
+            removers[i].GetComponent<Image>().enabled = false;
+            removers[i].GetComponent<Button>().enabled = false;
+            removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+        }
+        setBulldogVis(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        { 
 
             for (int i = 0; i < avatarObjects.Count; i++)
             {
@@ -203,7 +200,6 @@ public class GameManager : MonoBehaviour
                 currPlayers = 2;
                 break;
             case 3:
-                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .8f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[3].transform.position.y, playerInputs[3].transform.position.z);
                 addPlayerButton.transform.position = temp;
                 addPlayerButton.gameObject.SetActive(true);
@@ -213,7 +209,6 @@ public class GameManager : MonoBehaviour
                 currPlayers = 3;
                 break;
             case 4:
-                // temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .65f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[4].transform.position.y, playerInputs[4].transform.position.z);
                 addPlayerButton.transform.position = temp;
                 addPlayerButton.gameObject.SetActive(true);
@@ -223,7 +218,6 @@ public class GameManager : MonoBehaviour
                 currPlayers = 4;
                 break;
             case 5:
-                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .5f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[5].transform.position.y, playerInputs[5].transform.position.z);
                 addPlayerButton.transform.position = temp;
                 addPlayerButton.gameObject.SetActive(true);
@@ -233,7 +227,6 @@ public class GameManager : MonoBehaviour
                 currPlayers = 5;
                 break;
             case 6:
-                //temp = new Vector3(addPlayerButton.transform.position.x, screen.transform.position.y * .35f + screen.GetComponent<CanvasScaler>().referenceResolution.y * .02f, addPlayerButton.transform.position.z);
                 addPlayerButton.gameObject.SetActive(false);
                 background3.GetComponent<Image>().enabled = false;
                 background4.GetComponent<Image>().enabled = false;
@@ -253,6 +246,11 @@ public class GameManager : MonoBehaviour
         {
             bulldogMenu.SetActive(false);
         }
+    }
+
+    public void beginPlay()
+    {
+        SceneManager.LoadScene("gameScene");
     }
 
     private void shiftInfo(int pos)

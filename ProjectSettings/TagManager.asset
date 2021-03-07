@@ -8,6 +8,10 @@ TagManager:
   - players
   - sceneManager
   - themeMusic
+  - playButton
+  - removeButton
+  - bulldogButton
+  - addButton
   layers:
   - Default
   - TransparentFX
