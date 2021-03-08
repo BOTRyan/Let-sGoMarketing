@@ -64,6 +64,11 @@ public class SwitchScenes : MonoBehaviour
 
         if (canStart)
         {
+            //Justin: from Jebbel's branch (pulled at ~12:30 am on March 8, 2021), players are destroyed when moving from player select to game scene. This sets the parent of players to something that isn't destroyed
+            for (int j = 0; j < GameManager.instance.players.Count; j++)
+            {
+                GameManager.instance.players[j].transform.SetParent(gameObject.transform);
+            }
             SceneManager.LoadScene("gameScene");
         }
     }

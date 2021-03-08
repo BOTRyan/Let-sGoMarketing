@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
     {
         if (currPlayers < 6)
         {
+            players[currPlayers].SetActive(true);//Justin: added this to solve players getting destroyed
             currPlayers++;
             for (int i = 0; i < currPlayers; i++)
             {
@@ -163,6 +164,7 @@ public class GameManager : MonoBehaviour
             }
             shiftInfo(temp);
             currPlayers--;
+            players[currPlayers].SetActive(false);//Justin: added this to solve players getting destroyed
             for (int i = 5; i > currPlayers - 1; i--)
             {
                 bulldogButtons[i].GetComponent<Image>().enabled = false;
