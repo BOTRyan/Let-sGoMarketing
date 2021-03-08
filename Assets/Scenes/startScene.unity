@@ -2323,8 +2323,8 @@ MonoBehaviour:
   player2Avatar: {fileID: 1755824212}
   player3Avatar: {fileID: 1920557841}
   player4Avatar: {fileID: 994901336}
-  player5Avatar: {fileID: 1230592417}
-  player6Avatar: {fileID: 849574035}
+  player5Avatar: {fileID: 759709171}
+  player6Avatar: {fileID: 1849815449}
   avatarObjects: []
   currPlayerTurn: 1
   playersDone: 0
