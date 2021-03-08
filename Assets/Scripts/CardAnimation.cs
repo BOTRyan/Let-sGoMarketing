@@ -70,6 +70,8 @@ public class CardAnimation : MonoBehaviour
     public bool cardRead = false;
     public bool playerDoesntMove;
 
+    public GameObject even1, even2, even3, even4, even5, even6, odd1, odd2, odd3, odd4, odd5;
+
     private int currentBrandCrisisNumber = 0;
 
     private int currentCareerPointNumber = 0;
@@ -184,6 +186,7 @@ public class CardAnimation : MonoBehaviour
         {
             didYouKnowButtons[i].SetActive(false);
         }
+        shiftButtons(GameManager.instance.currPlayers);
     }
 
     public void CardDown()
@@ -780,6 +783,46 @@ public class CardAnimation : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             default:
+                break;
+        }
+    }
+
+    private void shiftButtons(int players)
+    {
+        switch(players)
+        {
+            case 1:
+                didYouKnowButtons[0].transform.position = odd3.transform.position;
+                break;
+            case 2:
+                didYouKnowButtons[0].transform.position = even3.transform.position;
+                didYouKnowButtons[1].transform.position = even4.transform.position;
+                break;
+            case 3:
+                didYouKnowButtons[0].transform.position = odd2.transform.position;
+                didYouKnowButtons[1].transform.position = odd3.transform.position;
+                didYouKnowButtons[2].transform.position = odd4.transform.position;
+                break;
+            case 4:
+                didYouKnowButtons[0].transform.position = even2.transform.position;
+                didYouKnowButtons[1].transform.position = even3.transform.position;
+                didYouKnowButtons[2].transform.position = even4.transform.position;
+                didYouKnowButtons[3].transform.position = even5.transform.position;
+                break;
+            case 5:
+                didYouKnowButtons[0].transform.position = odd1.transform.position;
+                didYouKnowButtons[1].transform.position = odd2.transform.position;
+                didYouKnowButtons[2].transform.position = odd3.transform.position;
+                didYouKnowButtons[3].transform.position = odd4.transform.position;
+                didYouKnowButtons[4].transform.position = odd5.transform.position;
+                break;
+            case 6:
+                didYouKnowButtons[0].transform.position = even1.transform.position;
+                didYouKnowButtons[1].transform.position = even2.transform.position;
+                didYouKnowButtons[2].transform.position = even3.transform.position;
+                didYouKnowButtons[3].transform.position = even4.transform.position;
+                didYouKnowButtons[4].transform.position = even5.transform.position;
+                didYouKnowButtons[5].transform.position = even6.transform.position;
                 break;
         }
     }
