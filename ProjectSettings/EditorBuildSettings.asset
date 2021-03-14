@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/endScene.unity
     guid: b154fa3945147d143bae3c2ceba3e741
+  - enabled: 1
+    path: Assets/Scenes/careerChoiceScene.unity
+    guid: 1170447d2836708458c2b6287259ebc8
+  - enabled: 1
+    path: Assets/Scenes/resultsScene.unity
+    guid: d56be645e6bd36e4b8fa448e5905f1dc
   m_configObjects: {}

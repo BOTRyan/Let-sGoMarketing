@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> avatarObjects = new List<GameObject>();
     private List<Button> removers = new List<Button>();
 
+
+
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(playersDone);
         if (SceneManager.GetActiveScene().buildIndex == 2)
         { 
 
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.jumpToOnce = false;
         }
 
-        if (playersDone >= currPlayers && SceneManager.GetActiveScene().buildIndex == 1)
+        if (playersDone >= currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
             SceneManager.LoadScene("endScene");
         }

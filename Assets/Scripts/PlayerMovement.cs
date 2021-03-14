@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving = false;
     public bool moveOnce = true;
     public bool landedOnCard = false;
+    public int finishPlace = 0;
+    public bool hasFinished = false;
 
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
@@ -130,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
                                     if (currPos == targetPos || currPos >= 55)
                                     {
+                                        if(currPos >= 55) reachEnd();
                                         swapTurns(1);
                                     }
                                 }
@@ -159,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
                                         case 20:
                                         case 34:
                                         case 48:
-                                            //print("You're The Boss");
+                                            // You're The Boss
                                             FlipCard(1);
                                             break;
                                         case 4:
@@ -167,39 +170,39 @@ public class PlayerMovement : MonoBehaviour
                                         case 25:
                                         case 37:
                                         case 53:
-                                            //print("Career Point");
+                                            // Career Point
                                             FlipCard(2);
                                             break;
                                         case 6:
                                         case 18:
                                         case 30:
                                         case 45:
-                                            //print("Brand Crisis");
+                                            // Brand Crisis
                                             FlipCard(3);
                                             break;
                                         case 1:
                                         case 10:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(4);
                                             break;
                                         case 17:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(5);
                                             break;
                                         case 27:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(6);
                                             break;
                                         case 32:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(7);
                                             break;
                                         case 42:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(8);
                                             break;
                                         case 50:
-                                            //print("Did You Know");
+                                            // Did You Know
                                             FlipCard(9);
                                             break;
                                         default:
@@ -214,16 +217,16 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (currPos >= 55)
                 {
+                    //print("Thing");
                     swapTurns(2);
                 }
             }
             else
             {
                 isMoving = false;
-                //isJump = true;
             }
 
-            if (isMoving) //|| Input.GetKey(KeyCode.A)
+            if (isMoving)
             {
                 //animWalk();
                 isHover = false;
@@ -235,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
                 GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
                 isHover = true;
             }
-
+            //print(GameManager.instance.playersDone);
             if (isHover) Hover();
         }
     }
@@ -279,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (addOnce)
             {
-                GameManager.instance.playersDone++;
+                reachEnd();
                 addOnce = false;
             }
         }
@@ -356,12 +359,10 @@ public class PlayerMovement : MonoBehaviour
             velY = 4;
             jumping = true;
             isJump = false;
-            //print("Jump");
         }
         else if (jumping)
         {
             isHover = false;
-            print(velY);
             Vector3 temp = transform.position;
             velY += grav * Time.fixedDeltaTime;
             temp.y += velY * Time.fixedDeltaTime;
@@ -393,5 +394,15 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
         transform.localScale = new Vector3(.05f, .05f, 1f);
         GetComponentInChildren<RectTransform>().localScale = new Vector3(4.5f, 4.5f, 4.5f);
+    }
+
+    private void reachEnd()
+    {
+        for(int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
+        }
+        hasFinished = true;
+        GameManager.instance.playersDone++;
     }
 }

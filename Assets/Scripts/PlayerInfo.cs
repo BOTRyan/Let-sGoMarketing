@@ -23,6 +23,9 @@ public class PlayerInfo : MonoBehaviour
     public string playerName;
     public Sprite avatar;
     public int[] tokens;
+    public string email;
+    public string fieldChoice;
+    public string careerChoice;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +47,7 @@ public class PlayerInfo : MonoBehaviour
             GetComponentInChildren<TMPro.TextMeshPro>().text = "";
         }
 
-        if (SceneManager.GetActiveScene().buildIndex != 1 && GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
+        if (SceneManager.GetActiveScene().buildIndex != 4 && GetComponent<PlayerMovement>().yourPlayerNum > GameManager.instance.currPlayers)
         {
             gameObject.SetActive(false);
         }

@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 435627}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 169244394}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &435627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +332,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 44099207}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1824873831}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &44099207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,9 +439,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buisness Data Analytics
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -729,10 +750,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\t\t\t\t\t               Based on what you've collected today, choose
-    a career filed that you're interested in!"
+    a career field that you're interested in!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
+  m_sharedMaterial: {fileID: -134497252649700887, guid: 28244c37c5a9aba4e921403d4c9889b6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -888,9 +909,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SUBMIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1233,9 +1253,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Public Relations
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1569,7 +1588,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 200779716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 83813539}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &200779716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,6 +1648,7 @@ GameObject:
   - component: {fileID: 211178949}
   - component: {fileID: 211178951}
   - component: {fileID: 211178950}
+  - component: {fileID: 211178952}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1698,6 +1729,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211178948}
   m_CullTransparentMesh: 0
+--- !u!114 &211178952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211178948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864aa9a5e300f0a4fa964f9a279a604c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 905500133}
+  aTokens: {fileID: 2029798886}
+  gmmTokens: {fileID: 611089233}
+  bdaTokens: {fileID: 2037222445}
+  mTokens: {fileID: 1216660328}
+  gdTokens: {fileID: 175259951}
+  prTokens: {fileID: 1395495416}
+  emailInput: {fileID: 165890691}
+  learnMore: {fileID: 694942407}
 --- !u!1 &225198548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,7 +2136,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 459207889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: submitEmail
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &459207889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,9 +2243,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Marketing
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2570,7 +2632,7 @@ MonoBehaviour:
     a visit to Ferris State's campus? Enter your email to find out more!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
+  m_sharedMaterial: {fileID: -134497252649700887, guid: 28244c37c5a9aba4e921403d4c9889b6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2749,7 +2811,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 897624209}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1980874092}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &897624209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3026,7 +3099,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 947613499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 552112171}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &947613499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3555,7 +3639,7 @@ MonoBehaviour:
   m_text: Let's take a look at your tokens!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
+  m_sharedMaterial: {fileID: -134497252649700887, guid: 28244c37c5a9aba4e921403d4c9889b6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4163,7 +4247,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1707404271}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211178952}
+        m_MethodName: nextPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1854563888}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1707404271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4259,9 +4354,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Graphic Design
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4416,9 +4510,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Graphic Media Managment
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4573,9 +4666,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Advertising '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: -2395396508976232343, guid: 28244c37c5a9aba4e921403d4c9889b6,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
