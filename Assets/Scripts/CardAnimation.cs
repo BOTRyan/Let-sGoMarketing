@@ -71,6 +71,7 @@ public class CardAnimation : MonoBehaviour
     public bool playerDoesntMove;
 
     public GameObject even1, even2, even3, even4, even5, even6, odd1, odd2, odd3, odd4, odd5;
+    public GameObject youreTheBossPlayerName;
 
     private int currentBrandCrisisNumber = 0;
 
@@ -399,6 +400,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             case 10:
                 TokenAnimation.instance.isBoss = true;
@@ -410,6 +412,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             case 11:
                 TokenAnimation.instance.isBoss = true;
@@ -421,6 +424,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             case 12:
                 TokenAnimation.instance.isBoss = true;
@@ -432,6 +436,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             case 13:
                 TokenAnimation.instance.isBoss = true;
@@ -443,10 +448,11 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             case 14:
                 TokenAnimation.instance.isBoss = true;
-                checkBossCard(6);
+                checkBossCard(6);  
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
                 if (playersPressed >= GameManager.instance.currPlayers)
                 {
@@ -454,6 +460,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
+                setName();
                 break;
             default:
                 break;
@@ -667,6 +674,9 @@ public class CardAnimation : MonoBehaviour
             }
         }
         if (playersPressed < GameManager.instance.currPlayers) TokenAnimation.instance.SpawnToken(playersPressed + 1, bossColor);
+            
+        
+
     }
 
     public void SpriteSwap(int card)
@@ -677,6 +687,8 @@ public class CardAnimation : MonoBehaviour
                 cardBack.GetComponent<Image>().sprite = youreTheBoss;
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
+                youreTheBossPlayerName.SetActive(true);
+                setName();
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 break;
             case 2:
@@ -824,6 +836,18 @@ public class CardAnimation : MonoBehaviour
                 didYouKnowButtons[4].transform.position = even5.transform.position;
                 didYouKnowButtons[5].transform.position = even6.transform.position;
                 break;
+        }
+    }
+
+    private void setName()
+    {
+        if (playersPressed < GameManager.instance.currPlayers)
+        {
+            youreTheBossPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+        }
+        else
+        {
+            youreTheBossPlayerName.SetActive(false);
         }
     }
 }
