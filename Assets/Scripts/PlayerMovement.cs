@@ -32,17 +32,62 @@ public class PlayerMovement : MonoBehaviour
 
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
+    private Sprite red01, red02, red03, red04, red05, red06, redBlink;
+    private Sprite blue01, blue02, blue03, blue04, blue05, blue06, blueBlink;
+    private Sprite green01, green02, green03, green04, green05, green06, greenBlink;
+    private Sprite pink01, pink02, pink03, pink04, pink05, pink06, pinkBlink;
+    private Sprite yel01, yel02, yel03, yel04, yel05, yel06, yelBlink;
+    private Sprite purp01, purp02, purp03, purp04, purp05, purp06, purpBlink;
     private List<Sprite> walkSprites = new List<Sprite>();
     private float walkCounter;
+    private bool blinking = false;
+    private bool spriteOnce = true;
 
     void Start()
     {
-        walkSprites.Add(walk01);
-        walkSprites.Add(walk02);
-        walkSprites.Add(walk03);
-        walkSprites.Add(walk04);
-        walkSprites.Add(walk05);
-        walkSprites.Add(walk06);
+        red01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed1");
+        red02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed2");
+        red03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed3");
+        red04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed4");
+        red05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed5");
+        red06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed6");
+        redBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed4Blink");
+        blue01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue1");
+        blue02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue2");
+        blue03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue3");
+        blue04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue4");
+        blue05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue5");
+        blue06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue6");
+        blueBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue4Blink");
+        green01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green1");
+        green02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green2");
+        green03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green3");
+        green04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green4");
+        green05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green5");
+        green06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green6");
+        greenBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green4Blink");
+        pink01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink1");
+        pink02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink2");
+        pink03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink3");
+        pink04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink4");
+        pink05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink5");
+        pink06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink6");
+        pinkBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink4Blink");
+        yel01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow1");
+        yel02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow2");
+        yel03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow3");
+        yel04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow4");
+        yel05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow5");
+        yel06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow6");
+        yelBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow4Blink");
+        purp01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple1");
+        purp02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple2");
+        purp03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple3");
+        purp04 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple4");
+        purp05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple5");
+        purp06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple6");
+        purpBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple4Blink");
+
     }
 
     // Update is called once per frame
@@ -58,9 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
             }
             baseDog = GetComponent<PlayerInfo>().avatar;
-
-
-
+            spritesUpdate();
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
                 if (isMoving)
@@ -270,16 +313,14 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = false;
             }
 
-            if (isMoving)
+            if (isMoving || Input.GetKey(KeyCode.A))
             {
-                //animWalk();
+                animWalk();
                 isHover = false;
             }
             else
             {
                 GetComponent<SpriteRenderer>().sprite = baseDog;
-                transform.localScale = new Vector3(.2f, .2f, 1f);
-                GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
                 isHover = true;
             }
             //if (isHover) Hover();
@@ -437,10 +478,100 @@ public class PlayerMovement : MonoBehaviour
         if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 41) || (currPos >= 46 && currPos < 51)) GetComponent<SpriteRenderer>().flipX = true;
         else GetComponent<SpriteRenderer>().flipX = false;
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 7.5f;
-        if (walkCounter >= walkSprites.Count) walkCounter = 0;
+        if (walkCounter >= walkSprites.Count)
+        {
+            walkCounter = 0;
+            blinking = !blinking;
+        }
         int walkIndex = Mathf.FloorToInt(walkCounter);
         GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
-        transform.localScale = new Vector3(.05f, .05f, 1f);
-        GetComponentInChildren<RectTransform>().localScale = new Vector3(4.5f, 4.5f, 4.5f);
+        print(walkSprites[walkIndex]);
+    }
+
+    private void spritesUpdate()
+    {
+        if (baseDog == red01)
+        {
+            walk01 = red01;
+            walk02 = red02;
+            walk03 = red03;
+            walk04 = red04;
+            walk05 = red05;
+            walk06 = red06;
+        }
+        else if (baseDog == blue01)
+        {
+            walk01 = blue01;
+            walk02 = blue02;
+            walk03 = blue03;
+            walk04 = blue04;
+            walk05 = blue05;
+            walk06 = blue06;
+        }
+        else if (baseDog == green01)
+        {
+            walk01 = green01;
+            walk02 = green02;
+            walk03 = green03;
+            walk04 = green04;
+            walk05 = green05;
+            walk06 = green06;
+        }
+        else if (baseDog == pink01)
+        {
+            walk01 = pink01;
+            walk02 = pink02;
+            walk03 = pink03;
+            walk04 = pink04;
+            walk05 = pink05;
+            walk06 = pink06;
+        }
+        else if (baseDog == yel01)
+        {
+            walk01 = yel01;
+            walk02 = yel02;
+            walk03 = yel03;
+            walk04 = yel04;
+            walk05 = yel05;
+            walk06 = yel06;
+        }
+        else if (baseDog == purp01)
+        {
+            walk01 = purp01;
+            walk02 = purp02;
+            walk03 = purp03;
+            walk04 = purp04;
+            walk05 = purp05;
+            walk06 = purp06;
+        }
+        if(spriteOnce)
+        {
+            walkSprites.Add(walk01);
+            walkSprites.Add(walk02);
+            walkSprites.Add(walk03);
+            walkSprites.Add(walk04);
+            walkSprites.Add(walk05);
+            walkSprites.Add(walk06);
+            spriteOnce = false;
+        }
+
+        if(blinking)
+        {
+            if (baseDog == red01) walkSprites[3] = redBlink;
+            if (baseDog == blue01) walkSprites[3] = blueBlink;
+            if (baseDog == green01) walkSprites[3] = greenBlink;
+            if (baseDog == pink01) walkSprites[3] = pinkBlink;
+            if (baseDog == yel01) walkSprites[3] = yelBlink;
+            if (baseDog == purp01) walkSprites[3] = purpBlink;
+        }
+        else
+        {
+            if (baseDog == red01) walkSprites[3] = red04;
+            if (baseDog == blue01) walkSprites[3] = blue04;
+            if (baseDog == green01) walkSprites[3] = green04;
+            if (baseDog == pink01) walkSprites[3] = pink04;
+            if (baseDog == yel01) walkSprites[3] = yel04;
+            if (baseDog == purp01) walkSprites[3] = purp04;
+        }
     }
 }

@@ -264,4 +264,5 @@ public class GameManager : MonoBehaviour
             players[i].GetComponent<PlayerInfo>().avatar = players[i + 1].GetComponent<PlayerInfo>().avatar;
         }
     }
+
 }

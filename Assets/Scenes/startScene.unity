@@ -293,7 +293,7 @@ RectTransform:
   m_GameObject: {fileID: 32960671}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1239952482}
   m_RootOrder: 0
@@ -731,7 +731,7 @@ RectTransform:
   m_GameObject: {fileID: 135284405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 4
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2959f4242361ed4bae106cd3ae1c8b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3da130214f467ee4cbcde97cc941fdb3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1016,7 +1016,7 @@ RectTransform:
   m_GameObject: {fileID: 164224572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 3
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4ec9d90edf019a4a9a4af19a4cf22a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a59be8649a9865e4ebd765e72a748576, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2047,6 +2047,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -2120,6 +2123,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &441485301
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,7 +2135,7 @@ Transform:
   m_GameObject: {fileID: 441485297}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 1101443730}
   m_Father: {fileID: 499119385}
@@ -2390,7 +2396,7 @@ RectTransform:
   m_GameObject: {fileID: 518790916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 0
@@ -2419,7 +2425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1da831e5606d8ea46945f6e52e550977, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e43e97dff3af9d64da62aaa9c821f612, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2520,7 +2526,7 @@ RectTransform:
   m_GameObject: {fileID: 559792030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 649160015}
   m_RootOrder: 0
@@ -2713,7 +2719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &565292625
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3303,6 +3309,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -3376,6 +3385,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &649160015
 Transform:
   m_ObjectHideFlags: 0
@@ -3385,7 +3397,7 @@ Transform:
   m_GameObject: {fileID: 649160011}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 559792031}
   m_Father: {fileID: 499119385}
@@ -3832,7 +3844,7 @@ RectTransform:
   m_GameObject: {fileID: 759709171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 26
@@ -5028,7 +5040,7 @@ RectTransform:
   m_GameObject: {fileID: 994901336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 25
@@ -5113,6 +5125,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -5186,6 +5201,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &1017513719
 Transform:
   m_ObjectHideFlags: 0
@@ -5195,7 +5213,7 @@ Transform:
   m_GameObject: {fileID: 1017513715}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 1404947694}
   m_Father: {fileID: 499119385}
@@ -5389,7 +5407,7 @@ RectTransform:
   m_GameObject: {fileID: 1101443729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 441485301}
   m_RootOrder: 0
@@ -5837,7 +5855,7 @@ RectTransform:
   m_GameObject: {fileID: 1158615214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 2
@@ -5866,7 +5884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48621807cf6b6764c88d8ab8dfbe43e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8827e02fb5e3f1541a042b1018402145, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6516,6 +6534,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -6589,6 +6610,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &1239952482
 Transform:
   m_ObjectHideFlags: 0
@@ -6598,7 +6622,7 @@ Transform:
   m_GameObject: {fileID: 1239952478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 32960672}
   m_Father: {fileID: 499119385}
@@ -7062,7 +7086,7 @@ RectTransform:
   m_GameObject: {fileID: 1404947693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1017513719}
   m_RootOrder: 0
@@ -7671,7 +7695,7 @@ RectTransform:
   m_GameObject: {fileID: 1497646773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 5
@@ -7700,7 +7724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6c063b25273192b44b32ea86e6186c1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a033965576181f46b073411e7f1ce89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8113,7 +8137,7 @@ RectTransform:
   m_GameObject: {fileID: 1549014896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 22
@@ -8341,7 +8365,7 @@ RectTransform:
   m_GameObject: {fileID: 1671319468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1697763791}
   m_RootOrder: 0
@@ -8633,6 +8657,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 21300000, guid: 6c063b25273192b44b32ea86e6186c1d, type: 3}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -8706,6 +8733,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &1697763791
 Transform:
   m_ObjectHideFlags: 0
@@ -8715,7 +8745,7 @@ Transform:
   m_GameObject: {fileID: 1697763787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 1671319469}
   m_Father: {fileID: 499119385}
@@ -8748,7 +8778,7 @@ RectTransform:
   m_GameObject: {fileID: 1755824212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 23
@@ -8823,7 +8853,7 @@ RectTransform:
   m_GameObject: {fileID: 1780651566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.55, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 565292625}
   m_RootOrder: 1
@@ -8852,7 +8882,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 095e8c90d809a4f43904bddd932bb55d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08299078528372046b11a0d69fdaebab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9279,7 +9309,7 @@ RectTransform:
   m_GameObject: {fileID: 1821357305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 2044719557}
   m_RootOrder: 0
@@ -9511,7 +9541,7 @@ RectTransform:
   m_GameObject: {fileID: 1849815449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 27
@@ -9630,7 +9660,7 @@ RectTransform:
   m_GameObject: {fileID: 1920557841}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5500001, y: 0.5500001, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1355570845}
   m_RootOrder: 24
@@ -9871,6 +9901,9 @@ MonoBehaviour:
   isMoving: 0
   moveOnce: 1
   landedOnCard: 0
+  finishPlace: 0
+  hasFinished: 0
+  doOnce: 1
   baseDog: {fileID: 21300000, guid: d4ec9d90edf019a4a9a4af19a4cf22a8, type: 3}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
   walk02: {fileID: 21300000, guid: 75f0a82f1481ce34b9c0cc0eb91287c0, type: 3}
@@ -9944,6 +9977,9 @@ MonoBehaviour:
   playerName: 
   avatar: {fileID: 0}
   tokens: 
+  email: 
+  fieldChoice: 
+  careerChoice: {fileID: 0}
 --- !u!4 &2044719557
 Transform:
   m_ObjectHideFlags: 0
@@ -9953,7 +9989,7 @@ Transform:
   m_GameObject: {fileID: 2044719553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 411.83826, y: 188.72772, z: -51.2138}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
   - {fileID: 1821357306}
   m_Father: {fileID: 499119385}
