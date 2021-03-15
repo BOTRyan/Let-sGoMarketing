@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playersDone);
+        //print(playersDone);
         if (SceneManager.GetActiveScene().buildIndex == 2)
         { 
 
@@ -123,6 +123,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("endScene");
         }
+
+
+        //play click sound
+        if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }
     public void openBulldogSelection(Button b)
     {

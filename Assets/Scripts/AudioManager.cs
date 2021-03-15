@@ -53,6 +53,19 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void Stop(string name)
+    {
+        //to play sound, type "FindObjectOfType<AudioManager>().Play("SoundName");" in the file/section of code that would play sound
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("Sound: " + name + " not found");
+            return;
+        }
+        s.source.Stop();
+    }
+
     IEnumerator playSoundWithDelay(string clip, float delay, Sound s)
     {
         yield return new WaitForSeconds(delay);
