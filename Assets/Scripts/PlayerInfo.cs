@@ -25,7 +25,7 @@ public class PlayerInfo : MonoBehaviour
     public int[] tokens;
     public string email;
     public string fieldChoice;
-    public string careerChoice;
+    public Sprite careerChoice;
 
     // Start is called before the first frame update
     void Start()
