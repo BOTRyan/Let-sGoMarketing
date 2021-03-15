@@ -100,4 +100,52 @@ MonoBehaviour:
     audioMixerGroup: {fileID: 5185950587805335945, guid: 8c29a8653e2fe5946822d561682f3f2b,
       type: 2}
     source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: b0ecd31904c9bbc46a831e1cd710ed68, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Bark0
+    clip: {fileID: 8300000, guid: 4dd01ea4c8822014bb45f94c3fa1051e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Bark1
+    clip: {fileID: 8300000, guid: b83b468df93e52f46a807fe437d53e4b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Bark2
+    clip: {fileID: 8300000, guid: 5267827e5c200fb44a385698368b9f54, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 5b310ee8242203e4abadcf63b3abc8b6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: fb6c0f5b1c976484d83eb09c5652299e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
   mixer: {fileID: 24100000, guid: 8c29a8653e2fe5946822d561682f3f2b, type: 2}

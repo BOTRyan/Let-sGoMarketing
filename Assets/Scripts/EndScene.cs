@@ -23,7 +23,8 @@ public class EndScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerPlace > GameManager.instance.players.Count - 1) SceneManager.LoadScene("careerChoiceScene");
+        if (playerPlace > GameManager.instance.currPlayers - 1) SceneManager.LoadScene("endScene");
+        if (playerPlace > GameManager.instance.currPlayers - 1) SceneManager.LoadScene("careerChoiceScene");
     }
 
     public void submitEmail()
@@ -40,7 +41,7 @@ public class EndScene : MonoBehaviour
 
     void updatePlayers(int place)
     {
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        for (int i = 0; i < GameManager.instance.currPlayers; i++)
         {
             if (GameManager.instance.players[i].GetComponent<PlayerMovement>().finishPlace == place) currPlayer = i;
         }

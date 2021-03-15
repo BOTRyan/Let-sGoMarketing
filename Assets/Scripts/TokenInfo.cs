@@ -15,7 +15,7 @@ public class TokenInfo : MonoBehaviour
     public int tokenType = 0;
     public int color = 0;
     private List<PlayerInfo> playersInfo = new List<PlayerInfo>();
-    //private bool infoOnce = true;
+   // private bool infoOnce = true;
 
     private bool startLerp = false;
     private float animDelay = 1;

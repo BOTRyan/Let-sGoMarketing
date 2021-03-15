@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     Spinner.instance.numPicked = false;
                     targetPos += Spinner.instance.targetNum;
+                    FindObjectOfType<AudioManager>().Play("Walk");
                 }
 
                 if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard)
@@ -82,11 +83,13 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
+                    FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(1);
                 }
 
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
+                    FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(0);
                 }
 
@@ -106,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
                             if (currPos == targetPos || currPos <= 0)
                             {
+                                FindObjectOfType<AudioManager>().Stop("Walk");
                                 swapTurns(1);
                             }
                         }
@@ -132,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
                                     if (currPos == targetPos || currPos >= 55)
                                     {
+                                        FindObjectOfType<AudioManager>().Stop("Walk");
                                         if (currPos >= 55) reachEnd();
                                         swapTurns(1);
                                     }
@@ -220,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
                                             }
                                             break;
                                         default:
+                                            FindObjectOfType<AudioManager>().Stop("Walk");
                                             swapTurns(1);
                                             break;
                                     }
@@ -231,6 +237,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (currPos >= 55)
                 {
+                    //print("Thing");
+                    FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(2);
                 }
             }
@@ -374,6 +382,8 @@ public class PlayerMovement : MonoBehaviour
             velY = 4;
             jumping = true;
             isJump = false;
+            int barkNum = Random.Range(0, 3);
+            FindObjectOfType<AudioManager>().PlayUninterrupted("Bark" + barkNum);
         }
         else if (jumping)
         {
@@ -413,6 +423,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void reachEnd()
     {
+        FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
         for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
             if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;

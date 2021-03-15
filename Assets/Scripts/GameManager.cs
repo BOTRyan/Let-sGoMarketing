@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
-    //private bool doOnce = true;
+   // private bool doOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +122,10 @@ public class GameManager : MonoBehaviour
         {
             //SceneManager.LoadScene("endScene");
         }
-        print(playersDone);
+
+
+        //play click sound
+        if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }
     public void openBulldogSelection(Button b)
     {
