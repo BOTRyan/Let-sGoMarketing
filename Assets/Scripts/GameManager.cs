@@ -110,19 +110,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
         if (currPlayerTurn > currPlayers)
         {
             currPlayerTurn = 1;
             CameraControl.instance.targetPosY = CameraControl.instance.p1.camOffset;
             CameraControl.instance.jumpToOnce = false;
         }
-
-        if (playersDone >= currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
-        {
-            //SceneManager.LoadScene("endScene");
-        }
-
 
         //play click sound
         if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");

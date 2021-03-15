@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System;
 
@@ -210,6 +211,10 @@ public class CardAnimation : MonoBehaviour
         p4hasTakenToken = true;
         p5hasTakenToken = true;
         p6hasTakenToken = true;
+        if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            SceneManager.LoadScene("endScene");
+        }
     }
 
     public void SettingsDown()

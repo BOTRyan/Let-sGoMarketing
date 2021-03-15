@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public bool landedOnCard = false;
     public int finishPlace = 0;
     public bool hasFinished = false;
+    public bool doOnce = true;
 
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
@@ -57,8 +58,25 @@ public class PlayerMovement : MonoBehaviour
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
             }
             baseDog = GetComponent<PlayerInfo>().avatar;
+
+
+
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
+                if (isMoving)
+                {
+                    if (doOnce)
+                    {
+                        FindObjectOfType<AudioManager>().Play("Walk");
+                        doOnce = false;
+                    }
+                }
+                else
+                {
+                    doOnce = true;
+                    FindObjectOfType<AudioManager>().Stop("Walk");
+                }
+
                 //Jump();
 
                 if (Spinner.instance.numPicked && !isMoving)
@@ -66,30 +84,32 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     Spinner.instance.numPicked = false;
                     targetPos += Spinner.instance.targetNum;
-                    FindObjectOfType<AudioManager>().Play("Walk");
+                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
 
-                if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard)
+                if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
+                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
-                else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard)
+                else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
+                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
                 else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    FindObjectOfType<AudioManager>().Stop("Walk");
+                    //FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(1);
                 }
 
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    FindObjectOfType<AudioManager>().Stop("Walk");
+                    //FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(0);
                 }
 
@@ -109,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
                             if (currPos == targetPos || currPos <= 0)
                             {
-                                FindObjectOfType<AudioManager>().Stop("Walk");
+                                //FindObjectOfType<AudioManager>().Stop("Walk");
                                 swapTurns(1);
                             }
                         }
@@ -136,8 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
                                     if (currPos == targetPos || currPos >= 55)
                                     {
-                                        FindObjectOfType<AudioManager>().Stop("Walk");
-                                        if (currPos >= 55) reachEnd();
+                                        //FindObjectOfType<AudioManager>().Stop("Walk");
                                         swapTurns(1);
                                     }
                                 }
@@ -223,9 +242,15 @@ public class PlayerMovement : MonoBehaviour
                                             {
                                                 FlipCard(12);
                                             }
+                                            FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
+                                            for (int i = 0; i < GameManager.instance.players.Count; i++)
+                                            {
+                                                if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
+                                            }
+                                            hasFinished = true;
+                                            GameManager.instance.playersDone++;
                                             break;
                                         default:
-                                            FindObjectOfType<AudioManager>().Stop("Walk");
                                             swapTurns(1);
                                             break;
                                     }
@@ -235,10 +260,8 @@ public class PlayerMovement : MonoBehaviour
                         }
                     }
                 }
-                else if (currPos >= 55)
+                else if (currPos >= 55 && GameManager.instance.playersDone < GameManager.instance.currPlayers && CardAnimation.instance.cardRead)
                 {
-                    //print("Thing");
-                    FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(2);
                 }
             }
@@ -259,13 +282,13 @@ public class PlayerMovement : MonoBehaviour
                 GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
                 isHover = true;
             }
-            //print(GameManager.instance.playersDone);
             //if (isHover) Hover();
         }
     }
 
     private void FlipCard(int val)
     {
+        //FindObjectOfType<AudioManager>().Stop("Walk");
         landedOnCard = true;
         isMoving = false;
         CardAnimation.instance.SpriteSwap(val);
@@ -419,16 +442,5 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
         transform.localScale = new Vector3(.05f, .05f, 1f);
         GetComponentInChildren<RectTransform>().localScale = new Vector3(4.5f, 4.5f, 4.5f);
-    }
-
-    private void reachEnd()
-    {
-        FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
-        for (int i = 0; i < GameManager.instance.players.Count; i++)
-        {
-            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
-        }
-        hasFinished = true;
-        GameManager.instance.playersDone++;
     }
 }
