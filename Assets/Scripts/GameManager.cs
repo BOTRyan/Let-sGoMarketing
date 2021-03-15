@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,9 +12,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-            GameObject[] objs = GameObject.FindGameObjectsWithTag("sceneManager");
-            if (objs.Length > 1) Destroy(this.gameObject);
-            DontDestroyOnLoad(this.gameObject);
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("sceneManager");
+        if (objs.Length > 1) Destroy(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     #endregion
@@ -43,7 +42,7 @@ public class GameManager : MonoBehaviour
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
-   // private bool doOnce = true;
+    // private bool doOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -98,7 +97,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (SceneManager.GetActiveScene().buildIndex == 2)
-        { 
+        {
 
             for (int i = 0; i < avatarObjects.Count; i++)
             {
@@ -116,7 +115,15 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.targetPosY = CameraControl.instance.p1.camOffset;
             CameraControl.instance.jumpToOnce = false;
         }
-
+        /*
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            for(int i =0; i < currPlayers-1; i++)
+            {
+                playerOffset(players[i].GetComponent<PlayerMovement>());
+            }
+        }
+        */
         //play click sound
         if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }
@@ -141,13 +148,13 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().interactable = true;
                 playerInputs[i].GetComponent<InputField>().enabled = true;
                 playerInputs[i].GetComponent<InputField>().textComponent.enabled = true;
-                if(i > 0)
+                if (i > 0)
                 {
                     removers[i - 1].GetComponent<Image>().enabled = true;
                     removers[i - 1].GetComponent<Button>().enabled = true;
                     removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
                 }
-                
+
             }
             updateButtonLocations();
         }
@@ -157,7 +164,7 @@ public class GameManager : MonoBehaviour
         if (currPlayers > 1)
         {
             int temp = 0;
-            for(int i = 0; i < removers.Count; i++)
+            for (int i = 0; i < removers.Count; i++)
             {
                 if (b == removers[i]) temp = i + 1;
             }
@@ -177,7 +184,7 @@ public class GameManager : MonoBehaviour
                 playerInputs[i].GetComponent<InputField>().text = "Add Name";
                 players[i].GetComponent<PlayerInfo>().avatar = null;
                 avatarObjects[i].GetComponent<Image>().enabled = false;
-                if (i > 0) 
+                if (i > 0)
                 {
                     removers[i - 1].GetComponent<Image>().enabled = false;
                     removers[i - 1].GetComponent<Button>().enabled = false;
@@ -262,6 +269,17 @@ public class GameManager : MonoBehaviour
             playerInputs[i].GetComponent<InputField>().text = playerInputs[i + 1].GetComponent<InputField>().text;
             players[i].GetComponent<PlayerInfo>().name = players[i + 1].GetComponent<PlayerInfo>().name;
             players[i].GetComponent<PlayerInfo>().avatar = players[i + 1].GetComponent<PlayerInfo>().avatar;
+        }
+    }
+
+    private void playerOffset(PlayerMovement p)
+    {
+        for (int i = 0; i < currPlayers - 1; i++)
+        {
+            if (p.currPos == players[i].GetComponent<PlayerMovement>().currPos && p != players[i].GetComponent<PlayerMovement>())
+            {
+                p.setOffset();
+            }
         }
     }
 

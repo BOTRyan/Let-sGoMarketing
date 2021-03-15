@@ -826,7 +826,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 347496645}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1444310652}
+        m_MethodName: nextPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &347496645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,6 +1844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &980947994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &1444310650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,6 +2466,33 @@ MonoBehaviour:
   careerOptionRight: {fileID: 1163123059}
   confirmButton: {fileID: 735892624}
   congrats: {fileID: 1927453423}
+  congratsPlayer: {fileID: 1815598806}
+  greatJobTitle: {fileID: 336113504}
+  congratsEmailInput: {fileID: 2101846993}
+  congratsLearnMore: {fileID: 1372013125}
+  congratsSubmit: {fileID: 1836861666}
+  advertAccount: {fileID: 21300000, guid: 184c3c6c77113ad4fac6143a8d1487e2, type: 3}
+  bpManager: {fileID: 21300000, guid: c8d676a8575d7044badf963ef401fdde, type: 3}
+  salesProf: {fileID: 21300000, guid: 74f59da83d15dab4c995799ad94e5791, type: 3}
+  marketResearchS: {fileID: 21300000, guid: c11109f41430ea64891c8deb1356a2ae, type: 3}
+  mDirector: {fileID: 21300000, guid: 85d7d078c9a9e0441a61b02041ceabd8, type: 3}
+  salesManage: {fileID: 21300000, guid: 5f1a0d6a609fbf548906bb8d83c41ed0, type: 3}
+  freelancer: {fileID: 21300000, guid: b3e8149966090484ca1347550fbc3829, type: 3}
+  healthMarketer: {fileID: 21300000, guid: cfc2b0ab254937e4d9ed6d61e4a19969, type: 3}
+  gmTech: {fileID: 21300000, guid: 7ccd207c2b5853549b913bcf44a90760, type: 3}
+  gmTechSales: {fileID: 21300000, guid: fc46f12b4ed0b30418bb65f433397938, type: 3}
+  customerProject: {fileID: 21300000, guid: d287b832ea0da3b49ba4efe4d69ddeed, type: 3}
+  bdAnalyst: {fileID: 21300000, guid: 335ca56aa1807ff4e9ded4dfa2cc5959, type: 3}
+  marketResearchA: {fileID: 21300000, guid: 19ea86a5c962a3d45af68f43a6334ada, type: 3}
+  sysArch: {fileID: 21300000, guid: 6149cec3d56fba147a15731c57d570e3, type: 3}
+  creativeDirect: {fileID: 21300000, guid: 9250fe81dadc1db42bbf9f820f8e1579, type: 3}
+  researchDirect: {fileID: 21300000, guid: d779b1fc711653840922a56613f7168f, type: 3}
+  mPlanner: {fileID: 21300000, guid: 2d5ad3a3b02dc7c409831cbef32e1139, type: 3}
+  uxDesign: {fileID: 21300000, guid: 0b19fc7b7bfdd474ab097f7707700dd0, type: 3}
+  uiDesign: {fileID: 21300000, guid: cbf17cc23b022d94baf94a5cfbb45ea7, type: 3}
+  contentStrategist: {fileID: 21300000, guid: 2175caf72fd43494faccee820f200306, type: 3}
+  corpCommManager: {fileID: 21300000, guid: ae0fc4eeb5890ce43a2977d2b54f1fd1, type: 3}
+  prDirect: {fileID: 21300000, guid: 9e1aafb10eabc0d4ab410f25b870f851, type: 3}
 --- !u!1 &1456912491
 GameObject:
   m_ObjectHideFlags: 0

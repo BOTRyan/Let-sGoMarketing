@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public int targetPos = 0;
-    public int currPos = 0;
+    public int targetPos = 40;
+    public int currPos = 40;
 
     private float delay = .2f;
     private float alpha = 0;
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     public bool hasFinished = false;
     public bool doOnce = true;
 
+    private bool offsetOnce = false;
+
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
     private Sprite red01, red02, red03, red04, red05, red06, redBlink;
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private float walkCounter;
     private bool blinking = false;
     private bool spriteOnce = true;
+
 
     void Start()
     {
@@ -106,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
             spritesUpdate();
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
+                print(hasFinished);
                 if (isMoving)
                 {
                     if (doOnce)
@@ -166,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
 
                         if (alpha >= 1)
                         {
-                            delay = 0.05f;
+                            delay = 0.01f;
                             alpha = 0;
                             currPos--;
 
@@ -193,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
 
                                 if (alpha >= 1)
                                 {
-                                    delay = 0.05f;
+                                    delay = 0.01f;
                                     alpha = 0;
                                     currPos++;
 
@@ -290,7 +294,7 @@ public class PlayerMovement : MonoBehaviour
                                             {
                                                 if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
                                             }
-                                            hasFinished = true;
+                                            //hasFinished = true;
                                             GameManager.instance.playersDone++;
                                             break;
                                         default:
@@ -303,9 +307,12 @@ public class PlayerMovement : MonoBehaviour
                         }
                     }
                 }
-                else if (currPos >= 55 && GameManager.instance.playersDone < GameManager.instance.currPlayers && CardAnimation.instance.cardRead)
+                else if (GameManager.instance.playersDone < GameManager.instance.currPlayers)
                 {
-                    swapTurns(2);
+                    if (currPos >= 55 && CardAnimation.instance.cardRead && !hasFinished) swapTurns(2);
+                    else if (hasFinished && currPos >= 55) swapTurns(2);
+                    else print("Heck");
+
                 }
             }
             else
@@ -317,6 +324,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animWalk();
                 isHover = false;
+                offsetOnce = false;
             }
             else
             {
@@ -363,6 +371,7 @@ public class PlayerMovement : MonoBehaviour
         Spinner.instance.spinStarted = false;
         if (val >= 2)
         {
+            hasFinished = true;
             Spinner.instance.Rollednumber.text = "";
         }
     }
@@ -485,9 +494,17 @@ public class PlayerMovement : MonoBehaviour
         }
         int walkIndex = Mathf.FloorToInt(walkCounter);
         GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
-        print(walkSprites[walkIndex]);
     }
 
+    public void setOffset()
+    {
+        if(!offsetOnce)
+        {
+            transform.position = GrabPositions.instance.boardPositions[currPos].position + new Vector3(Random.Range(0, 1), Random.Range(0, 1));
+            offsetOnce = true;
+        }
+        
+    }
     private void spritesUpdate()
     {
         if (baseDog == red01)

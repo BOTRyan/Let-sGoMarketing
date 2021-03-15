@@ -16,6 +16,7 @@ public class LoadResults : MonoBehaviour
     void Start()
     {
         playerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().playerName;
+        if (GameManager.instance.players[playerCount - 1] == null) gameObject.SetActive(false);
         shortcut = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().careerChoice;
         // switch case to check sprites
         if(shortcut == advertAccount)

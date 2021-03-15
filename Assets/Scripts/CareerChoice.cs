@@ -18,6 +18,10 @@ public class CareerChoice : MonoBehaviour
     public GameObject confirmButton;
     public GameObject congrats;
 
+    public GameObject congratsPlayer, greatJobTitle, congratsEmailInput, congratsLearnMore, congratsSubmit;
+    private string career;
+    public Sprite advertAccount, bpManager, salesProf, marketResearchS, mDirector, salesManage, freelancer, healthMarketer, gmTech, gmTechSales, customerProject, bdAnalyst, marketResearchA, sysArch, creativeDirect, researchDirect, mPlanner, uxDesign, uiDesign, contentStrategist, corpCommManager, prDirect;
+
     private int currPlayer = 0;
     private int playerPlace = 0;
 
@@ -70,6 +74,13 @@ public class CareerChoice : MonoBehaviour
     {
         playerPlace++;
         updatePlayers(playerPlace);
+        congrats.SetActive(false);
+        confirmButton.SetActive(false);
+        careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = null;
+        if (playerPlace >= GameManager.instance.currPlayers) SceneManager.LoadScene("resultsScene");
     }
 
     private void changeChoiceDisplay(string choice)
@@ -157,19 +168,83 @@ public class CareerChoice : MonoBehaviour
 
     public void confirmChoice(GameObject g)
     {
-        confirmButton.SetActive(true);       
-        
-
+        confirmButton.SetActive(true);
         GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = g.GetComponent<Image>().sprite;
-        
-           
+        if(g == careerOptionLeft)
+        {
+            careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+            careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+            careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        }
+        else if(g == careerOptionMid)
+        {
+            careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+            careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+        }
+        else if(g == careerOptionRight)
+        {
+            careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+            careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, .5f);
+        }
+
     }
 
     public void congratsPrompt()
     {
         congrats.SetActive(true);
+        Sprite shortcut = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice;
+        // switch case to check sprites
+        if (shortcut == advertAccount) career = "Advertising Account Manager";
+        else if (shortcut == bpManager) career = "Brand/Product Manager";
+        else if (shortcut == salesProf) career = "Sales Professional";
+        else if (shortcut == marketResearchS) career = "Marketing Research Specialist";
+        else if (shortcut == mDirector) career = "Marketing Director";
+        else if (shortcut == salesManage) career = "Sales Manager";
+        else if (shortcut == freelancer) career = "Freelance Writer";
+        else if (shortcut == healthMarketer) career = "Healthcare Marketer";
+        else if (shortcut == gmTech) career = "Graphic Media Technician";
+        else if (shortcut == gmTechSales) career = "Graphic Media Technical Sales Representative";
+        else if (shortcut == customerProject) career = "Customer Service Project Manager";
+        else if (shortcut == bdAnalyst) career = "Business Data Analyst";
+        else if (shortcut == marketResearchA) career = "Market Research Analyst";
+        else if (shortcut == sysArch) career = "System Architect";
+        else if (shortcut == creativeDirect) career = "Creative Director";
+        else if (shortcut == researchDirect) career = "Research Director";
+        else if (shortcut == mPlanner) career = "Media Planner";
+        else if (shortcut == uxDesign) career = "User Experience Designer";
+        else if (shortcut == uiDesign) career = "User Interface Designer";
+        else if (shortcut == contentStrategist) career = "Content Strategist";
+        else if (shortcut == corpCommManager) career = "Corporate Communications Manager";
+        else if (shortcut == prDirect) career = "Public Relations Director";
+        
+        greatJobTitle.GetComponent<TMPro.TextMeshProUGUI>().text = "You'll make a great " + career + "!";
+        randomCongrats();
 
+    }
 
+    private void randomCongrats()
+    {
+        int randChoice = Mathf.FloorToInt(Random.Range(1, 6));
+        switch(randChoice)
+        {
+            case 1:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Nice choice, " + playerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+            case 2:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Sweet pick, " + playerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+            case 3:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Epic pick, " + playerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+            case 4:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Great pick, " + playerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+            case 5:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Prime choice, " + playerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+        }
     }
 
 }
