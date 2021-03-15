@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
-    private bool doOnce = true;
+    //private bool doOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playersDone);
         if (SceneManager.GetActiveScene().buildIndex == 2)
         { 
 
@@ -121,8 +120,9 @@ public class GameManager : MonoBehaviour
 
         if (playersDone >= currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
-            SceneManager.LoadScene("endScene");
+            //SceneManager.LoadScene("endScene");
         }
+        print(playersDone);
     }
     public void openBulldogSelection(Button b)
     {

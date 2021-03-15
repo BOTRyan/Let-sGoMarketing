@@ -1194,6 +1194,10 @@ MonoBehaviour:
     type: 3}
   didYouKnowButtonPurple: {fileID: 21300000, guid: de5d69cd51bd08b4d83affd08b610443,
     type: 3}
+  firstPlayerDone: {fileID: 21300000, guid: e6f773d4118390742b591888e1db996b, type: 3}
+  otherPlayersDone: {fileID: 21300000, guid: 09a055809a673fd4888ea5c5ebb31c83, type: 3}
+  allPlayersDone: {fileID: 21300000, guid: 75a6f4ffe01ccde4582280208b6e046a, type: 3}
+  blankBack: {fileID: 21300000, guid: bf823b12ec0106f49b5388a22c1ff1c6, type: 3}
   didYouKnowButtons:
   - {fileID: 503056761}
   - {fileID: 149694261}
@@ -8947,13 +8951,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971858826}
-  m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
+  m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 0, y: 0, z: 209.41434}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 71458449}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 123.00003, y: -989.8}
@@ -17999,7 +18003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1952187411
 MonoBehaviour:
   m_ObjectHideFlags: 0

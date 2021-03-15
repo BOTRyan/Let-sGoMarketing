@@ -65,6 +65,11 @@ public class CardAnimation : MonoBehaviour
     public Sprite didYouKnowButtonPink;
     public Sprite didYouKnowButtonPurple;
 
+    public Sprite firstPlayerDone;
+    public Sprite otherPlayersDone;
+    public Sprite allPlayersDone;
+    public Sprite blankBack;
+
     public GameObject[] didYouKnowButtons;
     public int playerMovementEffect = 0;
     public bool cardRead = false;
@@ -793,6 +798,21 @@ public class CardAnimation : MonoBehaviour
                 }
                 didYouButtons.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
+                break;
+            case 10:
+                // First Player Done
+                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardFront.GetComponent<Image>().sprite = firstPlayerDone;
+                break;
+            case 11:
+                // Other Players Done
+                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardFront.GetComponent<Image>().sprite = otherPlayersDone;
+                break;
+            case 12:
+                // All Players Done
+                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardFront.GetComponent<Image>().sprite = allPlayersDone;
                 break;
             default:
                 break;

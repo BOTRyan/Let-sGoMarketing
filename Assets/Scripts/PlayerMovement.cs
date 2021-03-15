@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             baseDog = GetComponent<PlayerInfo>().avatar;
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
-                Jump();
+                //Jump();
 
                 if (Spinner.instance.numPicked && !isMoving)
                 {
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
                                     if (currPos == targetPos || currPos >= 55)
                                     {
-                                        if(currPos >= 55) reachEnd();
+                                        if (currPos >= 55) reachEnd();
                                         swapTurns(1);
                                     }
                                 }
@@ -205,6 +205,20 @@ public class PlayerMovement : MonoBehaviour
                                             // Did You Know
                                             FlipCard(9);
                                             break;
+                                        case 55:
+                                            if (GameManager.instance.playersDone == 0)
+                                            {
+                                                FlipCard(10);
+                                            }
+                                            if (GameManager.instance.playersDone != 0 && GameManager.instance.playersDone != GameManager.instance.currPlayers)
+                                            {
+                                                FlipCard(11);
+                                            }
+                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1)
+                                            {
+                                                FlipCard(12);
+                                            }
+                                            break;
                                         default:
                                             swapTurns(1);
                                             break;
@@ -217,7 +231,6 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (currPos >= 55)
                 {
-                    //print("Thing");
                     swapTurns(2);
                 }
             }
@@ -239,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
                 isHover = true;
             }
             //print(GameManager.instance.playersDone);
-            if (isHover) Hover();
+            //if (isHover) Hover();
         }
     }
 
@@ -279,12 +292,6 @@ public class PlayerMovement : MonoBehaviour
         if (val >= 2)
         {
             Spinner.instance.Rollednumber.text = "";
-
-            if (addOnce)
-            {
-                reachEnd();
-                addOnce = false;
-            }
         }
     }
 
@@ -294,6 +301,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
         camOffset = camPosition.y;
 
+        /*
         // midway point between positions
         Vector3 handle;
 
@@ -311,6 +319,9 @@ public class PlayerMovement : MonoBehaviour
 
         // pE = lerp between pC and pD
         Vector3 positionE = AnimMath.Lerp(positionC, positionD, percent);
+        */
+
+        Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
 
         // return pE
         return positionE;
@@ -322,6 +333,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
         camOffset = camPosition.y;
 
+        /*
         // midway point between positions
         Vector3 handle;
 
@@ -339,6 +351,9 @@ public class PlayerMovement : MonoBehaviour
 
         // pE = lerp between pC and pD
         Vector3 positionE = AnimMath.Lerp(positionC, positionD, percent);
+        */
+
+        Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
 
         // return pE
         return positionE;
@@ -367,9 +382,9 @@ public class PlayerMovement : MonoBehaviour
             velY += grav * Time.fixedDeltaTime;
             temp.y += velY * Time.fixedDeltaTime;
             transform.position = temp;
-                
-            if(transform.position.y <= GrabPositions.instance.boardPositions[currPos].position.y) velY = 0;
-            
+
+            if (transform.position.y <= GrabPositions.instance.boardPositions[currPos].position.y) velY = 0;
+
             if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.02f && velY == 0)
             {
                 transform.position = AnimMath.Slide(transform.position, GrabPositions.instance.boardPositions[currPos].position, 0.05f);
@@ -379,7 +394,7 @@ public class PlayerMovement : MonoBehaviour
                     jumping = false;
                 }
             }
-            
+
         }
         else isHover = true;
     }
@@ -398,7 +413,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void reachEnd()
     {
-        for(int i = 0; i < GameManager.instance.players.Count; i++)
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
             if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
         }
