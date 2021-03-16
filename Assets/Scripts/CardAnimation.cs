@@ -75,6 +75,7 @@ public class CardAnimation : MonoBehaviour
     public int playerMovementEffect = 0;
     public bool cardRead = false;
     public bool playerDoesntMove;
+    public bool finishCardUp = false;
 
     public GameObject even1, even2, even3, even4, even5, even6, odd1, odd2, odd3, odd4, odd5;
     public GameObject youreTheBossPlayerName;
@@ -201,6 +202,7 @@ public class CardAnimation : MonoBehaviour
         CardAnimator.SetBool("CardIsUp", false);
         continueButton.SetActive(false);
         cardRead = true;
+        finishCardUp = false;
         playersPressed = 0;
         youreTheButtons.SetActive(false);
         careerButtons.SetActive(false);
@@ -665,18 +667,19 @@ public class CardAnimation : MonoBehaviour
             switch (val)
             {
                 case 1:
-                    bossColor = 6;
+                    bossColor = 1;
                     break;
                 case 2:
-                    bossColor = 1;
+                    bossColor = 5;
                     break;
                 case 3:
                     bossColor = 4;
                     break;
                 case 4:
-                    bossColor = 5;
+                    bossColor = 3;
                     break;
                 case 5:
+                    bossColor = 1;
                     break;
                 case 6:
                     break;
@@ -685,9 +688,6 @@ public class CardAnimation : MonoBehaviour
             }
         }
         if (playersPressed < GameManager.instance.currPlayers) TokenAnimation.instance.SpawnToken(playersPressed + 1, bossColor);
-            
-        
-
     }
 
     public void SpriteSwap(int card)
@@ -715,7 +715,7 @@ public class CardAnimation : MonoBehaviour
                 {
                     playerMovementEffect = -1;
                 }
-                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[11] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[12])
+                else if (brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[3] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[5] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[6] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[7] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[10] || brandCrisisCardFront[currentBrandCrisisNumber] == brandCrisisCardFrontIdentity[11])
                 {
                     playerMovementEffect = -2;
                 }

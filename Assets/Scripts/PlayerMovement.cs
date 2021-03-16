@@ -16,18 +16,16 @@ public class PlayerMovement : MonoBehaviour
     public float camOffset = 3.25f;
 
     private float hoverCounter = 0;
-    private bool isHover = true;
+    //private bool isHover = true;
     private bool isJump = true;
     private bool jumping = false;
-
-    private bool addOnce = true;
 
     public int yourPlayerNum;
     public bool isMoving = false;
     public bool moveOnce = true;
     public bool landedOnCard = false;
     public int finishPlace = 0;
-    public bool hasFinished = false;
+    private bool hasFinished = false;
     public bool doOnce = true;
 
     private bool offsetOnce = false;
@@ -109,7 +107,11 @@ public class PlayerMovement : MonoBehaviour
             spritesUpdate();
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
-                print(hasFinished);
+                if (hasFinished)
+                {
+                    swapTurns(2);
+                }
+
                 if (isMoving)
                 {
                     if (doOnce)
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
 
-                if (currPos < targetPos && currPos < 55)
+                if (currPos < targetPos && currPos < 54)
                 {
                     if (landedOnCard)
                     {
@@ -201,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                                     alpha = 0;
                                     currPos++;
 
-                                    if (currPos == targetPos || currPos >= 55)
+                                    if (currPos == targetPos || currPos >= 54)
                                     {
                                         //FindObjectOfType<AudioManager>().Stop("Walk");
                                         swapTurns(1);
@@ -224,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
                                 alpha = 0;
                                 currPos++;
 
-                                if (currPos == targetPos || currPos >= 55)
+                                if (currPos == targetPos || currPos >= 54)
                                 {
                                     switch (currPos)
                                     {
@@ -276,16 +278,16 @@ public class PlayerMovement : MonoBehaviour
                                             // Did You Know
                                             FlipCard(9);
                                             break;
-                                        case 55:
+                                        case 54:
                                             if (GameManager.instance.playersDone == 0)
                                             {
                                                 FlipCard(10);
                                             }
-                                            if (GameManager.instance.playersDone != 0 && GameManager.instance.playersDone != GameManager.instance.currPlayers)
+                                            if (GameManager.instance.playersDone != 0 && GameManager.instance.playersDone < GameManager.instance.currPlayers)
                                             {
                                                 FlipCard(11);
                                             }
-                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1)
+                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers)
                                             {
                                                 FlipCard(12);
                                             }
@@ -294,8 +296,8 @@ public class PlayerMovement : MonoBehaviour
                                             {
                                                 if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
                                             }
-                                            //hasFinished = true;
                                             GameManager.instance.playersDone++;
+                                            CardAnimation.instance.finishCardUp = false;
                                             break;
                                         default:
                                             swapTurns(1);
@@ -309,10 +311,13 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (GameManager.instance.playersDone < GameManager.instance.currPlayers)
                 {
-                    if (currPos >= 55 && CardAnimation.instance.cardRead && !hasFinished) swapTurns(2);
-                    else if (hasFinished && currPos >= 55) swapTurns(2);
-                    else print("Heck");
-
+                    if (currPos >= 55 && !hasFinished)
+                    {
+                        if (CardAnimation.instance.finishCardUp)
+                        {
+                            swapTurns(2);
+                        }
+                    }
                 }
             }
             else
@@ -323,13 +328,13 @@ public class PlayerMovement : MonoBehaviour
             if (isMoving || Input.GetKey(KeyCode.A))
             {
                 animWalk();
-                isHover = false;
+                //isHover = false;
                 offsetOnce = false;
             }
             else
             {
                 GetComponent<SpriteRenderer>().sprite = baseDog;
-                isHover = true;
+                //isHover = true;
             }
             //if (isHover) Hover();
         }
@@ -337,9 +342,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipCard(int val)
     {
-        //FindObjectOfType<AudioManager>().Stop("Walk");
         landedOnCard = true;
         isMoving = false;
+        CardAnimation.instance.cardRead = false;
         CardAnimation.instance.SpriteSwap(val);
         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
         FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
@@ -369,9 +374,9 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.cardRead = false;
         Spinner.instance.canSpin = true;
         Spinner.instance.spinStarted = false;
+        if(currPos >= 55) hasFinished = true;
         if (val >= 2)
         {
-            hasFinished = true;
             Spinner.instance.Rollednumber.text = "";
         }
     }
@@ -460,7 +465,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (jumping)
         {
-            isHover = false;
+            //isHover = false;
             Vector3 temp = transform.position;
             velY += grav * Time.fixedDeltaTime;
             temp.y += velY * Time.fixedDeltaTime;
@@ -479,7 +484,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        else isHover = true;
+        //else isHover = true;
     }
 
     private void animWalk()
@@ -498,12 +503,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void setOffset()
     {
-        if(!offsetOnce)
+        if (!offsetOnce)
         {
             transform.position = GrabPositions.instance.boardPositions[currPos].position + new Vector3(Random.Range(0, 1), Random.Range(0, 1));
             offsetOnce = true;
         }
-        
+
     }
     private void spritesUpdate()
     {
@@ -561,7 +566,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = purp05;
             walk06 = purp06;
         }
-        if(spriteOnce)
+        if (spriteOnce)
         {
             walkSprites.Add(walk01);
             walkSprites.Add(walk02);
@@ -572,7 +577,7 @@ public class PlayerMovement : MonoBehaviour
             spriteOnce = false;
         }
 
-        if(blinking)
+        if (blinking)
         {
             if (baseDog == red01) walkSprites[3] = redBlink;
             if (baseDog == blue01) walkSprites[3] = blueBlink;

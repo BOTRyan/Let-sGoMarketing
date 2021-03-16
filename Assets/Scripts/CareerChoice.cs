@@ -73,6 +73,7 @@ public class CareerChoice : MonoBehaviour
     public void nextPlayer()
     {
         playerPlace++;
+        if (playerPlace >= GameManager.instance.currPlayers) SceneManager.LoadScene("resultsScene");
         updatePlayers(playerPlace);
         congrats.SetActive(false);
         confirmButton.SetActive(false);
@@ -80,7 +81,6 @@ public class CareerChoice : MonoBehaviour
         careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
         careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
         GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = null;
-        if (playerPlace >= GameManager.instance.currPlayers) SceneManager.LoadScene("resultsScene");
     }
 
     private void changeChoiceDisplay(string choice)

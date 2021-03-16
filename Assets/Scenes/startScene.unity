@@ -2048,7 +2048,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
@@ -3310,7 +3309,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
@@ -5126,7 +5124,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
@@ -6535,7 +6532,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 0}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
@@ -7325,11 +7321,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8658,7 +8654,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 21300000, guid: 6c063b25273192b44b32ea86e6186c1d, type: 3}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}
@@ -9902,7 +9897,6 @@ MonoBehaviour:
   moveOnce: 1
   landedOnCard: 0
   finishPlace: 0
-  hasFinished: 0
   doOnce: 1
   baseDog: {fileID: 21300000, guid: d4ec9d90edf019a4a9a4af19a4cf22a8, type: 3}
   walk01: {fileID: 21300000, guid: 77e60da776e552840adddfc7113392d2, type: 3}

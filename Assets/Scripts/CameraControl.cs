@@ -67,7 +67,7 @@ public class CameraControl : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         targetPosY += scroll * mouseScrollMult;
-        targetPosY = Mathf.Clamp(targetPosY, -2.5f, 3.45f);
+        targetPosY = Mathf.Clamp(targetPosY, -11f, 3.45f);
 
         posY = AnimMath.Slide(posY, targetPosY, 0.01f);
 
