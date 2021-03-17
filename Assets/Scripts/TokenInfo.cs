@@ -43,7 +43,6 @@ public class TokenInfo : MonoBehaviour
             if (Vector3.Distance(transform.position, endPosition) <= 4)
             {
                 GiveTokenToPlayer();
-                FindObjectOfType<AudioManager>().PlayUninterrupted("Token Added");
                 Destroy(this.gameObject);
             }
             else
@@ -56,13 +55,13 @@ public class TokenInfo : MonoBehaviour
         else
         {
             alpha += Time.fixedDeltaTime;
-            transform.position = new Vector3(transform.position.x, AnimMath.Slide(transform.position.y, startPosition.y + 100, alpha), transform.position.z);
+            transform.position = new Vector3(transform.position.x, AnimMath.Slide(transform.position.y, startPosition.y + 150, alpha), transform.position.z);
             animDelay -= Time.fixedDeltaTime;
             if (animDelay <= 0)
             {
                 animDelay = 0;
                 startLerp = true;
-                startPosition = new Vector3(startPosition.x, startPosition.y + 100, startPosition.z);
+                startPosition = new Vector3(startPosition.x, startPosition.y + 150, startPosition.z);
             }
         }
     }
@@ -102,7 +101,7 @@ public class TokenInfo : MonoBehaviour
 
     private Vector3 CalculateScale(float alpha)
     {
-        Vector3 scaleValue = AnimMath.Lerp(transform.localScale, new Vector3(4, 4, 1), alpha);
+        Vector3 scaleValue = AnimMath.Lerp(transform.localScale, new Vector3(3, 3, 1), alpha);
         return scaleValue;
     }
 

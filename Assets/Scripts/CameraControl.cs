@@ -36,7 +36,7 @@ public class CameraControl : MonoBehaviour
 
     private float posY = 3.45f;
     public float targetPosY = 3.45f;
-    private float mouseScrollMult = 10;
+    private float mouseScrollMult = 5;
 
     public bool jumpToOnce = true;
     private bool doOnce = true;
@@ -90,7 +90,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             case 2:
@@ -106,7 +106,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             case 3:
@@ -122,7 +122,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             case 4:
@@ -138,7 +138,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             case 5:
@@ -154,7 +154,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             case 6:
@@ -170,7 +170,7 @@ public class CameraControl : MonoBehaviour
                 }
                 else
                 {
-                    mouseScrollMult = 10;
+                    mouseScrollMult = 5;
                 }
                 break;
             default:

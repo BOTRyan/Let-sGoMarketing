@@ -55,6 +55,7 @@ public class TokenAnimation : MonoBehaviour
         }
         GetButtonLocationsAndColor(player);
         Instantiate(token, buttonLocation, Quaternion.identity, canvas.transform);
+        FindObjectOfType<AudioManager>().PlayUninterrupted("Token Added");
     }
 
     public void SpriteSwap(int player, int color)
