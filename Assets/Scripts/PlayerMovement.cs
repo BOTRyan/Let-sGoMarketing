@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int targetPos = 40;
     public int currPos = 40;
 
-    private float delay = .2f;
+    private float delay = 0f;
     private float alpha = 0;
     private float grav = -9.8f;
     private float velY = 0;
@@ -102,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 camOffset = 3.25f;
                 moveOnce = false;
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
+                GetComponent<SpriteRenderer>().flipX = true;
             }
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
@@ -172,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
                         if (alpha >= 1)
                         {
-                            delay = 0.01f;
+                            delay = 0f;
                             alpha = 0;
                             currPos--;
 
@@ -199,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
 
                                 if (alpha >= 1)
                                 {
-                                    delay = 0.01f;
+                                    delay = 0f;
                                     alpha = 0;
                                     currPos++;
 
@@ -222,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
 
                             if (alpha >= 1)
                             {
-                                delay = 0.05f;
+                                delay = 0f;
                                 alpha = 0;
                                 currPos++;
 
@@ -287,7 +288,7 @@ public class PlayerMovement : MonoBehaviour
                                             {
                                                 FlipCard(11);
                                             }
-                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers)
+                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1)
                                             {
                                                 FlipCard(12);
                                             }
@@ -311,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (GameManager.instance.playersDone < GameManager.instance.currPlayers)
                 {
-                    if (currPos >= 55 && !hasFinished)
+                    if (currPos >= 54 && !hasFinished)
                     {
                         if (CardAnimation.instance.finishCardUp)
                         {
@@ -325,7 +326,7 @@ public class PlayerMovement : MonoBehaviour
                 isMoving = false;
             }
 
-            if (isMoving || Input.GetKey(KeyCode.A))
+            if (isMoving)
             {
                 animWalk();
                 //isHover = false;
@@ -374,7 +375,7 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.cardRead = false;
         Spinner.instance.canSpin = true;
         Spinner.instance.spinStarted = false;
-        if(currPos >= 55) hasFinished = true;
+        if(currPos >= 54) hasFinished = true;
         if (val >= 2)
         {
             Spinner.instance.Rollednumber.text = "";
@@ -491,7 +492,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 48)) GetComponent<SpriteRenderer>().flipX = true;
         else GetComponent<SpriteRenderer>().flipX = false;
-        if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 7.5f;
+        if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 15f;
         if (walkCounter >= walkSprites.Count)
         {
             walkCounter = 0;
