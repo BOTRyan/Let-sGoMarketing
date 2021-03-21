@@ -29,7 +29,7 @@ public class EndScene : MonoBehaviour
 
     public void submitEmail()
     {
-        if (emailInput.GetComponent<TMPro.TextMeshProUGUI>().text != "yourname@email.com" && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains("@")) GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email = emailInput.GetComponent<TMPro.TextMeshProUGUI>().text;
+        if (emailInput.GetComponent<TMPro.TextMeshProUGUI>().text != "yourname@email.com" && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains("@") && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains(".")) GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email = emailInput.GetComponent<TMPro.TextMeshProUGUI>().text;
     }
 
     public void nextPlayer(TMPro.TextMeshProUGUI text)

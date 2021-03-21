@@ -54,7 +54,7 @@ public class RandomMenuScenes : MonoBehaviour
                 GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Business Data Analytics";
                 break;
             case 2:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Graphic Design";
+                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Design";
                 break;
             case 3:
                 GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Graphic Media Management";

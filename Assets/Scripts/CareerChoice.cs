@@ -87,7 +87,7 @@ public class CareerChoice : MonoBehaviour
     {
         switch (choice)
         {
-            case "Graphic Design":
+            case "Design":
                 careerOptionLeft.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Job Cards/jc-purple1");
                 careerOptionMid.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Job Cards/jc-red2");
                 careerOptionRight.GetComponent<Image>().sprite = Resources.Load<Sprite>("Materials/Job Cards/jc-red3");

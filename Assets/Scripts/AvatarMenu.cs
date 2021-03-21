@@ -54,6 +54,7 @@ public class AvatarMenu : MonoBehaviour
             GameManager.instance.players[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<PlayerInfo>().avatar = b.GetComponent<Image>().sprite;
             GameManager.instance.setBulldogVis(false);
             GameManager.instance.avatarObjects[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<Image>().enabled = true;
+            GameManager.instance.bulldogButtons[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<Image>().enabled = false;
         }
         for (int i = 0; i < isChosen.Length; i++)
         {
