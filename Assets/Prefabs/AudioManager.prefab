@@ -93,7 +93,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: Theme
-    clip: {fileID: 8300000, guid: cfb953b532a85544e8424f367af6748a, type: 3}
+    clip: {fileID: 8300000, guid: 50a07652d70644c4794c25abc8851d5e, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1
@@ -142,6 +142,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Walk
     clip: {fileID: 8300000, guid: fb6c0f5b1c976484d83eb09c5652299e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
+  - name: Spinner
+    clip: {fileID: 8300000, guid: 72ff8d8ce7a354e47a65893b17f2dee2, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1

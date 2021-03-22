@@ -22,25 +22,22 @@ public class EndGameManager : MonoBehaviour
     public GameObject learnMore, emailInput, submitEmail, playerName;
     private Sprite advertAccount, bpManager, salesProf, marketResearchS, mDirector, salesManage, freelancer, healthMarketer, gmTech, gmTechSales, customerProject, bdAnalyst, marketResearchA, sysArch, creativeDirect, researchDirect, mPlanner, uxDesign, uiDesign, contentStrategist, corpCommManager, prDirect;
 
-
-
     private int currPlayer = 0;
     private int playerPlace = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void refreshObjects()
     {
-        if(doOnce)
+        if (doOnce)
         {
             // Re-assign game objects based on tags and scene
             doOnce = false;

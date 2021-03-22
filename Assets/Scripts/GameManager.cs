@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public List<InputField> playerInputs = new List<InputField>();
     public List<Button> bulldogButtons = new List<Button>();
-    public int currPlayers = 3;
+    public int currPlayers = 1;
 
     public Canvas screen;
     public GameObject background3, background4, background5;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> avatarObjects = new List<GameObject>();
     private List<Button> removers = new List<Button>();
 
-
+    public bool spinModalOnce, didYouModalOnce, bossModalOnce, pointModalOnce;
 
     public int currPlayerTurn = 1;
     public int playersDone = 0;
@@ -115,15 +115,7 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.targetPosY = CameraControl.instance.p1.camOffset;
             CameraControl.instance.jumpToOnce = false;
         }
-        /*
-        if (SceneManager.GetActiveScene().buildIndex == 3)
-        {
-            for(int i =0; i < currPlayers-1; i++)
-            {
-                playerOffset(players[i].GetComponent<PlayerMovement>());
-            }
-        }
-        */
+
         //play click sound
         if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Graphic Design
+  m_text: Design
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec1f8cfe286ef7f4fb6aa4b8dce5eec6, type: 2}
   m_sharedMaterial: {fileID: 1908356252950193806, guid: ec1f8cfe286ef7f4fb6aa4b8dce5eec6,
@@ -247,10 +247,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 48371766}
-    characterCount: 14
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -741,6 +741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6312609717840722694, guid: 5a54e519179d5f442a3bc25bb9318018,
+        type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 50a07652d70644c4794c25abc8851d5e, type: 3}
     - target: {fileID: 7028675669295369327, guid: 5a54e519179d5f442a3bc25bb9318018,
         type: 3}
       propertyPath: m_LocalPosition.x
