@@ -152,6 +152,8 @@ public class Spinner : MonoBehaviour
                 alpha = 1;
                 fadeTimer = 2;
             }
+
+            if (Input.GetKey(KeyCode.W)) targetNum = 54;
             numPicked = true;
         }
     }

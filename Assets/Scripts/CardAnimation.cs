@@ -216,7 +216,7 @@ public class CardAnimation : MonoBehaviour
         if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
             FindObjectOfType<AudioManager>().Stop("Walk");
-            SceneManager.LoadScene("endScene");
+            SceneManager.LoadScene("endSceneTest");
         }
     }
 

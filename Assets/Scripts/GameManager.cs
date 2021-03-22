@@ -133,9 +133,13 @@ public class GameManager : MonoBehaviour
             currPlayers++;
             for (int i = 0; i < currPlayers; i++)
             {
-                bulldogButtons[i].GetComponent<Image>().enabled = true;
-                bulldogButtons[i].GetComponent<Button>().enabled = true;
-                bulldogButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
+                if(players[i].GetComponent<PlayerInfo>().avatar == null)
+                {
+                    bulldogButtons[i].GetComponent<Image>().enabled = true;
+                    bulldogButtons[i].GetComponent<Button>().enabled = true;
+                    bulldogButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
+                }
+                
                 playerInputs[i].GetComponent<Image>().enabled = true;
                 playerInputs[i].GetComponent<InputField>().interactable = true;
                 playerInputs[i].GetComponent<InputField>().enabled = true;
