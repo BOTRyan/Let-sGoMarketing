@@ -12,6 +12,7 @@ TagManager:
   - removeButton
   - bulldogButton
   - addButton
+  - modal
   layers:
   - Default
   - TransparentFX

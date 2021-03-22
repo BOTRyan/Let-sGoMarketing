@@ -34,8 +34,8 @@ public class CameraControl : MonoBehaviour
     private PlayerMovement p5;
     private PlayerMovement p6;
 
-    private float posY = 3.45f;
-    public float targetPosY = 3.45f;
+    private float posY = 7.74f;
+    public float targetPosY = 7.74f;
     private float mouseScrollMult = 5;
 
     public bool jumpToOnce = true;
@@ -57,17 +57,17 @@ public class CameraControl : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 3 && doOnce)
         {
-            posY = 3.25f;
-            targetPosY = 3.25f;
-            transform.position = new Vector3(0, 3.45f, 0);
-            cam.transform.position = new Vector3(0, 3.45f, 0);
+            posY = 7.74f;
+            targetPosY = 7.74f;
+            transform.position = new Vector3(0, 7.74f, 0);
+            cam.transform.position = new Vector3(0, 7.74f, 0);
             doOnce = false;
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         targetPosY += scroll * mouseScrollMult;
-        targetPosY = Mathf.Clamp(targetPosY, -3.75f, 3.45f);
+        targetPosY = Mathf.Clamp(targetPosY, -10f, 7.74f);
 
         posY = AnimMath.Slide(posY, targetPosY, 0.01f);
 

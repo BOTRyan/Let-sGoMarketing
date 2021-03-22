@@ -148,4 +148,12 @@ MonoBehaviour:
     audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
       type: 2}
     source: {fileID: 0}
+  - name: Spinner
+    clip: {fileID: 8300000, guid: 72ff8d8ce7a354e47a65893b17f2dee2, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audioMixerGroup: {fileID: 7631116998072173171, guid: 8c29a8653e2fe5946822d561682f3f2b,
+      type: 2}
+    source: {fileID: 0}
   mixer: {fileID: 24100000, guid: 8c29a8653e2fe5946822d561682f3f2b, type: 2}

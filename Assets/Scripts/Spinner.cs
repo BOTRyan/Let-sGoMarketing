@@ -61,6 +61,7 @@ public class Spinner : MonoBehaviour
 
         if (rotSpeed <= 0.5f && spinStarted)
         {
+            FindObjectOfType<AudioManager>().Stop("Spinner");
             rotSpeed = 0;
             accSpeed = 0;
             spinStarted = false;
@@ -159,6 +160,7 @@ public class Spinner : MonoBehaviour
     {
         if (!spinStarted && canSpin)
         {
+            FindObjectOfType<AudioManager>().PlayUninterrupted("Spinner");
             accSpeed = Random.Range(500, 600);
             dragAmt = Random.Range(0.88f, 0.92f);
             spinStarted = true;

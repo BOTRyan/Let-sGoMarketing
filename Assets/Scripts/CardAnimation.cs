@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
-using System;
 
 public class CardAnimation : MonoBehaviour
 {
@@ -79,6 +78,7 @@ public class CardAnimation : MonoBehaviour
 
     public GameObject even1, even2, even3, even4, even5, even6, odd1, odd2, odd3, odd4, odd5;
     public GameObject youreTheBossPlayerName;
+    public GameObject cardAvatar;
 
     private int currentBrandCrisisNumber = 0;
 
@@ -413,7 +413,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             case 10:
                 TokenAnimation.instance.isBoss = true;
@@ -425,7 +425,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             case 11:
                 TokenAnimation.instance.isBoss = true;
@@ -437,7 +437,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             case 12:
                 TokenAnimation.instance.isBoss = true;
@@ -449,7 +449,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             case 13:
                 TokenAnimation.instance.isBoss = true;
@@ -461,11 +461,11 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             case 14:
                 TokenAnimation.instance.isBoss = true;
-                checkBossCard(6);  
+                checkBossCard(6);
                 if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
                 if (playersPressed >= GameManager.instance.currPlayers)
                 {
@@ -473,7 +473,7 @@ public class CardAnimation : MonoBehaviour
                     if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
                     else currentYoureTheBossNumber = 0;
                 }
-                setName();
+                setNameAndSprite();
                 break;
             default:
                 break;
@@ -699,13 +699,14 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
                 youreTheBossPlayerName.SetActive(true);
-                setName();
+                setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
                 careerButtons.SetActive(true);
+                setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("Career Point");
                 break;
             case 3:
@@ -827,7 +828,7 @@ public class CardAnimation : MonoBehaviour
 
     private void shiftButtons(int players)
     {
-        switch(players)
+        switch (players)
         {
             case 1:
                 didYouKnowButtons[0].transform.position = odd3.transform.position;
@@ -865,15 +866,45 @@ public class CardAnimation : MonoBehaviour
         }
     }
 
-    private void setName()
+    private void setNameAndSprite()
     {
         if (playersPressed < GameManager.instance.currPlayers)
         {
-            youreTheBossPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+            if (cardBack.GetComponent<Image>().sprite == careerPointCardBack)
+            {
+                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().avatar;
+            }
+            else
+            {
+                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().avatar;
+            }
+            int randChoice = Mathf.FloorToInt(Random.Range(1, 7));
+            switch (randChoice)
+            {
+                case 1:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + ", " + "take your pick!";
+                    break;
+                case 2:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "You're up, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                    break;
+                case 3:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Now it's your turn, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                    break;
+                case 4:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "It's your call, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                    break;
+                case 5:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "What'll it be, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + "?";
+                    break;
+                case 6:
+                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "All eyes on you, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                    break;
+            }
         }
         else
         {
             youreTheBossPlayerName.SetActive(false);
+            cardAvatar.SetActive(false);
         }
     }
 }

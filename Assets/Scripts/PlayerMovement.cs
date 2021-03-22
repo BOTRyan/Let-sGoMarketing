@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,17 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
-    private Sprite red01, red02, red03, red04, red05, red06, redBlink;
-    private Sprite blue01, blue02, blue03, blue04, blue05, blue06, blueBlink;
-    private Sprite green01, green02, green03, green04, green05, green06, greenBlink;
-    private Sprite pink01, pink02, pink03, pink04, pink05, pink06, pinkBlink;
-    private Sprite yel01, yel02, yel03, yel04, yel05, yel06, yelBlink;
-    private Sprite purp01, purp02, purp03, purp04, purp05, purp06, purpBlink;
+    private Sprite red01, red02, red03, red04, red05, red06, redBlink, redSit;
+    private Sprite blue01, blue02, blue03, blue04, blue05, blue06, blueBlink, blueSit;
+    private Sprite green01, green02, green03, green04, green05, green06, greenBlink, greenSit;
+    private Sprite pink01, pink02, pink03, pink04, pink05, pink06, pinkBlink, pinkSit;
+    private Sprite yel01, yel02, yel03, yel04, yel05, yel06, yelBlink, yelSit;
+    private Sprite purp01, purp02, purp03, purp04, purp05, purp06, purpBlink, purpSit;
     private List<Sprite> walkSprites = new List<Sprite>();
     private float walkCounter;
     private bool blinking = false;
     private bool spriteOnce = true;
 
+    private GameObject modal;
 
     void Start()
     {
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         red05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed5");
         red06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed6");
         redBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed4Blink");
+        redSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/RedSit");
         blue01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue1");
         blue02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue2");
         blue03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue3");
@@ -60,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         blue05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue5");
         blue06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue6");
         blueBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue4Blink");
+        blueSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/BlueSit");
         green01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green1");
         green02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green2");
         green03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green3");
@@ -67,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         green05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green5");
         green06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green6");
         greenBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green4Blink");
+        greenSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/GreenSit");
         pink01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink1");
         pink02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink2");
         pink03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink3");
@@ -74,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         pink05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink5");
         pink06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink6");
         pinkBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink4Blink");
+        pinkSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PinkSit");
         yel01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow1");
         yel02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow2");
         yel03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow3");
@@ -81,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         yel05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow5");
         yel06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow6");
         yelBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow4Blink");
+        yelSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/YellowSit");
         purp01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple1");
         purp02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple2");
         purp03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple3");
@@ -88,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         purp05 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple5");
         purp06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple6");
         purpBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple4Blink");
-
+        purpSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PurpleSit");
     }
 
     // Update is called once per frame
@@ -103,6 +110,13 @@ public class PlayerMovement : MonoBehaviour
                 moveOnce = false;
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
                 GetComponent<SpriteRenderer>().flipX = true;
+                modal = FindObjectOfType<ModalFunction>().gameObject;
+                if (!GameManager.instance.spinModalOnce)
+                {
+                    ModalFunction.instance.fadeModalIn("Spin");
+                    modal.SetActive(true);
+                    GameManager.instance.spinModalOnce = true;
+                }
             }
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
@@ -117,14 +131,14 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (doOnce)
                     {
-                        FindObjectOfType<AudioManager>().Play("Walk");
+                        //FindObjectOfType<AudioManager>().Play("Walk");
                         doOnce = false;
                     }
                 }
                 else
                 {
                     doOnce = true;
-                    FindObjectOfType<AudioManager>().Stop("Walk");
+                    //FindObjectOfType<AudioManager>().Stop("Walk");
                 }
 
                 //Jump();
@@ -134,7 +148,6 @@ public class PlayerMovement : MonoBehaviour
                     isMoving = true;
                     Spinner.instance.numPicked = false;
                     targetPos += Spinner.instance.targetNum;
-                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
 
                 if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard && CardAnimation.instance.cardRead)
@@ -142,24 +155,20 @@ public class PlayerMovement : MonoBehaviour
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
-                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
                 else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
-                    //FindObjectOfType<AudioManager>().Play("Walk");
                 }
                 else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    //FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(1);
                 }
 
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    //FindObjectOfType<AudioManager>().Stop("Walk");
                     swapTurns(0);
                 }
 
@@ -179,7 +188,6 @@ public class PlayerMovement : MonoBehaviour
 
                             if (currPos == targetPos || currPos <= 0)
                             {
-                                //FindObjectOfType<AudioManager>().Stop("Walk");
                                 swapTurns(1);
                             }
                         }
@@ -206,7 +214,6 @@ public class PlayerMovement : MonoBehaviour
 
                                     if (currPos == targetPos || currPos >= 54)
                                     {
-                                        //FindObjectOfType<AudioManager>().Stop("Walk");
                                         swapTurns(1);
                                     }
                                 }
@@ -231,14 +238,15 @@ public class PlayerMovement : MonoBehaviour
                                 {
                                     switch (currPos)
                                     {
-                                        case 7:
-                                        case 15:
-                                        case 20:
-                                        case 34:
-                                        case 48:
                                             // You're The Boss
-                                            FlipCard(1);
-                                            break;
+                                            //FlipCard(1);
+                                            //if (!GameManager.instance.bossModalOnce)
+                                            //{
+                                                //modal.SetActive(true);
+                                                //ModalFunction.instance.fadeModalIn("YTB");
+                                               // GameManager.instance.bossModalOnce = true;
+                                            //}
+                                            //break;
                                         case 4:
                                         case 12:
                                         case 25:
@@ -246,38 +254,84 @@ public class PlayerMovement : MonoBehaviour
                                         case 53:
                                             // Career Point
                                             FlipCard(2);
+                                            if (!GameManager.instance.pointModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("Career");
+                                                GameManager.instance.pointModalOnce = true;
+                                            }
                                             break;
-                                        case 6:
                                         case 18:
                                         case 30:
-                                        case 45:
                                             // Brand Crisis
                                             FlipCard(3);
                                             break;
                                         case 1:
+                                        case 6:
                                         case 10:
                                             // Did You Know
                                             FlipCard(4);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
+                                        case 15:
                                         case 17:
                                             // Did You Know
                                             FlipCard(5);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
+                                        case 21:
                                         case 27:
                                             // Did You Know
                                             FlipCard(6);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
                                         case 32:
+                                        case 34:
                                             // Did You Know
                                             FlipCard(7);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
+                                        case 39:
                                         case 42:
                                             // Did You Know
                                             FlipCard(8);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
+                                        case 46:
                                         case 50:
                                             // Did You Know
                                             FlipCard(9);
+                                            if (!GameManager.instance.didYouModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("DYK");
+                                                GameManager.instance.didYouModalOnce = true;
+                                            }
                                             break;
                                         case 54:
                                             if (GameManager.instance.playersDone == 0)
@@ -334,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                GetComponent<SpriteRenderer>().sprite = baseDog;
+                animSit();
                 //isHover = true;
             }
             //if (isHover) Hover();
@@ -375,7 +429,7 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.cardRead = false;
         Spinner.instance.canSpin = true;
         Spinner.instance.spinStarted = false;
-        if(currPos >= 54) hasFinished = true;
+        if (currPos >= 54) hasFinished = true;
         if (val >= 2)
         {
             Spinner.instance.Rollednumber.text = "";
@@ -502,6 +556,34 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
     }
 
+    private void animSit()
+    {
+        if (baseDog == redSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = redSit;
+        }
+        else if (baseDog == blueSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = blueSit;
+        }
+        else if (baseDog == greenSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = greenSit;
+        }
+        else if (baseDog == pinkSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = pinkSit;
+        }
+        else if (baseDog == yelSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = yelSit;
+        }
+        else if (baseDog == purpSit)
+        {
+            GetComponent<SpriteRenderer>().sprite = purpSit;
+        }
+    }
+
     public void setOffset()
     {
         if (!offsetOnce)
@@ -511,9 +593,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
     private void spritesUpdate()
     {
-        if (baseDog == red01)
+        if (baseDog == redSit)
         {
             walk01 = red01;
             walk02 = red02;
@@ -522,7 +605,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = red05;
             walk06 = red06;
         }
-        else if (baseDog == blue01)
+        else if (baseDog == blueSit)
         {
             walk01 = blue01;
             walk02 = blue02;
@@ -531,7 +614,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = blue05;
             walk06 = blue06;
         }
-        else if (baseDog == green01)
+        else if (baseDog == greenSit)
         {
             walk01 = green01;
             walk02 = green02;
@@ -540,7 +623,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = green05;
             walk06 = green06;
         }
-        else if (baseDog == pink01)
+        else if (baseDog == pinkSit)
         {
             walk01 = pink01;
             walk02 = pink02;
@@ -549,7 +632,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = pink05;
             walk06 = pink06;
         }
-        else if (baseDog == yel01)
+        else if (baseDog == yelSit)
         {
             walk01 = yel01;
             walk02 = yel02;
@@ -558,7 +641,7 @@ public class PlayerMovement : MonoBehaviour
             walk05 = yel05;
             walk06 = yel06;
         }
-        else if (baseDog == purp01)
+        else if (baseDog == purpSit)
         {
             walk01 = purp01;
             walk02 = purp02;
