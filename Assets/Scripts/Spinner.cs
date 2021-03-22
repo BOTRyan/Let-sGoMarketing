@@ -151,7 +151,6 @@ public class Spinner : MonoBehaviour
                 alpha = 1;
                 fadeTimer = 2;
             }
-            targetNum = 1;
             numPicked = true;
         }
     }
