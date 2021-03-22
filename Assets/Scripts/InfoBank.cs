@@ -7,6 +7,7 @@ public class InfoBank : MonoBehaviour
     //public GameObject result1, result2, result3, result4, result5, result6;
 
     public GameObject[] results;
+    public SendToGoogle googleScript;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,9 @@ public class InfoBank : MonoBehaviour
         {
             results[i].SetActive(false);
         }
+
+        //send player and game data to Google Form/Sheets
+        googleScript.SendData();
     }
 
 }
