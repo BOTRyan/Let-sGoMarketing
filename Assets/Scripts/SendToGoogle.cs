@@ -10,6 +10,9 @@ public class SendToGoogle : MonoBehaviour
 
     string Name;
     string Email;
+    string Field;
+    string Career;
+    int YTB;
 
     [SerializeField]
     //readonly string getURL;//currently unnecessary
@@ -20,34 +23,61 @@ public class SendToGoogle : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
-    IEnumerator Post(string nameIn)//will need to add email
+    IEnumerator Post(string nameIn, string emailIn, string fieldIn)
     {
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
         //look for the sections in the URL that require input. Tutorial to find that value here: https://www.youtube.com/watch?v=z9b5aRfrz7M&ab_channel=LuzanBaral
         form.Add(new MultipartFormDataSection("entry.2014565725", nameIn));
-        Debug.Log("Name added");
+        form.Add(new MultipartFormDataSection("entry.2131894653", emailIn));
+        form.Add(new MultipartFormDataSection("entry.119326422", fieldIn));
+        //form.Add(new MultipartFormDataSection("entry.1833831744", careerIn));
+        //purple green red pink yellow teal
+        //marketing, graphic media management, design, business data analytics, public relations, advertising
 
         UnityWebRequest www = UnityWebRequest.Post(postURL, form);
 
         yield return www.SendWebRequest();
 
         if(www.isNetworkError || www.isHttpError) Debug.Log("error: " + www.error);
-        else Debug.Log("Sent player name");
+        else Debug.Log("Sent player data");
+    }
+
+    IEnumerator PostGameData(string ytbIn)
+    {
+        //wait two seconds so the organization works in the Google Sheet
+        yield return new WaitForSeconds(2);
+
+        List<IMultipartFormSection> form = new List<IMultipartFormSection>();
+
+        form.Add(new MultipartFormDataSection("entry.659316869", ytbIn));
+
+        UnityWebRequest www = UnityWebRequest.Post(postURL, form);
+
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError) Debug.Log("error: " + www.error);
+        else Debug.Log("Sent game data");
     }
 
     public void SendData()
     {
+        manager = FindObjectOfType<GameManager>();
         Debug.Log("SendData() called");
         //iterate through the list of players for their info
         for (int i = 0; i < manager.currPlayers; ++i)
         {
             Debug.Log("Getting Player " + (i + 1));
             Name = manager.players[i].GetComponent<PlayerInfo>().playerName;
-            //Email = manager.players[i].GetComponent<PlayerInfo>().email;
+            Email = manager.players[i].GetComponent<PlayerInfo>().email;
+            Field = manager.players[i].GetComponent<PlayerInfo>().fieldChoice;
 
             Debug.Log("Starting Coroutine");
-            StartCoroutine(Post(Name));
+            StartCoroutine(Post(Name, Email, Field));
         }
+
+        //game data that's been recorded. Probably need to grab from GameManager
+        YTB = 1;
+        StartCoroutine(PostGameData(YTB.ToString()));
     }//Send()
 
 
