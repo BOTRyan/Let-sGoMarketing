@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;//                  added this so there isn't a need for the "TMPro." prefix
 
 public class EndScene : MonoBehaviour
 {
@@ -29,7 +30,13 @@ public class EndScene : MonoBehaviour
 
     public void submitEmail()
     {
-        if (emailInput.GetComponent<TMPro.TextMeshProUGUI>().text != "yourname@email.com" && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains("@") && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains(".")) GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email = emailInput.GetComponent<TMPro.TextMeshProUGUI>().text;
+        //if (emailInput.GetComponent<TMPro.TextMeshProUGUI>().text != "yourname@email.com" && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains("@") && emailInput.GetComponent<TMPro.TextMeshProUGUI>().text.Contains("."))
+        if (emailInput.GetComponent<TMP_InputField>().text != "yourname@email.com" && emailInput.GetComponent<TMP_InputField>().text.Contains("@") && emailInput.GetComponent<TMP_InputField>().text.Contains("."))
+        {
+            Debug.Log("submitEmail() called");
+            Debug.Log(emailInput.GetComponent<TMP_InputField>().text);
+            GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email = emailInput.GetComponent<TMP_InputField>().text;
+        }
     }
 
     public void nextPlayer(TMPro.TextMeshProUGUI text)
@@ -55,5 +62,6 @@ public class EndScene : MonoBehaviour
 
         learnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", interested in your LGM Career choice? Want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
         playerName.GetComponentInChildren<Image>().sprite = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().avatar;
+        //the line above gives errors
     }
 }

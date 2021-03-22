@@ -12,7 +12,7 @@ public class SendToGoogle : MonoBehaviour
     string Email;
 
     [SerializeField]
-    readonly string getURL;//currently unnecessary
+    //readonly string getURL;//currently unnecessary
     readonly string postURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScvQKiFGYrCZ_PsFPssE3LNG5hF7WpYuUesrL_nLQqS6v1tow/formResponse";//not the final value; Justin's test form. Need to ask Designers to make their own Google Form
 
     void Start()//find GameManager so that the script can be attached literally anywhere and it doesn't matter (as long as the GameManager has all the data we need)
@@ -54,7 +54,7 @@ public class SendToGoogle : MonoBehaviour
 
 
     //currently don't need get requests, but here just in case
-    IEnumerator GetRequest()
+    /*IEnumerator GetRequest()
     {
         UnityWebRequest www = UnityWebRequest.Get(getURL);
 
@@ -67,5 +67,5 @@ public class SendToGoogle : MonoBehaviour
     public void GetData()
     {
         StartCoroutine(GetRequest());
-    }
+    }*/
 }
