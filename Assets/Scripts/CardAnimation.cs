@@ -213,10 +213,18 @@ public class CardAnimation : MonoBehaviour
         p4hasTakenToken = true;
         p5hasTakenToken = true;
         p6hasTakenToken = true;
+        if (GameManager.instance.YTBTime)
+        {
+            for (int i = 0; i < GameManager.instance.players.Count; i++)
+            {
+                GameManager.instance.players[i].GetComponent<PlayerMovement>().landedOnCard = false;
+            }
+            GameManager.instance.YTBTime = false;
+        }
         if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
             FindObjectOfType<AudioManager>().Stop("Walk");
-            SceneManager.LoadScene("endSceneTest");
+            SceneManager.LoadScene("endScene");
         }
     }
 
@@ -872,7 +880,7 @@ public class CardAnimation : MonoBehaviour
         {
             if (cardBack.GetComponent<Image>().sprite == careerPointCardBack)
             {
-                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().avatar;
+                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn].GetComponent<PlayerInfo>().avatar;
             }
             else
             {

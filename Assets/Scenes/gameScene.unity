@@ -1099,7 +1099,7 @@ Transform:
   - {fileID: 1492804512}
   - {fileID: 971858827}
   m_Father: {fileID: 1337851111}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &71458450
 Animator:
@@ -7593,7 +7593,7 @@ RectTransform:
   - {fileID: 1936370559}
   - {fileID: 11380342}
   m_Father: {fileID: 1337851111}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11821,7 +11821,7 @@ RectTransform:
   - {fileID: 1371418209}
   - {fileID: 229318906}
   m_Father: {fileID: 1337851111}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -12561,7 +12561,6 @@ RectTransform:
   - {fileID: 1009287692}
   - {fileID: 1312268053}
   - {fileID: 1741153018}
-  - {fileID: 873303876}
   - {fileID: 71458449}
   - {fileID: 1275936977}
   - {fileID: 822704704}
@@ -19230,7 +19229,7 @@ MonoBehaviour:
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -45.15
+  m_lineSpacing: -35
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

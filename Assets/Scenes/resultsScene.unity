@@ -2678,7 +2678,7 @@ MonoBehaviour:
   jobTitle: {fileID: 1382149616}
   salary: {fileID: 988643512}
   playerName: {fileID: 1985125866}
-  emailInput: {fileID: 1128938521}
+  emailInput: {fileID: 1870857689}
   enterEmail: {fileID: 1128938521}
   submitButton: {fileID: 1781756724}
   playerCount: 3

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float alpha = 0;
     private float grav = -9.8f;
     private float velY = 0;
-    public float camOffset = 3.25f;
+    public float camOffset = 7.74f;
 
     private float hoverCounter = 0;
     //private bool isHover = true;
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             if (moveOnce)
             {
                 transform.position = GrabPositions.instance.boardPositions[currPos].position;
-                camOffset = 3.25f;
+                camOffset = 7.74f;
                 moveOnce = false;
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
                 GetComponent<SpriteRenderer>().flipX = true;
@@ -118,9 +118,11 @@ public class PlayerMovement : MonoBehaviour
                     GameManager.instance.spinModalOnce = true;
                 }
             }
+
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
-            if (yourPlayerNum == GameManager.instance.currPlayerTurn)
+
+            if (yourPlayerNum == GameManager.instance.currPlayerTurn && !GameManager.instance.YTBTime)
             {
                 if (hasFinished)
                 {
@@ -236,17 +238,9 @@ public class PlayerMovement : MonoBehaviour
 
                                 if (currPos == targetPos || currPos >= 54)
                                 {
+
                                     switch (currPos)
                                     {
-                                            // You're The Boss
-                                            //FlipCard(1);
-                                            //if (!GameManager.instance.bossModalOnce)
-                                            //{
-                                                //modal.SetActive(true);
-                                                //ModalFunction.instance.fadeModalIn("YTB");
-                                               // GameManager.instance.bossModalOnce = true;
-                                            //}
-                                            //break;
                                         case 4:
                                         case 12:
                                         case 25:
@@ -375,9 +369,15 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (GameManager.instance.YTBTime && CardAnimation.instance.playersPressed < GameManager.instance.currPlayers )
             {
-                isMoving = false;
+                FlipCard(1);
+                if (!GameManager.instance.bossModalOnce)
+                {
+                    modal.SetActive(true);
+                    ModalFunction.instance.fadeModalIn("YTB");
+                    GameManager.instance.bossModalOnce = true;
+                }
             }
 
             if (isMoving)

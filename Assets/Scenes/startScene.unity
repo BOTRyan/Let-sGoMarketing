@@ -2042,7 +2042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 6
   isMoving: 0
   moveOnce: 1
@@ -2337,6 +2337,7 @@ MonoBehaviour:
   pointModalOnce: 0
   currPlayerTurn: 1
   playersDone: 0
+  YTBTime: 0
 --- !u!114 &499119384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3307,7 +3308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 3
   isMoving: 0
   moveOnce: 1
@@ -5030,7 +5031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 4
   isMoving: 0
   moveOnce: 1
@@ -6438,7 +6439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 5
   isMoving: 0
   moveOnce: 1
@@ -8560,7 +8561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 2
   isMoving: 0
   moveOnce: 1
@@ -9803,7 +9804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: 0
   currPos: 0
-  camOffset: 0
+  camOffset: 7.74
   yourPlayerNum: 1
   isMoving: 0
   moveOnce: 1

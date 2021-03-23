@@ -114,7 +114,7 @@ public class LoadResults : MonoBehaviour
             emailInput.GetComponent<TMPro.TMP_InputField>().interactable = false;
             submitButton.SetActive(false);
             enterEmail.SetActive(false);
-            emailInput.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email;
+            emailInput.GetComponent<TMPro.TMP_InputField>().text = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email;
         }
 
 
