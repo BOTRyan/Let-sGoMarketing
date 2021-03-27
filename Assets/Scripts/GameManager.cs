@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             removers[i].GetComponent<Image>().enabled = false;
             removers[i].GetComponent<Button>().enabled = false;
-            removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+            //removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
         }
         setBulldogVis(false);
     }
@@ -135,13 +135,13 @@ public class GameManager : MonoBehaviour
             currPlayers++;
             for (int i = 0; i < currPlayers; i++)
             {
-                if(players[i].GetComponent<PlayerInfo>().avatar == null)
+                if (players[i].GetComponent<PlayerInfo>().avatar == null)
                 {
                     bulldogButtons[i].GetComponent<Image>().enabled = true;
                     bulldogButtons[i].GetComponent<Button>().enabled = true;
                     bulldogButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
                 }
-                
+
                 playerInputs[i].GetComponent<Image>().enabled = true;
                 playerInputs[i].GetComponent<InputField>().interactable = true;
                 playerInputs[i].GetComponent<InputField>().enabled = true;
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
                 {
                     removers[i - 1].GetComponent<Image>().enabled = true;
                     removers[i - 1].GetComponent<Button>().enabled = true;
-                    removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
+                    //removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = true;
                 }
 
             }
@@ -169,31 +169,34 @@ public class GameManager : MonoBehaviour
             shiftInfo(temp);
             currPlayers--;
             players[currPlayers].SetActive(false);//Justin: added this to solve players getting destroyed
-            for (int i = 5; i > currPlayers - 1; i--)
             {
-                bulldogButtons[i].GetComponent<Image>().enabled = false;
-                bulldogButtons[i].GetComponent<Button>().enabled = false;
-                bulldogButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
-                playerInputs[i].GetComponent<Image>().enabled = false;
-                playerInputs[i].GetComponent<InputField>().interactable = false;
-                playerInputs[i].GetComponent<InputField>().enabled = false;
-                playerInputs[i].GetComponent<InputField>().textComponent.enabled = false;
-                playerInputs[i].GetComponent<InputField>().textComponent.text = "Add Name";
-                playerInputs[i].GetComponent<InputField>().text = "Add Name";
-                players[i].GetComponent<PlayerInfo>().avatar = null;
-                avatarObjects[i].GetComponent<Image>().enabled = false;
-                if (i > 0)
+                for (int i = 5; i > currPlayers - 1; i--)
                 {
-                    removers[i - 1].GetComponent<Image>().enabled = false;
-                    removers[i - 1].GetComponent<Button>().enabled = false;
-                    removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+                    bulldogButtons[i].GetComponent<Image>().enabled = false;
+                    bulldogButtons[i].GetComponent<Button>().enabled = false;
+                    bulldogButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+                    playerInputs[i].GetComponent<Image>().enabled = false;
+                    playerInputs[i].GetComponent<InputField>().interactable = false;
+                    playerInputs[i].GetComponent<InputField>().enabled = false;
+                    playerInputs[i].GetComponent<InputField>().textComponent.enabled = false;
+                    playerInputs[i].GetComponent<InputField>().textComponent.text = "Add Name";
+                    playerInputs[i].GetComponent<InputField>().text = "Add Name";
+                    players[i].GetComponent<PlayerInfo>().avatar = null;
+                    avatarObjects[i].GetComponent<Image>().enabled = false;
+                    if (i > 0)
+                    {
+                        removers[i - 1].GetComponent<Image>().enabled = false;
+                        removers[i - 1].GetComponent<Button>().enabled = false;
+                        //removers[i - 1].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
+                    }
+                    if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
                 }
-                if (bulldogMenu.GetComponent<AvatarMenu>().currButton == bulldogButtons[i]) setBulldogVis(false);
+                SwitchScenes.instance.nameChangedNeeded = false;
+                updateButtonLocations();
             }
-            SwitchScenes.instance.nameChangedNeeded = false;
-            updateButtonLocations();
         }
     }
+
     private void updateButtonLocations()
     {
         Vector3 temp = addPlayerButton.transform.position;
@@ -201,9 +204,17 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 currPlayers = 1;
+                temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[1].transform.position.y, playerInputs[1].transform.position.z);
+                addPlayerButton.transform.position = temp;
+                addPlayerButton.gameObject.SetActive(true);
+                background3.GetComponent<Image>().enabled = true;
                 break;
             case 2:
                 currPlayers = 2;
+                temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[2].transform.position.y, playerInputs[2].transform.position.z);
+                addPlayerButton.transform.position = temp;
+                addPlayerButton.gameObject.SetActive(true);
+                background3.GetComponent<Image>().enabled = true;
                 break;
             case 3:
                 temp = new Vector3(addPlayerButton.transform.position.x, playerInputs[3].transform.position.y, playerInputs[3].transform.position.z);

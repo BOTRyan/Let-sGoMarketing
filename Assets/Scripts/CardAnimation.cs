@@ -79,6 +79,7 @@ public class CardAnimation : MonoBehaviour
     public GameObject even1, even2, even3, even4, even5, even6, odd1, odd2, odd3, odd4, odd5;
     public GameObject youreTheBossPlayerName;
     public GameObject cardAvatar;
+    public bool showNameOnce = true;
 
     private int currentBrandCrisisNumber = 0;
 
@@ -213,11 +214,15 @@ public class CardAnimation : MonoBehaviour
         p4hasTakenToken = true;
         p5hasTakenToken = true;
         p6hasTakenToken = true;
+        cardAvatar.SetActive(false);
+        youreTheBossPlayerName.SetActive(false);
+        showNameOnce = true;
         if (GameManager.instance.YTBTime)
         {
             for (int i = 0; i < GameManager.instance.players.Count; i++)
             {
                 GameManager.instance.players[i].GetComponent<PlayerMovement>().landedOnCard = false;
+                GameManager.instance.players[i].GetComponent<PlayerMovement>().callOnce = true;
             }
             GameManager.instance.YTBTime = false;
         }
@@ -707,8 +712,8 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
                 youreTheBossPlayerName.SetActive(true);
-                setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
+                setNameAndSprite();
                 break;
             case 2:
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
@@ -878,9 +883,11 @@ public class CardAnimation : MonoBehaviour
     {
         if (playersPressed < GameManager.instance.currPlayers)
         {
+            if (showNameOnce) StartCoroutine(showNameWithDelay(1.75f));
+
             if (cardBack.GetComponent<Image>().sprite == careerPointCardBack)
             {
-                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn].GetComponent<PlayerInfo>().avatar;
+                cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().avatar;
             }
             else
             {
@@ -914,5 +921,14 @@ public class CardAnimation : MonoBehaviour
             youreTheBossPlayerName.SetActive(false);
             cardAvatar.SetActive(false);
         }
+    }
+
+    IEnumerator showNameWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        print("HELLO");
+        showNameOnce = false;
+        youreTheBossPlayerName.SetActive(true);
+        cardAvatar.SetActive(true);
     }
 }

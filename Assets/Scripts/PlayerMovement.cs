@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public int targetPos = 40;
-    public int currPos = 40;
+    public int targetPos = 1;
+    public int currPos = 1;
 
     private float delay = 0f;
     private float alpha = 0;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public int finishPlace = 0;
     private bool hasFinished = false;
     public bool doOnce = true;
+    public bool callOnce = true;
 
     private bool offsetOnce = false;
 
@@ -121,7 +122,6 @@ public class PlayerMovement : MonoBehaviour
 
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
-
             if (yourPlayerNum == GameManager.instance.currPlayerTurn && !GameManager.instance.YTBTime)
             {
                 if (hasFinished)
@@ -369,8 +369,9 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            else if (GameManager.instance.YTBTime && CardAnimation.instance.playersPressed < GameManager.instance.currPlayers )
+            else if (GameManager.instance.YTBTime && CardAnimation.instance.playersPressed < GameManager.instance.currPlayers && callOnce)
             {
+                callOnce = false;
                 FlipCard(1);
                 if (!GameManager.instance.bossModalOnce)
                 {
@@ -442,26 +443,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
         camOffset = camPosition.y;
 
-        /*
-        // midway point between positions
-        Vector3 handle;
-
-        // get midway point for x, y, and z, add bounce in y axis
-        handle.x = GrabPositions.instance.boardPositions[currPos].position.x + (GrabPositions.instance.boardPositions[currPos + 1].position.x - GrabPositions.instance.boardPositions[currPos].position.x) / 2;
-        handle.y = GrabPositions.instance.boardPositions[currPos].position.y + (GrabPositions.instance.boardPositions[currPos + 1].position.y - GrabPositions.instance.boardPositions[currPos].position.y) / 2;
-        handle.z = GrabPositions.instance.boardPositions[currPos].position.z + (GrabPositions.instance.boardPositions[currPos + 1].position.z - GrabPositions.instance.boardPositions[currPos].position.z) / 2;
-        handle.y += 0.5f;
-
-        // pC = lerp between pA and midway point (handle)
-        Vector3 positionC = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, handle, percent);
-
-        // pD = lerp between midway point (handle) and pB
-        Vector3 positionD = AnimMath.Lerp(handle, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
-
-        // pE = lerp between pC and pD
-        Vector3 positionE = AnimMath.Lerp(positionC, positionD, percent);
-        */
-
+        // lerp position between two tiles
         Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
 
         // return pE
@@ -474,26 +456,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
         camOffset = camPosition.y;
 
-        /*
-        // midway point between positions
-        Vector3 handle;
-
-        // get midway point for x, y, and z, add bounce in y axis
-        handle.x = GrabPositions.instance.boardPositions[currPos].position.x + (GrabPositions.instance.boardPositions[currPos - 1].position.x - GrabPositions.instance.boardPositions[currPos].position.x) / 2;
-        handle.y = GrabPositions.instance.boardPositions[currPos].position.y + (GrabPositions.instance.boardPositions[currPos - 1].position.y - GrabPositions.instance.boardPositions[currPos].position.y) / 2;
-        handle.z = GrabPositions.instance.boardPositions[currPos].position.z + (GrabPositions.instance.boardPositions[currPos - 1].position.z - GrabPositions.instance.boardPositions[currPos].position.z) / 2;
-        handle.y += 0.5f;
-
-        // pC = lerp between pA and midway point (handle)
-        Vector3 positionC = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, handle, percent);
-
-        // pD = lerp between midway point (handle) and pB
-        Vector3 positionD = AnimMath.Lerp(handle, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
-
-        // pE = lerp between pC and pD
-        Vector3 positionE = AnimMath.Lerp(positionC, positionD, percent);
-        */
-
+        // lerp position between two tiles
         Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
 
         // return pE
