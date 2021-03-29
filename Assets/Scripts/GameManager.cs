@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
 
     public int currPlayerTurn = 1;
     public int playersDone = 0;
-    public bool YTBTime = false;
 
     // private bool doOnce = true;
 
@@ -112,7 +111,6 @@ public class GameManager : MonoBehaviour
 
         if (currPlayerTurn > currPlayers)
         {
-            YTBTime = true;
             currPlayerTurn = 1;
             CameraControl.instance.targetPosY = CameraControl.instance.p1.camOffset;
             CameraControl.instance.jumpToOnce = false;

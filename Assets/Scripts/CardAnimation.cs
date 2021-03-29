@@ -217,15 +217,6 @@ public class CardAnimation : MonoBehaviour
         cardAvatar.SetActive(false);
         youreTheBossPlayerName.SetActive(false);
         showNameOnce = true;
-        if (GameManager.instance.YTBTime)
-        {
-            for (int i = 0; i < GameManager.instance.players.Count; i++)
-            {
-                GameManager.instance.players[i].GetComponent<PlayerMovement>().landedOnCard = false;
-                GameManager.instance.players[i].GetComponent<PlayerMovement>().callOnce = true;
-            }
-            GameManager.instance.YTBTime = false;
-        }
         if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
             FindObjectOfType<AudioManager>().Stop("Walk");
@@ -888,33 +879,56 @@ public class CardAnimation : MonoBehaviour
             if (cardBack.GetComponent<Image>().sprite == careerPointCardBack)
             {
                 cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().avatar;
+                int randChoice = Mathf.FloorToInt(Random.Range(1, 7));
+                switch (randChoice)
+                {
+                    case 1:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", " + "take your pick!";
+                        break;
+                    case 2:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "You're up, " + GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 3:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Now it's your turn, " + GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 4:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "It's your call, " + GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 5:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "What'll it be, " + GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + "?";
+                        break;
+                    case 6:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "All eyes on you, " + GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName;
+                        break;
+                }
             }
             else
             {
                 cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().avatar;
+                int randChoice = Mathf.FloorToInt(Random.Range(1, 7));
+                switch (randChoice)
+                {
+                    case 1:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + ", " + "take your pick!";
+                        break;
+                    case 2:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "You're up, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 3:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Now it's your turn, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 4:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "It's your call, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                        break;
+                    case 5:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "What'll it be, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + "?";
+                        break;
+                    case 6:
+                        youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "All eyes on you, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
+                        break;
+                }
             }
-            int randChoice = Mathf.FloorToInt(Random.Range(1, 7));
-            switch (randChoice)
-            {
-                case 1:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + ", " + "take your pick!";
-                    break;
-                case 2:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "You're up, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
-                    break;
-                case 3:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Now it's your turn, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
-                    break;
-                case 4:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "It's your call, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
-                    break;
-                case 5:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "What'll it be, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName + "?";
-                    break;
-                case 6:
-                    youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "All eyes on you, " + GameManager.instance.players[playersPressed].GetComponent<PlayerInfo>().playerName;
-                    break;
-            }
+
         }
         else
         {
@@ -926,7 +940,6 @@ public class CardAnimation : MonoBehaviour
     IEnumerator showNameWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        print("HELLO");
         showNameOnce = false;
         youreTheBossPlayerName.SetActive(true);
         cardAvatar.SetActive(true);

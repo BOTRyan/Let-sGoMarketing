@@ -28,6 +28,7 @@ public class Spinner : MonoBehaviour
     public float fadeTimer = 0;
     public float alpha = 0;
     public TMPro.TextMeshProUGUI Rollednumber;
+    public TMPro.TextMeshProUGUI playerName;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class Spinner : MonoBehaviour
         accSpeed = 0;
         transform.rotation = Quaternion.Euler(0, 0, -10);
         alpha = 0;
+        playerName.text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", \nit's your turn!";
     }
 
     // Update is called once per frame

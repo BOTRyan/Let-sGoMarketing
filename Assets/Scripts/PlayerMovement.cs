@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
-            if (yourPlayerNum == GameManager.instance.currPlayerTurn && !GameManager.instance.YTBTime)
+            if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
                 if (hasFinished)
                 {
@@ -241,6 +241,21 @@ public class PlayerMovement : MonoBehaviour
 
                                     switch (currPos)
                                     {
+                                        case 8:
+                                        case 11:
+                                        case 22:
+                                        case 29:
+                                        case 36:
+                                        case 41:
+                                        case 47:
+                                            FlipCard(1);
+                                            if (!GameManager.instance.bossModalOnce)
+                                            {
+                                                modal.SetActive(true);
+                                                ModalFunction.instance.fadeModalIn("YTB");
+                                                GameManager.instance.bossModalOnce = true;
+                                            }
+                                            break;
                                         case 4:
                                         case 12:
                                         case 25:
@@ -336,7 +351,7 @@ public class PlayerMovement : MonoBehaviour
                                             {
                                                 FlipCard(11);
                                             }
-                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1)
+                                            if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1 && GameManager.instance.currPlayers != 1)
                                             {
                                                 FlipCard(12);
                                             }
@@ -367,17 +382,6 @@ public class PlayerMovement : MonoBehaviour
                             swapTurns(2);
                         }
                     }
-                }
-            }
-            else if (GameManager.instance.YTBTime && CardAnimation.instance.playersPressed < GameManager.instance.currPlayers && callOnce)
-            {
-                callOnce = false;
-                FlipCard(1);
-                if (!GameManager.instance.bossModalOnce)
-                {
-                    modal.SetActive(true);
-                    ModalFunction.instance.fadeModalIn("YTB");
-                    GameManager.instance.bossModalOnce = true;
                 }
             }
 
