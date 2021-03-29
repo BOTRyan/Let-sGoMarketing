@@ -44,28 +44,6 @@ public class RandomMenuScenes : MonoBehaviour
             
         }
         GetComponent<Image>().sprite = imgArray[randImg];
-
-        switch (randImg)
-        {
-            case 0:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Advertisement";
-                break;
-            case 1:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Business Data Analytics";
-                break;
-            case 2:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Design";
-                break;
-            case 3:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Graphic Media Management";
-                break;
-            case 4:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Marketing";
-                break;
-            case 5:
-                GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Public Relations";
-                break;
-        }
     }
 
     IEnumerator ImgFade()
@@ -75,7 +53,6 @@ public class RandomMenuScenes : MonoBehaviour
             Color fade = GetComponent<Image>().color;
             fade.a = (a >= 0) ? a : -a;
             GetComponent<Image>().color = fade;
-            GetComponentInChildren<TMPro.TextMeshProUGUI>().color = fade;
             if(a <= 0)
             {
                 if(!hasSwapped)

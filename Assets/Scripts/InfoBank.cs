@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InfoBank : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class InfoBank : MonoBehaviour
 
         //send player and game data to Google Form/Sheets
         googleScript.SendData();
+    }
+
+    public void toQuitScreen()
+    {
+        SceneManager.LoadScene("QuitScene");
     }
 
 }

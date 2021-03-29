@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadResults : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LoadResults : MonoBehaviour
     public GameObject jobTitle, salary;
     public GameObject playerName, emailInput;
     public GameObject enterEmail, submitButton;
+    public GameObject avatar;
     public int playerCount;
 
     private Sprite shortcut;
@@ -108,8 +110,8 @@ public class LoadResults : MonoBehaviour
             jobTitle.GetComponent<TMPro.TextMeshProUGUI>().text = "Public Relations Director";
             salary.GetComponent<TMPro.TextMeshProUGUI>().text = "$82,800";
         }
-
-        if(GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email != null)
+        avatar.GetComponent<Image>().sprite = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().avatar;
+        if (GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email != null)
         {
             emailInput.GetComponent<TMPro.TMP_InputField>().interactable = false;
             submitButton.SetActive(false);

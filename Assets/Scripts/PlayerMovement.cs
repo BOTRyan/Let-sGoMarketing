@@ -511,7 +511,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void animWalk()
     {
-        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 48)) GetComponent<SpriteRenderer>().flipX = true;
+        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49)) GetComponent<SpriteRenderer>().flipX = true;
         else GetComponent<SpriteRenderer>().flipX = false;
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
         if (walkCounter >= walkSprites.Count)

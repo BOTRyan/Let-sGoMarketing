@@ -75,4 +75,6 @@ public class ExtraButtons : MonoBehaviour
     {
         SwitchScenes.instance.goToGame();
     }
+
+
 }

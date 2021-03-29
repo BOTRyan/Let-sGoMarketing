@@ -37,12 +37,12 @@ public class Spinner : MonoBehaviour
         accSpeed = 0;
         transform.rotation = Quaternion.Euler(0, 0, -10);
         alpha = 0;
-        playerName.text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", \nit's your turn!";
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        playerName.text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", \nit's your turn!";
         if (fadeTimer <= 0)
         {
             FadeText();
