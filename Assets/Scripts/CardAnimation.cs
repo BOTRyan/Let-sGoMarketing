@@ -928,7 +928,7 @@ public class CardAnimation : MonoBehaviour
                         break;
                 }
             }
-
+            youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = youreTheBossPlayerName.GetComponentInChildren<TMPro.TextMeshProUGUI>().text.ToUpper();
         }
         else
         {

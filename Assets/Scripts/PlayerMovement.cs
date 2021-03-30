@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float grav = -9.8f;
     private float velY = 0;
     public float camOffset = 7.74f;
+    private Vector3 playerOffset;
 
     private float hoverCounter = 0;
     //private bool isHover = true;
@@ -99,6 +100,34 @@ public class PlayerMovement : MonoBehaviour
         purpSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PurpleSit");
     }
 
+    void findPlayerOffset()
+    {
+        switch (yourPlayerNum)
+        {
+            case 1:
+                playerOffset = new Vector3(.4f, 0, .2f);
+                break;
+            case 2:
+                playerOffset = new Vector3(.2f, .1f, .25f);
+                break;
+            case 3:
+                playerOffset = new Vector3(0, .2f, .3f);
+                break;
+            case 4:
+                playerOffset = new Vector3(0, -.2f, .05f);
+                break;
+            case 5:
+                playerOffset = new Vector3(-.2f, -.1f, .1f);
+                break;
+            case 6:
+                playerOffset = new Vector3(-.4f, 0, .15f);
+                break;
+            default:
+                playerOffset = new Vector3(0, 0, 0);
+                break;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -106,7 +135,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (moveOnce)
             {
-                transform.position = GrabPositions.instance.boardPositions[currPos].position;
+                findPlayerOffset();
+                transform.position = GrabPositions.instance.boardPositions[currPos].position + playerOffset;
                 camOffset = 7.74f;
                 moveOnce = false;
                 hoverCounter = Random.Range(0, Mathf.PI * 2);
@@ -450,8 +480,9 @@ public class PlayerMovement : MonoBehaviour
         // lerp position between two tiles
         Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
 
+        Vector3 finalPos = positionE + playerOffset;
         // return pE
-        return positionE;
+        return finalPos;
     }
 
     private Vector3 CalcPositionOnCurveBackwards(float percent)
