@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioMixer mixer;
 
+        public bool musicMuted;
+    public bool sfxMuted;
+
     // Use this for initialization
     void Awake()
     {
@@ -38,6 +41,28 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         Play("Theme");
+    }
+
+    private void Update()
+    {
+        if (musicMuted)
+        {
+            mixer.SetFloat("Theme-Exposed", -100);
+        }
+        else
+        {
+            mixer.SetFloat("Theme-Exposed", 10);
+        }
+
+        if (sfxMuted)
+        {
+            mixer.SetFloat("SFX-Exposed", -100);
+        }
+        else
+        {
+            mixer.SetFloat("SFX-Exposed", 10);
+        }
+        
     }
 
     public void Play(string name)
@@ -97,15 +122,5 @@ public class AudioManager : MonoBehaviour
             return;
         }
         else s.source.PlayOneShot(s.source.clip, s.source.volume);
-    }
-
-    public void ChangeBGVolume(float vol)
-    {
-        mixer.SetFloat("Theme-Exposed", Mathf.Log10(vol) * 20);
-    }
-
-    public void ChangeSFXVolume(float vol)
-    {
-        mixer.SetFloat("SFX-Exposed", Mathf.Log10(vol) * 20);
     }
 }

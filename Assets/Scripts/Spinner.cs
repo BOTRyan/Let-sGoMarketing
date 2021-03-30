@@ -42,7 +42,8 @@ public class Spinner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerName.text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", \nit's your turn!";
+        if (GameManager.instance.currPlayerTurn <= GameManager.instance.currPlayers) playerName.text = GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().playerName + ", \nit's your turn!";
+
         if (fadeTimer <= 0)
         {
             FadeText();
@@ -154,7 +155,6 @@ public class Spinner : MonoBehaviour
                 alpha = 1;
                 fadeTimer = 2;
             }
-
             if (Input.GetKey(KeyCode.W)) targetNum = 54;
             numPicked = true;
         }
