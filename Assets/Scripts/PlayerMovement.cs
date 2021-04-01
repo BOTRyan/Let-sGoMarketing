@@ -550,7 +550,6 @@ public class PlayerMovement : MonoBehaviour
         /// then changes to the next player's turn
         /// </summary>
 
-        checkPlayerOffset();
         landedOnCard = false;
         if (val >= 1)
         {
@@ -558,7 +557,6 @@ public class PlayerMovement : MonoBehaviour
             CardAnimation.instance.playerDoesntMove = false;
         }
         CameraControl.instance.jumpToOnce = true;
-        GameManager.instance.currPlayerTurn++;
         CardAnimation.instance.cardRead = false;
         Spinner.instance.canSpin = true;
         Spinner.instance.spinStarted = false;
@@ -567,6 +565,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Spinner.instance.Rollednumber.text = "";
         }
+        checkPlayerOffset();
+        GameManager.instance.currPlayerTurn++;
     }
 
     private void checkPlayerOffset()
