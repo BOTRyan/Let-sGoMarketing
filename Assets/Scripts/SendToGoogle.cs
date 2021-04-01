@@ -32,26 +32,26 @@ public class SendToGoogle : MonoBehaviour
     {
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
         //look for the sections in the URL that require input. Tutorial to find that value here: https://www.youtube.com/watch?v=z9b5aRfrz7M&ab_channel=LuzanBaral
-        form.Add(new MultipartFormDataSection("entry.2014565725", nameIn));
-        form.Add(new MultipartFormDataSection("entry.2131894653", emailIn));
-        form.Add(new MultipartFormDataSection("entry.119326422", fieldIn));
-        form.Add(new MultipartFormDataSection("entry.2091551399", careerIn));
-        form.Add(new MultipartFormDataSection("entry.1658428665", colorIn));
+        form.Add(new MultipartFormDataSection("entry.1774318415", nameIn));
+        form.Add(new MultipartFormDataSection("entry.447813241", emailIn));
+        form.Add(new MultipartFormDataSection("entry.1774298051", fieldIn));
+        form.Add(new MultipartFormDataSection("entry.1309134014", careerIn));
+        form.Add(new MultipartFormDataSection("entry.906285824", colorIn));
 
         //tokens
-        form.Add(new MultipartFormDataSection("entry.1868129861", tokenAIn));
-        form.Add(new MultipartFormDataSection("entry.1712409209", tokenGIn));
-        form.Add(new MultipartFormDataSection("entry.1968552602", tokenBIn));
-        form.Add(new MultipartFormDataSection("entry.594056184", tokenMIn));
-        form.Add(new MultipartFormDataSection("entry.591368335", tokenDIn));
-        form.Add(new MultipartFormDataSection("entry.276096434", tokenPIn));
+        form.Add(new MultipartFormDataSection("entry.297539896", tokenAIn));
+        form.Add(new MultipartFormDataSection("entry.285011331", tokenGIn));
+        form.Add(new MultipartFormDataSection("entry.1840331461", tokenBIn));
+        form.Add(new MultipartFormDataSection("entry.621689233", tokenMIn));
+        form.Add(new MultipartFormDataSection("entry.1409755334", tokenDIn));
+        form.Add(new MultipartFormDataSection("entry.1815462484", tokenPIn));
 
         //spaces
-        form.Add(new MultipartFormDataSection("entry.659316869", ytbIn));
-        form.Add(new MultipartFormDataSection("entry.600528165", dykIn));
-        form.Add(new MultipartFormDataSection("entry.1168000115", cpIn));
-        form.Add(new MultipartFormDataSection("entry.957236386", bcIn));
-        form.Add(new MultipartFormDataSection("entry.878186627", normalIn));
+        form.Add(new MultipartFormDataSection("entry.122754949", ytbIn));
+        form.Add(new MultipartFormDataSection("entry.855798970", dykIn));
+        form.Add(new MultipartFormDataSection("entry.1505258852", cpIn));
+        form.Add(new MultipartFormDataSection("entry.150968286", bcIn));
+        form.Add(new MultipartFormDataSection("entry.483335758", normalIn));
 
         UnityWebRequest www = UnityWebRequest.Post(postURL, form);
 
@@ -67,7 +67,7 @@ public class SendToGoogle : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
-        form.Add(new MultipartFormDataSection("entry.1382100341", durationIn));
+        form.Add(new MultipartFormDataSection("entry.806798460", durationIn));
 
         UnityWebRequest www = UnityWebRequest.Post(postURL, form);
 
