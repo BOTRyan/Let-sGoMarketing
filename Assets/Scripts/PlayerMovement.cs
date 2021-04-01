@@ -11,27 +11,19 @@ public class PlayerMovement : MonoBehaviour
     public int currPos = 1;
 
     private float delay = 0f;
-    private float alpha = 0;
-    private float grav = -9.8f;
-    private float velY = 0;
+    private float alpha = 0f;
     public float camOffset = 7.74f;
     private Vector3 playerOffset;
-
-    private float hoverCounter = 0;
-    //private bool isHover = true;
-    private bool isJump = true;
-    private bool jumping = false;
 
     public int yourPlayerNum;
     public bool isMoving = false;
     public bool moveOnce = true;
+    private Vector3 targetOffsetPosition;
     public bool landedOnCard = false;
     public int finishPlace = 0;
     private bool hasFinished = false;
     public bool doOnce = true;
     public bool callOnce = true;
-
-    private bool offsetOnce = false;
 
     public Sprite baseDog;
     public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
@@ -50,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        // Loads all images for players to use at the start
         red01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed1");
         red02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed2");
         red03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed3");
@@ -100,46 +93,126 @@ public class PlayerMovement : MonoBehaviour
         purpSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PurpleSit");
     }
 
+
     void findPlayerOffset()
     {
-        switch (yourPlayerNum)
+        /// <summary>
+        /// This function finds the players offsets at the beginning of the game
+        /// based on which player they are 
+        /// </summary>
+        switch (GameManager.instance.currPlayers)
         {
             case 1:
-                playerOffset = new Vector3(.4f, 0, .2f);
+                playerOffset = new Vector3(0, 0, 0);
                 break;
             case 2:
-                playerOffset = new Vector3(.2f, .1f, .25f);
+                switch (yourPlayerNum)
+                {
+                    case 1:
+                        playerOffset = new Vector3(.3f, 0, .05f);
+                        break;
+                    case 2:
+                        playerOffset = new Vector3(-.3f, 0, .05f);
+                        break;
+                }
                 break;
             case 3:
-                playerOffset = new Vector3(0, .2f, .3f);
+                switch (yourPlayerNum)
+                {
+                    case 1:
+                        playerOffset = new Vector3(.3f, -.2f, .05f);
+                        break;
+                    case 2:
+                        playerOffset = new Vector3(-.3f, -.2f, .05f);
+                        break;
+                    case 3:
+                        playerOffset = new Vector3(0, .2f, .25f);
+                        break;
+                }
                 break;
             case 4:
-                playerOffset = new Vector3(0, -.2f, .05f);
+                switch (yourPlayerNum)
+                {
+                    case 1:
+                        playerOffset = new Vector3(.3f, 0, .15f);
+                        break;
+                    case 2:
+                        playerOffset = new Vector3(-.3f, 0, .15f);
+                        break;
+                    case 3:
+                        playerOffset = new Vector3(0, .3f, .25f);
+                        break;
+                    case 4:
+                        playerOffset = new Vector3(0, -.3f, .05f);
+                        break;
+                }
                 break;
             case 5:
-                playerOffset = new Vector3(-.2f, -.1f, .1f);
+                switch (yourPlayerNum)
+                {
+                    case 1:
+                        playerOffset = new Vector3(.4f, 0, .1f);
+                        break;
+                    case 2:
+                        playerOffset = new Vector3(0, 0, .15f);
+                        break;
+                    case 3:
+                        playerOffset = new Vector3(-.4f, 0, .2f);
+                        break;
+                    case 4:
+                        playerOffset = new Vector3(0, .3f, .25f);
+                        break;
+                    case 5:
+                        playerOffset = new Vector3(0, -.3f, .05f);
+                        break;
+                }
                 break;
             case 6:
-                playerOffset = new Vector3(-.4f, 0, .15f);
+                switch (yourPlayerNum)
+                {
+                    case 1:
+                        playerOffset = new Vector3(.4f, 0, .25f);
+                        break;
+                    case 2:
+                        playerOffset = new Vector3(.2f, .1f, .275f);
+                        break;
+                    case 3:
+                        playerOffset = new Vector3(0, .2f, .3f);
+                        break;
+                    case 4:
+                        playerOffset = new Vector3(0, -.2f, .1f);
+                        break;
+                    case 5:
+                        playerOffset = new Vector3(-.2f, -.1f, .15f);
+                        break;
+                    case 6:
+                        playerOffset = new Vector3(-.4f, 0, .2f);
+                        break;
+                }
                 break;
             default:
-                playerOffset = new Vector3(0, 0, 0);
                 break;
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
+        // Makes sure it only updates in the game scene
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             if (moveOnce)
             {
+                /// <summary>
+                /// This move once makes sure all players are moved
+                /// when the game is loaded and set to face the correct direction
+                /// as well as setting a few other variables
+                /// </summary>
+
                 findPlayerOffset();
                 transform.position = GrabPositions.instance.boardPositions[currPos].position + playerOffset;
+                targetOffsetPosition = transform.position;
                 camOffset = 7.74f;
                 moveOnce = false;
-                hoverCounter = Random.Range(0, Mathf.PI * 2);
                 GetComponent<SpriteRenderer>().flipX = true;
                 modal = FindObjectOfType<ModalFunction>().gameObject;
                 if (!GameManager.instance.spinModalOnce)
@@ -150,31 +223,21 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
+            // These update the players sprite to animate
             baseDog = GetComponent<PlayerInfo>().avatar;
             spritesUpdate();
+
+            // Check if it is the player's turn
             if (yourPlayerNum == GameManager.instance.currPlayerTurn)
             {
+                // If they player is already done, switch turns
                 if (hasFinished)
                 {
                     swapTurns(2);
                 }
 
-                if (isMoving)
-                {
-                    if (doOnce)
-                    {
-                        //FindObjectOfType<AudioManager>().Play("Walk");
-                        doOnce = false;
-                    }
-                }
-                else
-                {
-                    doOnce = true;
-                    //FindObjectOfType<AudioManager>().Stop("Walk");
-                }
-
-                //Jump();
-
+                // If they player isn't moving, and the spinner picked a number
+                // Start moving to the targetNum
                 if (Spinner.instance.numPicked && !isMoving)
                 {
                     isMoving = true;
@@ -182,6 +245,8 @@ public class PlayerMovement : MonoBehaviour
                     targetPos += Spinner.instance.targetNum;
                 }
 
+                // This If, else if chain checks if they player has read the card and if they need to move forwards or backwards
+                // if the player doesn't, it swaps turns
                 if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     targetPos += CardAnimation.instance.playerMovementEffect;
@@ -199,11 +264,14 @@ public class PlayerMovement : MonoBehaviour
                     swapTurns(1);
                 }
 
+                // If the player isn't moving, and they read the card, swapTurns()
                 if (!isMoving && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     swapTurns(0);
                 }
 
+                // This checks if the player has to move backwards due to Brand Crisis
+                // and then moves them till they reach their target location, and swaps their turn
                 if (currPos > targetPos && currPos > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
                     delay -= Time.fixedDeltaTime;
@@ -226,8 +294,12 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
 
+                // This checks if the player has to move forwards and moves them till
+                // they reach their target location
                 if (currPos < targetPos && currPos < 54)
                 {
+                    // If the player is moving due to the influence of a card
+                    // then once they reach their target location, they swap turns
                     if (landedOnCard)
                     {
                         if (CardAnimation.instance.cardRead)
@@ -252,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
                             }
                         }
                     }
-                    else
+                    else // If the player is moving due to the spinner, move till they reach their target location, and check which space their on
                     {
                         delay -= Time.fixedDeltaTime;
                         if (delay <= 0)
@@ -268,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
 
                                 if (currPos == targetPos || currPos >= 54)
                                 {
-
+                                    // This switch case checks which space the player landed on and flips card of swaps turn accordingly
                                     switch (currPos)
                                     {
                                         case 8:
@@ -278,6 +350,7 @@ public class PlayerMovement : MonoBehaviour
                                         case 36:
                                         case 41:
                                         case 47:
+                                            // You're The Boss
                                             FlipCard(1);
                                             if (!GameManager.instance.bossModalOnce)
                                             {
@@ -308,7 +381,7 @@ public class PlayerMovement : MonoBehaviour
                                         case 1:
                                         case 6:
                                         case 10:
-                                            // Did You Know
+                                            // Did You Know Purple
                                             FlipCard(4);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -319,7 +392,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         case 15:
                                         case 17:
-                                            // Did You Know
+                                            // Did You Know Green
                                             FlipCard(5);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -330,7 +403,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         case 21:
                                         case 27:
-                                            // Did You Know
+                                            // Did You Know Red
                                             FlipCard(6);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -341,7 +414,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         case 32:
                                         case 34:
-                                            // Did You Know
+                                            // Did You Know Pink
                                             FlipCard(7);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -352,7 +425,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         case 39:
                                         case 42:
-                                            // Did You Know
+                                            // Did You Know Yellow
                                             FlipCard(8);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -363,7 +436,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         case 46:
                                         case 50:
-                                            // Did You Know
+                                            // Did You Know Blue
                                             FlipCard(9);
                                             if (!GameManager.instance.didYouModalOnce)
                                             {
@@ -373,6 +446,7 @@ public class PlayerMovement : MonoBehaviour
                                             }
                                             break;
                                         case 54:
+                                            // Finished Game Cards
                                             if (GameManager.instance.playersDone == 0)
                                             {
                                                 FlipCard(10);
@@ -394,6 +468,7 @@ public class PlayerMovement : MonoBehaviour
                                             CardAnimation.instance.finishCardUp = false;
                                             break;
                                         default:
+                                            // SwapTurns if nothing else
                                             swapTurns(1);
                                             break;
                                     }
@@ -403,6 +478,11 @@ public class PlayerMovement : MonoBehaviour
                         }
                     }
                 }
+                /// <summary>
+                /// This else if checks if all the players have finished or not yet
+                /// If not and the player has reached the end position and hasn't finished already
+                /// checks if the player has read the finished game card and swaps turn when they have
+                /// </summary>
                 else if (GameManager.instance.playersDone < GameManager.instance.currPlayers)
                 {
                     if (currPos >= 54 && !hasFinished)
@@ -417,21 +497,34 @@ public class PlayerMovement : MonoBehaviour
 
             if (isMoving)
             {
+                // if moving, animate the dog walking
                 animWalk();
-                //isHover = false;
-                offsetOnce = false;
+
+                // if moving, move the player to the front of others
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             }
             else
             {
+                // if not moving, animate the dog sitting
                 animSit();
-                //isHover = true;
+
+                // move dog to targetOffsetPosition if they're not moving, and haven't landed on a card
+                if (!landedOnCard)
+                {
+                    transform.position = AnimMath.Slide(transform.position, targetOffsetPosition, .01f);
+                }
             }
-            //if (isHover) Hover();
         }
     }
 
     private void FlipCard(int val)
     {
+        /// <summary>
+        /// This function sets the variables and calls to
+        /// functions inside CardAnimation to bring up the card
+        /// and flip it
+        /// </summary>
+
         landedOnCard = true;
         isMoving = false;
         CardAnimation.instance.cardRead = false;
@@ -452,13 +545,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void swapTurns(int val)
     {
+        /// <summary>
+        /// This function end the player's turn and resets variables
+        /// then changes to the next player's turn
+        /// </summary>
+
+        checkPlayerOffset();
         landedOnCard = false;
         if (val >= 1)
         {
             isMoving = false;
             CardAnimation.instance.playerDoesntMove = false;
         }
-        isJump = true;
         CameraControl.instance.jumpToOnce = true;
         GameManager.instance.currPlayerTurn++;
         CardAnimation.instance.cardRead = false;
@@ -471,8 +569,89 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void checkPlayerOffset()
+    {
+        /// <summary>
+        /// This function checks the amount of players on the same tile
+        /// and updates those player's offset accordingly
+        /// </summary>
+
+        int playersOnSameSpot = 0;
+        List<PlayerMovement> players = new List<PlayerMovement>();
+
+        // Check how many players are on the same tile
+        for (int i = 0; i < GameManager.instance.currPlayers; i++)
+        {
+            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().currPos == currPos)
+            {
+                playersOnSameSpot++;
+                // Get players on the same tile
+                players.Add(GameManager.instance.players[i].GetComponent<PlayerMovement>());
+            }
+        }
+
+        // Removes players self from check list
+        playersOnSameSpot--;
+
+        // Set players offsets accordingly to how many are on the same tile
+        switch (playersOnSameSpot)
+        {
+            case 0:
+                playerOffset = new Vector3(0, 0, .05f);
+                break;
+            case 1:
+                playerOffset = new Vector3(.2f, 0, .05f);
+                players[0].playerOffset = new Vector3(-.2f, 0, .05f);
+                break;
+            case 2:
+                playerOffset = new Vector3(.2f, -.1f, .05f);
+                players[0].playerOffset = new Vector3(-.2f, -.1f, .05f);
+                players[1].playerOffset = new Vector3(0, .1f, .25f);
+                break;
+            case 3:
+                playerOffset = new Vector3(.2f, 0, .15f);
+                players[0].playerOffset = new Vector3(-.2f, 0, .15f);
+                players[1].playerOffset = new Vector3(0, .2f, .25f);
+                players[2].playerOffset = new Vector3(0, -.2f, .05f);
+                break;
+            case 4:
+                playerOffset = new Vector3(.3f, 0, .1f);
+                players[0].playerOffset = new Vector3(0, 0, .15f);
+                players[1].playerOffset = new Vector3(-.3f, 0, .2f);
+                players[2].playerOffset = new Vector3(0, .2f, .25f);
+                players[3].playerOffset = new Vector3(0, -.2f, .05f);
+                break;
+            case 5:
+                playerOffset = new Vector3(.4f, 0, .25f);
+                players[0].playerOffset = new Vector3(.2f, .1f, .275f);
+                players[1].playerOffset = new Vector3(0, .2f, .3f);
+                players[2].playerOffset = new Vector3(0, -.2f, .1f);
+                players[3].playerOffset = new Vector3(-.2f, -.1f, .15f);
+                players[4].playerOffset = new Vector3(-.4f, 0, .2f);
+                break;
+            default:
+                break;
+        }
+
+        // Sets Players targetOffsetPosition properly
+        transform.position = GrabPositions.instance.boardPositions[currPos].position;
+        targetOffsetPosition = transform.position + playerOffset;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].transform.position = GrabPositions.instance.boardPositions[currPos].position;
+            players[i].targetOffsetPosition = players[i].transform.position + players[i].playerOffset;
+        }
+    }
+
     private Vector3 CalcPositionOnCurveForwards(float percent)
     {
+        /// <summary>
+        ///  This function lerps the player between two tiles (current, and 1 ahead)
+        ///  and calculates it's position with the added offset
+        ///  then returns the position
+        /// </summary>
+
         // get cameraOffset
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
         camOffset = camPosition.y;
@@ -480,13 +659,23 @@ public class PlayerMovement : MonoBehaviour
         // lerp position between two tiles
         Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos + 1].position, percent);
 
+        // add the player offset vector to the position
         Vector3 finalPos = positionE + playerOffset;
-        // return pE
+
+        playerOffset = AnimMath.Lerp(playerOffset, new Vector3(0, 0, 0), percent / 2);
+
+        // return finalPos
         return finalPos;
     }
 
     private Vector3 CalcPositionOnCurveBackwards(float percent)
     {
+        /// <summary>
+        ///  This function lerps the player between two tiles (current, and 1 behind)
+        ///  and calculates it's position with the added offset
+        ///  then returns the position
+        /// </summary>
+
         // get cameraOffset
         Vector3 camPosition = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
         camOffset = camPosition.y;
@@ -494,54 +683,22 @@ public class PlayerMovement : MonoBehaviour
         // lerp position between two tiles
         Vector3 positionE = AnimMath.Lerp(GrabPositions.instance.boardPositions[currPos].position, GrabPositions.instance.boardPositions[currPos - 1].position, percent);
 
-        // return pE
-        return positionE;
-    }
+        // add the player offset vector to the position
+        Vector3 finalPos = positionE + playerOffset;
 
-    private void Hover()
-    {
-        hoverCounter += Time.fixedDeltaTime * 2.5f;
-        Vector3 temp = transform.position;
-        temp.y += Mathf.Sin(hoverCounter) / 500;
-        transform.position = temp;
-    }
+        playerOffset = AnimMath.Lerp(playerOffset, new Vector3(0, 0, 0), percent / 2);
 
-    private void Jump()
-    {
-        if (isJump)
-        {
-            velY = 4;
-            jumping = true;
-            isJump = false;
-            int barkNum = Random.Range(0, 3);
-            FindObjectOfType<AudioManager>().PlayUninterrupted("Bark" + barkNum);
-        }
-        else if (jumping)
-        {
-            //isHover = false;
-            Vector3 temp = transform.position;
-            velY += grav * Time.fixedDeltaTime;
-            temp.y += velY * Time.fixedDeltaTime;
-            transform.position = temp;
-
-            if (transform.position.y <= GrabPositions.instance.boardPositions[currPos].position.y) velY = 0;
-
-            if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) >= 0.02f && velY == 0)
-            {
-                transform.position = AnimMath.Slide(transform.position, GrabPositions.instance.boardPositions[currPos].position, 0.05f);
-                if (Vector3.Distance(transform.position, GrabPositions.instance.boardPositions[currPos].position) < 0.02f)
-                {
-                    transform.position = GrabPositions.instance.boardPositions[currPos].position;
-                    jumping = false;
-                }
-            }
-
-        }
-        //else isHover = true;
+        // return finalPos
+        return finalPos;
     }
 
     private void animWalk()
     {
+        /// <summary>
+        ///  This function updates the dogs sprites to make them animate
+        ///  it also flips the x axis of the dog when reaching certain parts of the board
+        /// </summary>
+
         if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49)) GetComponent<SpriteRenderer>().flipX = true;
         else GetComponent<SpriteRenderer>().flipX = false;
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
@@ -556,6 +713,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void animSit()
     {
+        /// <summary>
+        ///  This function checks which dog the player had as their base avatar
+        ///  and then when sitting, picks the color accordingly
+        /// </summary>
+
         if (baseDog == redSit)
         {
             GetComponent<SpriteRenderer>().sprite = redSit;
@@ -582,18 +744,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void setOffset()
-    {
-        if (!offsetOnce)
-        {
-            transform.position = GrabPositions.instance.boardPositions[currPos].position + new Vector3(Random.Range(0, 1), Random.Range(0, 1));
-            offsetOnce = true;
-        }
-
-    }
-
     private void spritesUpdate()
     {
+        /// <summary>
+        ///  This function checks which dog the player had as their base avatar
+        ///  and then loads the correct color in to the walk sprites
+        /// </summary>
+
         if (baseDog == redSit)
         {
             walk01 = red01;

@@ -278,16 +278,4 @@ public class GameManager : MonoBehaviour
             players[i].GetComponent<PlayerInfo>().avatar = players[i + 1].GetComponent<PlayerInfo>().avatar;
         }
     }
-
-    private void playerOffset(PlayerMovement p)
-    {
-        for (int i = 0; i < currPlayers - 1; i++)
-        {
-            if (p.currPos == players[i].GetComponent<PlayerMovement>().currPos && p != players[i].GetComponent<PlayerMovement>())
-            {
-                p.setOffset();
-            }
-        }
-    }
-
 }
