@@ -46,6 +46,11 @@ public class ExtraButtons : MonoBehaviour
                 button = GetComponent<Button>();
                 button.onClick.AddListener(openMenu);
             }
+            if (gameObject.CompareTag("viewTutButton"))
+            {
+                button = GetComponent<Button>();
+                button.onClick.AddListener(openTut);
+            }
 
         }
 
@@ -58,6 +63,11 @@ public class ExtraButtons : MonoBehaviour
     void addPlayer()
     {
         GameManager.instance.addNewPlayer();
+    }
+
+    void openTut()
+    {
+        SwitchScenes.instance.ToHowTo();
     }
 
     void openMenu()

@@ -50,7 +50,6 @@ public class AvatarMenu : MonoBehaviour
         
         if(isChosen[dogChoice.IndexOf(b)] == false)
         {
-
             GameManager.instance.players[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<PlayerInfo>().avatar = b.GetComponent<Image>().sprite;
             GameManager.instance.setBulldogVis(false);
             GameManager.instance.avatarObjects[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<Image>().enabled = true;

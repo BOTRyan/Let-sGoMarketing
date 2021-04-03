@@ -2131,8 +2131,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Congratulations on your promotions!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68ab9995d1143ad4aaa20133e7a765c8, type: 2}
-  m_sharedMaterial: {fileID: 4803856726251719604, guid: 68ab9995d1143ad4aaa20133e7a765c8,
+  m_fontAsset: {fileID: 11400000, guid: ec1f8cfe286ef7f4fb6aa4b8dce5eec6, type: 2}
+  m_sharedMaterial: {fileID: 1908356252950193806, guid: ec1f8cfe286ef7f4fb6aa4b8dce5eec6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

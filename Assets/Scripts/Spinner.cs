@@ -57,7 +57,7 @@ public class Spinner : MonoBehaviour
 
         rotSpeed += accSpeed * Time.fixedDeltaTime;
 
-        transform.Rotate(0, 0, rotSpeed);
+        transform.Rotate(0, 0, -rotSpeed);
 
         rotSpeed *= dragAmt;
         accSpeed *= dragAmt;
