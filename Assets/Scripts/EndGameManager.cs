@@ -113,6 +113,11 @@ public class EndGameManager : MonoBehaviour
         //updatePlayers(playerPlace);
     }
 
+    public void goBack()
+    {
+        swapPanels(null);
+    }
+
     public void shiftChoices()
     {
         lower = !lower;
@@ -320,13 +325,17 @@ public class EndGameManager : MonoBehaviour
     {
         playerPlace++;
         if (playerPlace >= GameManager.instance.currPlayers) SceneManager.LoadScene("resultsScene");
-        updatePlayers(playerPlace);
-        congrats.SetActive(false);
-        confirmButton.SetActive(false);
-        careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-        careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-        careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-        GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = null;
-        swapPanels(null);
+        else
+        {
+            updatePlayers(playerPlace);
+            congrats.SetActive(false);
+            confirmButton.SetActive(false);
+            careerOptionMid.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            careerOptionRight.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            careerOptionLeft.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = null;
+            swapPanels(null);
+        }
+        
     }
 }

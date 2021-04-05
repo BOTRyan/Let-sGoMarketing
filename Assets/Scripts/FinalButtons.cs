@@ -19,7 +19,7 @@ public class FinalButtons : MonoBehaviour
 
     public void feedbackSurvey()
     {
-
+        Application.OpenURL("https://ferrisdsgn.typeform.com/to/hIYzD9Jv");
     }
 
     public void lgmMain()

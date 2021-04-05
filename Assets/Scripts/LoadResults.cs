@@ -8,18 +8,22 @@ public class LoadResults : MonoBehaviour
 
     public Sprite advertAccount, bpManager, salesProf, marketResearchS, mDirector, salesManage, freelancer, healthMarketer, gmTech, gmTechSales, customerProject, bdAnalyst, marketResearchA, sysArch, creativeDirect, researchDirect, mPlanner, uxDesign, uiDesign, contentStrategist, corpCommManager, prDirect;
     public GameObject jobTitle, salary;
-    public GameObject playerName, emailInput;
-    public GameObject enterEmail, submitButton;
+    public GameObject playerName;
     public GameObject avatar;
-    public int playerCount;
+    public int playerPlace;
+    private int playerIndex;
 
     private Sprite shortcut;
     // Start is called before the first frame update
     void Start()
     {
-        playerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().playerName;
-        if (GameManager.instance.players[playerCount - 1] == null) gameObject.SetActive(false);
-        shortcut = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().careerChoice;
+        for(int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().finishPlace == playerPlace) playerIndex = i;
+        }
+        playerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().playerName;
+        if (GameManager.instance.players[playerIndex] == null) gameObject.SetActive(false);
+        shortcut = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().careerChoice;
         // switch case to check sprites
         if(shortcut == advertAccount)
         {
@@ -110,15 +114,8 @@ public class LoadResults : MonoBehaviour
             jobTitle.GetComponent<TMPro.TextMeshProUGUI>().text = "Public Relations Director";
             salary.GetComponent<TMPro.TextMeshProUGUI>().text = "$82,800";
         }
-        avatar.GetComponent<Image>().sprite = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().avatar;
-        if (GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email != null)
-        {
-            emailInput.GetComponent<TMPro.TMP_InputField>().interactable = false;
-            submitButton.SetActive(false);
-            enterEmail.SetActive(false);
-            emailInput.GetComponent<TMPro.TMP_InputField>().text = GameManager.instance.players[playerCount - 1].GetComponent<PlayerInfo>().email;
-        }
-
+        avatar.GetComponent<Image>().sprite = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().avatar;
+        
 
     }
 
