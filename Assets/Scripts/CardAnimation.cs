@@ -68,7 +68,8 @@ public class CardAnimation : MonoBehaviour
     public Sprite firstPlayerDone;
     public Sprite otherPlayersDone;
     public Sprite allPlayersDone;
-    public Sprite blankBack;
+    public Sprite doneBack;
+    public Sprite doneBackTall;
 
     public GameObject[] didYouKnowButtons;
     public int playerMovementEffect = 0;
@@ -760,17 +761,17 @@ public class CardAnimation : MonoBehaviour
                 break;
             case 10:
                 // First Player Done
-                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardBack.GetComponent<Image>().sprite = doneBackTall;
                 cardFront.GetComponent<Image>().sprite = firstPlayerDone;
                 break;
             case 11:
                 // Other Players Done
-                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardBack.GetComponent<Image>().sprite = doneBack;
                 cardFront.GetComponent<Image>().sprite = otherPlayersDone;
                 break;
             case 12:
                 // All Players Done
-                cardBack.GetComponent<Image>().sprite = blankBack;
+                cardBack.GetComponent<Image>().sprite = doneBack;
                 cardFront.GetComponent<Image>().sprite = allPlayersDone;
                 break;
             default:

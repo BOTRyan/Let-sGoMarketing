@@ -282,6 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
                         if (alpha >= 1)
                         {
+                            //alpha and delay were basically removed, this code should be reworked to not use them
                             delay = 0f;
                             alpha = 0;
                             currPos--;
@@ -312,13 +313,42 @@ public class PlayerMovement : MonoBehaviour
 
                                 if (alpha >= 1)
                                 {
+                                    //alpha and delay were basically removed, this code should be reworked to not use them
                                     delay = 0f;
                                     alpha = 0;
                                     currPos++;
 
                                     if (currPos == targetPos || currPos >= 54)
                                     {
-                                        swapTurns(1);
+                                        switch (currPos)
+                                        {
+                                            case 54:
+                                                // Finished Game Cards
+                                                if (GameManager.instance.playersDone == 0)
+                                                {
+                                                    FlipCard(10);
+                                                }
+                                                if (GameManager.instance.playersDone != 0 && GameManager.instance.playersDone < GameManager.instance.currPlayers)
+                                                {
+                                                    FlipCard(11);
+                                                }
+                                                if (GameManager.instance.playersDone == GameManager.instance.currPlayers - 1 && GameManager.instance.currPlayers != 1)
+                                                {
+                                                    FlipCard(12);
+                                                }
+                                                FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
+                                                for (int i = 0; i < GameManager.instance.players.Count; i++)
+                                                {
+                                                    if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
+                                                }
+                                                GameManager.instance.playersDone++;
+                                                CardAnimation.instance.finishCardUp = false;
+                                                break;
+                                            default:
+                                                // SwapTurns if nothing else
+                                                swapTurns(1);
+                                                break;
+                                        }
                                     }
                                 }
                             }
@@ -334,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
 
                             if (alpha >= 1)
                             {
+                                //alpha and delay were basically removed, this code should be reworked to not use them
                                 delay = 0f;
                                 alpha = 0;
                                 currPos++;
@@ -600,7 +631,7 @@ public class PlayerMovement : MonoBehaviour
                 playerOffset = new Vector3(0, 0, .05f);
                 break;
             case 1:
-                playerOffset = new Vector3(.2f, 0, .05f);
+                playerOffset = new Vector3(.2f, 0, .1f);
                 players[0].playerOffset = new Vector3(-.2f, 0, .05f);
                 break;
             case 2:

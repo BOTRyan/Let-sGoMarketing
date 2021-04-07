@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 //https://www.youtube.com/watch?v=6OT43pvUyfY&ab_channel=Brackeys
 
 // ATTACHED TO AudioManager PREFAB. The prefab should be placed in the start screen and NOWHERE ELSE since there's a DontDestroyOnLoad()
@@ -13,8 +14,58 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioMixer mixer;
 
-        public bool musicMuted;
+    public bool musicMuted;
     public bool sfxMuted;
+
+    // These Variables will only be used in the StartScene and HowToScene to save user data when going back and forth
+    private Sprite[] playerSprites = new Sprite[6];
+    private String[] playerNames = { "Add Name", "Add Name", "Add Name", "Add Name", "Add Name", "Add Name" };
+    private int numOfPlayers;
+
+    // This is ran anytime you go from StartScene to HowToScene to save player data
+    public void savePlayerData()
+    {
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            playerSprites[i] = GameManager.instance.players[i].GetComponent<PlayerInfo>().avatar;
+            playerNames[i] = GameManager.instance.players[i].GetComponent<PlayerInfo>().playerName;
+        }
+        numOfPlayers = GameManager.instance.currPlayers;
+
+
+    }
+
+    // This is ran anytime you want to load player data when switching back from HowToScene to StartScene
+    public void loadPlayerData()
+    {
+        // Sets the amount of players in StartScene
+        for (int i = 0; i < numOfPlayers - 1; i++) GameManager.instance.addNewPlayer();
+
+        // Loads player
+        for (int i = 0; i < GameManager.instance.players.Count; i++)
+        {
+            // Load the saved Image to the dog and bulldog button
+            GameManager.instance.players[i].GetComponent<PlayerInfo>().avatar = playerSprites[i];
+            GameManager.instance.avatarObjects[i].GetComponent<Image>().sprite = playerSprites[i];
+            // If the sprite isn't null hide the button
+            if (GameManager.instance.avatarObjects[i].GetComponent<Image>().sprite != null)
+            {
+                GameManager.instance.avatarObjects[i].GetComponent<Image>().enabled = true;
+                GameManager.instance.bulldogButtons[i].GetComponent<Image>().enabled = false;
+            }
+
+            // Load the saved name to the text input and player name
+            GameManager.instance.playerInputs[i].GetComponent<InputField>().text = playerNames[i];
+            GameManager.instance.players[i].GetComponent<PlayerInfo>().playerName = playerNames[i];
+        }
+    }
+
+    // This is ran anytime you want to clear all player data saved
+    public void clearPlayerData()
+    {
+        playerSprites = new Sprite[6];
+        playerNames = new String[6];
+    }
 
     // Use this for initialization
     void Awake()
@@ -62,7 +113,9 @@ public class AudioManager : MonoBehaviour
         {
             mixer.SetFloat("SFX-Exposed", 10);
         }
-        
+
+        //play click sound
+        if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }
 
     public void Play(string name)

@@ -91,6 +91,9 @@ public class GameManager : MonoBehaviour
             //removers[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().enabled = false;
         }
         setBulldogVis(false);
+
+        AudioManager.instance.loadPlayerData();
+        AudioManager.instance.clearPlayerData();
     }
 
     // Update is called once per frame
@@ -98,7 +101,6 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-
             for (int i = 0; i < avatarObjects.Count; i++)
             {
                 avatarObjects[i].GetComponent<Image>().sprite = players[i].GetComponent<PlayerInfo>().avatar;
@@ -115,9 +117,6 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.targetPosY = CameraControl.instance.p1.camOffset;
             CameraControl.instance.jumpToOnce = false;
         }
-
-        //play click sound
-        if (Input.GetMouseButtonDown(0)) FindObjectOfType<AudioManager>().PlayUninterrupted("Click");
     }
     public void openBulldogSelection(Button b)
     {
@@ -195,7 +194,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void updateButtonLocations()
+    public void updateButtonLocations()
     {
         Vector3 temp = addPlayerButton.transform.position;
         switch (currPlayers)

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsButtons : MonoBehaviour
 {
     public Button musicButt;
     public Button SFXButt;
+    public Button QuitButt;
     public bool buttonsHidden = true;
 
     void Start()
@@ -14,6 +16,7 @@ public class SettingsButtons : MonoBehaviour
         buttonsHidden = true;
         SFXButt.gameObject.SetActive(false);
         musicButt.gameObject.SetActive(false);
+        if (QuitButt) QuitButt.gameObject.SetActive(false);
     }
 
     void Update()
@@ -40,11 +43,13 @@ public class SettingsButtons : MonoBehaviour
         {
             SFXButt.gameObject.SetActive(false);
             musicButt.gameObject.SetActive(false);
+            if (QuitButt) QuitButt.gameObject.SetActive(false);
         }
         else
         {
             SFXButt.gameObject.SetActive(true);
             musicButt.gameObject.SetActive(true);
+            if (QuitButt) QuitButt.gameObject.SetActive(true);
         }
     }
 
@@ -58,6 +63,12 @@ public class SettingsButtons : MonoBehaviour
     {
         if (AudioManager.instance.sfxMuted) AudioManager.instance.sfxMuted = false;
         else AudioManager.instance.sfxMuted = true;
+    }
+
+    public void quitGame()
+    {
+        Destroy(GameManager.instance.gameObject);
+        SceneManager.LoadScene("startScene");
     }
 
     public void buttonVisibility()

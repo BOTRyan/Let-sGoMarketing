@@ -47,7 +47,6 @@ public class AvatarMenu : MonoBehaviour
 
     public void setPlayerAvatar(Button b)
     {
-        
         if(isChosen[dogChoice.IndexOf(b)] == false)
         {
             GameManager.instance.players[GameManager.instance.bulldogButtons.IndexOf(currButton)].GetComponent<PlayerInfo>().avatar = b.GetComponent<Image>().sprite;

@@ -67,6 +67,9 @@ public class ExtraButtons : MonoBehaviour
 
     void openTut()
     {
+        AudioManager.instance.savePlayerData();
+        Destroy(FindObjectOfType<CameraControl>().gameObject);
+        Destroy(GameManager.instance.gameObject);
         SwitchScenes.instance.ToHowTo();
     }
 
@@ -83,6 +86,7 @@ public class ExtraButtons : MonoBehaviour
 
     void gameClick()
     {
+        AudioManager.instance.clearPlayerData();
         SwitchScenes.instance.goToGame();
     }
 
