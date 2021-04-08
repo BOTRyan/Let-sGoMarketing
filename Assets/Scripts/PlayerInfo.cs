@@ -19,13 +19,14 @@ public class PlayerInfo : MonoBehaviour
 
     #endregion
 
-    public bool isPlaying;
-    public string playerName;
+    public Sprite careerChoice;
     public Sprite avatar;
-    public int[] tokens;
+    public string playerName;
     public string email;
     public string fieldChoice;
-    public Sprite careerChoice;
+    public int[] tokens;
+    public int[] spaces = new int[] {0, 0, 0, 0, 0};
+    public bool isPlaying;
 
     // Start is called before the first frame update
     void Start()

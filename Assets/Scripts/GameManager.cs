@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> avatarObjects = new List<GameObject>();
     private List<Button> removers = new List<Button>();
 
+    public float gameTime = 0f;
+
     public bool spinModalOnce, didYouModalOnce, bossModalOnce, pointModalOnce;
 
     public int currPlayerTurn = 1;
@@ -118,6 +120,13 @@ public class GameManager : MonoBehaviour
             CameraControl.instance.jumpToOnce = false;
         }
     }
+
+    void FixedUpdate()
+    {
+        if(SceneManager.GetActiveScene().name == "gameScene") gameTime += Time.fixedDeltaTime;
+        else if (SceneManager.GetActiveScene().name == "startScene") gameTime = 0f;
+    }
+
     public void openBulldogSelection(Button b)
     {
         bulldogMenu.GetComponent<AvatarMenu>().currButton = b;

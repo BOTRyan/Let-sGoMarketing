@@ -36,6 +36,7 @@ public class CardAnimation : MonoBehaviour
 
     public GameObject cardBack;
     public GameObject cardFront;
+    public InputField emailInput;
 
     public GameObject careerButtons;
     public GameObject didYouButtons;
@@ -203,6 +204,11 @@ public class CardAnimation : MonoBehaviour
 
     public void CardDown()
     {
+        if(emailInput.gameObject.activeSelf)
+        {
+            GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().email = emailInput.text;
+        }
+
         CardAnimator.SetBool("CardIsUp", false);
         continueButton.SetActive(false);
         cardRead = true;
@@ -219,6 +225,7 @@ public class CardAnimation : MonoBehaviour
         p6hasTakenToken = true;
         cardAvatar.SetActive(false);
         youreTheBossPlayerName.SetActive(false);
+        emailInput.gameObject.SetActive(false);
         showNameOnce = true;
         if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
@@ -763,11 +770,13 @@ public class CardAnimation : MonoBehaviour
                 // First Player Done
                 cardBack.GetComponent<Image>().sprite = doneBackTall;
                 cardFront.GetComponent<Image>().sprite = firstPlayerDone;
+                emailInput.gameObject.SetActive(true);
                 break;
             case 11:
                 // Other Players Done
                 cardBack.GetComponent<Image>().sprite = doneBack;
                 cardFront.GetComponent<Image>().sprite = otherPlayersDone;
+                emailInput.gameObject.SetActive(true);
                 break;
             case 12:
                 // All Players Done

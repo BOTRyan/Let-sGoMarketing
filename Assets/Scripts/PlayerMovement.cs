@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float camOffset = 7.74f;
     private Vector3 playerOffset;
 
+    public int[] spaceArray;
     public int yourPlayerNum;
     public bool isMoving = false;
     public bool moveOnce = true;
@@ -91,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         purp06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple6");
         purpBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple4Blink");
         purpSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PurpleSit");
+        spaceArray = gameObject.GetComponent<PlayerInfo>().spaces;
     }
 
 
@@ -500,6 +502,7 @@ public class PlayerMovement : MonoBehaviour
                                             break;
                                         default:
                                             // SwapTurns if nothing else
+                                            ++spaceArray[4];
                                             swapTurns(1);
                                             break;
                                     }
@@ -565,6 +568,23 @@ public class PlayerMovement : MonoBehaviour
         if (val >= 3)
         {
             StartCoroutine(showButtonWithDelay(1.75f));
+        }
+
+        //increase space count
+        switch(val)
+        {
+            case 1:
+                ++spaceArray[0];
+                break;
+            case 2:
+                ++spaceArray[2];
+                break;
+            case 3:
+                ++spaceArray[3];
+                break;
+            default:
+                ++spaceArray[1];
+                break;
         }
     }
 
