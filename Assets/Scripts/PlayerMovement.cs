@@ -95,7 +95,6 @@ public class PlayerMovement : MonoBehaviour
         spaceArray = gameObject.GetComponent<PlayerInfo>().spaces;
     }
 
-
     void findPlayerOffset()
     {
         /// <summary>
@@ -565,10 +564,6 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.SpriteSwap(val);
         CardAnimation.instance.CardAnimator.SetBool("CardIsUp", true);
         FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
-        if (val >= 3)
-        {
-            StartCoroutine(showButtonWithDelay(1.75f));
-        }
 
         //increase space count
         switch(val)
@@ -586,12 +581,6 @@ public class PlayerMovement : MonoBehaviour
                 ++spaceArray[1];
                 break;
         }
-    }
-
-    IEnumerator showButtonWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        CardAnimation.instance.continueButton.SetActive(true);
     }
 
     private void swapTurns(int val)

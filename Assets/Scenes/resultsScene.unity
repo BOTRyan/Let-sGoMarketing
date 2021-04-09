@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.93725497, g: 0.20392159, b: 0.13725491, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2492,6 +2492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicButt: {fileID: 425788451}
   SFXButt: {fileID: 932361576}
+  QuitButt: {fileID: 0}
   buttonsHidden: 0
 --- !u!114 &841538545
 MonoBehaviour:
@@ -3298,7 +3299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6673193, g: 0.6961103, b: 0.8679245, a: 1}
+  m_Color: {r: 0.5176471, g: 0.5568628, b: 0.69803923, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4682,7 +4683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9647059, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.7803922, b: 0.18039216, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5115,7 +5116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.800279, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.69803923, g: 0.7137255, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5564,7 +5565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.8773585, b: 0.86885625, a: 1}
+  m_Color: {r: 0.2784314, g: 0.7686275, b: 0.82745105, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6159,7 +6160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.495283, b: 0.82242954, a: 1}
+  m_Color: {r: 0.882353, g: 0.49411768, b: 0.627451, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

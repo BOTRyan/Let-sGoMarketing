@@ -42,6 +42,9 @@ public class CardAnimation : MonoBehaviour
     public GameObject didYouButtons;
     public GameObject youreTheButtons;
     public GameObject continueButton;
+    public GameObject claimVicButton;
+    public GameObject chillButton;
+    public GameObject keepGoingButton;
 
     public Sprite[] brandCrisisCardFront;
     public Sprite[] brandCrisisCardFrontIdentity;
@@ -71,6 +74,11 @@ public class CardAnimation : MonoBehaviour
     public Sprite allPlayersDone;
     public Sprite doneBack;
     public Sprite doneBackTall;
+
+    public GameObject blur;
+    public GameObject grayBlur;
+    public GameObject rainbowBlur;
+    public GameObject tShirt;
 
     public GameObject[] didYouKnowButtons;
     public int playerMovementEffect = 0;
@@ -204,13 +212,16 @@ public class CardAnimation : MonoBehaviour
 
     public void CardDown()
     {
-        if(emailInput.gameObject.activeSelf)
+        if (emailInput.gameObject.activeSelf)
         {
             GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().email = emailInput.text;
         }
 
         CardAnimator.SetBool("CardIsUp", false);
         continueButton.SetActive(false);
+        chillButton.SetActive(false);
+        claimVicButton.SetActive(false);
+        keepGoingButton.SetActive(false);
         cardRead = true;
         finishCardUp = false;
         playersPressed = 0;
@@ -226,6 +237,10 @@ public class CardAnimation : MonoBehaviour
         cardAvatar.SetActive(false);
         youreTheBossPlayerName.SetActive(false);
         emailInput.gameObject.SetActive(false);
+        blur.SetActive(false);
+        grayBlur.SetActive(false);
+        rainbowBlur.SetActive(false);
+        tShirt.SetActive(false);
         showNameOnce = true;
         if (GameManager.instance.playersDone >= GameManager.instance.currPlayers && SceneManager.GetActiveScene().buildIndex == 3)
         {
@@ -658,6 +673,8 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
                 youreTheBossPlayerName.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 playerStartNum = GameManager.instance.currPlayerTurn;
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 setNameAndSprite();
@@ -666,6 +683,8 @@ public class CardAnimation : MonoBehaviour
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
                 careerButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("Career Point");
                 break;
@@ -686,6 +705,8 @@ public class CardAnimation : MonoBehaviour
                 }
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Brand Crisis");
                 break;
             case 4:
@@ -699,6 +720,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPurple;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 5:
@@ -712,6 +735,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonGreen;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 6:
@@ -725,6 +750,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonRed;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 7:
@@ -738,6 +765,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPink;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 8:
@@ -751,6 +780,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonYellow;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 9:
@@ -764,6 +795,8 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonBlue;
                 }
                 didYouButtons.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(true);
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 break;
             case 10:
@@ -771,17 +804,29 @@ public class CardAnimation : MonoBehaviour
                 cardBack.GetComponent<Image>().sprite = doneBackTall;
                 cardFront.GetComponent<Image>().sprite = firstPlayerDone;
                 emailInput.gameObject.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(true);
+                setNameAndSprite();
                 break;
             case 11:
                 // Other Players Done
                 cardBack.GetComponent<Image>().sprite = doneBack;
                 cardFront.GetComponent<Image>().sprite = otherPlayersDone;
                 emailInput.gameObject.SetActive(true);
+                blur.SetActive(true);
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(true);
+                setNameAndSprite();
                 break;
             case 12:
                 // All Players Done
                 cardBack.GetComponent<Image>().sprite = doneBack;
                 cardFront.GetComponent<Image>().sprite = allPlayersDone;
+                blur.SetActive(true);
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(true);
+                setNameAndSprite();
                 break;
             default:
                 break;
@@ -860,7 +905,7 @@ public class CardAnimation : MonoBehaviour
                         break;
                 }
             }
-            else
+            else if (cardBack.GetComponent<Image>().sprite == youreTheBoss)
             {
                 int currPos = (playerStartNum + playersPressed <= GameManager.instance.currPlayers) ? playerStartNum + playersPressed - 1 : playerStartNum + playersPressed - GameManager.instance.currPlayers - 1;
                 cardAvatar.GetComponent<Image>().sprite = GameManager.instance.players[currPos].GetComponent<PlayerInfo>().avatar;
@@ -899,8 +944,26 @@ public class CardAnimation : MonoBehaviour
     IEnumerator showNameWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+
+        if (cardFront.GetComponent<Image>().sprite == firstPlayerDone)
+        {
+            tShirt.SetActive(true);
+            claimVicButton.SetActive(true);
+        }
+        else if (cardFront.GetComponent<Image>().sprite == otherPlayersDone)
+        {
+            chillButton.SetActive(true);
+        }
+        else if (cardFront.GetComponent<Image>().sprite == allPlayersDone)
+        {
+            keepGoingButton.SetActive(true);
+        }
+        else
+        {
+            youreTheBossPlayerName.SetActive(true);
+        }
+
         showNameOnce = false;
-        youreTheBossPlayerName.SetActive(true);
         cardAvatar.SetActive(true);
     }
 }
