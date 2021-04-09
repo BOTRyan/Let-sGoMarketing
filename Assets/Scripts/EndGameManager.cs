@@ -10,16 +10,16 @@ public class EndGameManager : MonoBehaviour
     public GameObject careerPanel, fieldPanel;
     private bool isField = true;
 
-    public GameObject cLearnMore, cEmailInput, cPlayerName, cSubmitButton;
+    public GameObject cPlayerName;
     public GameObject careerOptionLeft, careerOptionMid, careerOptionRight;
-    public GameObject selection, confirmButton, congrats, congratsPlayer, greatJobTitle, congratsEmailInput, congratsLearnMore, congratsSubmit;
+    public GameObject selection, confirmButton, congrats, congratsPlayer, greatJobTitle;
     public GameObject upArrow, downArrow;
     public GameObject fMainAvatar, cMainAvatar, congratsAvatar;
     public GameObject fieldBackdrop;
     private string career;
     private bool lower = false;
 
-    public GameObject fLearnMore, fEmailInput, fPlayerName, fSubmitButton;
+    public GameObject fPlayerName;
     public GameObject aTokens, gmmTokens, bdaTokens, mTokens, gdTokens, prTokens;
 
     private Sprite aBack, bdaBack, mBack, gmmBack, prBack, dBack;
@@ -65,6 +65,7 @@ public class EndGameManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if (GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email != null && GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email != "yourname@email.com")
         {
             cLearnMore.SetActive(false);
@@ -91,6 +92,7 @@ public class EndGameManager : MonoBehaviour
             
             
         }
+        */
         if(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice != null) changeFieldDisplay(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice);
     }
 
@@ -241,12 +243,6 @@ public class EndGameManager : MonoBehaviour
     public void congratsPrompt()
     {
         congrats.SetActive(true);
-        if(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().email != null)
-        {
-            congratsEmailInput.SetActive(false);
-            congratsLearnMore.SetActive(false);
-            congratsSubmit.SetActive(false);
-        }
         Sprite shortcut = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice;
         // switch case to check sprites
         if (shortcut == advertAccount) career = "Advertising Account Manager";
@@ -279,24 +275,28 @@ public class EndGameManager : MonoBehaviour
 
     private void randomCongrats()
     {
-        int randChoice = Mathf.FloorToInt(Random.Range(1, 6));
+        int randChoice = Mathf.FloorToInt(Random.Range(1, 7));
         switch (randChoice)
         {
             case 1:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Nice choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Kudos on your new career path, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 2:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Sweet pick, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "I'm imporessed! Nice choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 3:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Epic pick, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "What an awesome career choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 4:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Great pick, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Way to go on your promotion, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 5:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Prime choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Kudos on the new job! You earned it, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
+            case 6:
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "What a cool career! Nice going, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                break;
+
         }
     }
     void updatePlayers(int place)
@@ -312,10 +312,10 @@ public class EndGameManager : MonoBehaviour
         bdaTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[3].ToString();
         prTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[4].ToString();
         aTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[5].ToString();
-        fLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
+        //fLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
         
         cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName;
-        cLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
+        //cLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
         fMainAvatar.GetComponent<Image>().sprite = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().avatar;
         cMainAvatar.GetComponent<Image>().sprite = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().avatar;
         congratsAvatar.GetComponent<Image>().sprite = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().avatar;

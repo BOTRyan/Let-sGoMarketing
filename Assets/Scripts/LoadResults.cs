@@ -12,6 +12,7 @@ public class LoadResults : MonoBehaviour
     public GameObject avatar;
     public int playerPlace;
     private int playerIndex;
+    private Image backdrop;
 
     private Sprite shortcut;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class LoadResults : MonoBehaviour
         }
         playerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().playerName;
         if (GameManager.instance.players[playerIndex] == null) gameObject.SetActive(false);
+        backdrop = gameObject.GetComponent<Image>();
         shortcut = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().careerChoice;
         // switch case to check sprites
         if (shortcut == advertAccount)
@@ -136,5 +138,29 @@ public class LoadResults : MonoBehaviour
             salary.GetComponent<TMPro.TextMeshProUGUI>().text = "$82,800";
         }
         avatar.GetComponent<Image>().sprite = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().avatar;
+        Color tempColor = new Color();
+        switch(GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().fieldChoice)
+        {
+            case "Design":
+                tempColor = new Color(.937255f, .2039216f, .1372549f);
+                break;
+            case "Public Relations":
+                tempColor = new Color(1f, .7803922f, .1803922f);
+                break;
+            case "Graphic Media Management":
+                tempColor = new Color(.6980392f, .7137255f, .172549f);
+                break;
+            case "Advertising":
+                tempColor = new Color(.2784314f, .7686275f, .8274511f);
+                break;
+            case "Business Data Analytics":
+                tempColor = new Color(.882353f, .4941177f, .627451f);
+                break;
+            case "Marketing":
+                tempColor = new Color(.5176471f, .5568628f, .6980392f);
+                break;
+        }
+        backdrop.color = tempColor;
+        print(tempColor);
     }
 }
