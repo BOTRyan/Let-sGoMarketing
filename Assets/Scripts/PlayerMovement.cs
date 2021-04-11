@@ -340,7 +340,11 @@ public class PlayerMovement : MonoBehaviour
                                                 FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
                                                 for (int i = 0; i < GameManager.instance.players.Count; i++)
                                                 {
-                                                    if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
+                                                    if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished)
+                                                    {
+                                                        GameManager.instance.players[i].GetComponent<PlayerInfo>().place = finishPlace;
+                                                        finishPlace++;
+                                                    }
                                                 }
                                                 GameManager.instance.playersDone++;
                                                 CardAnimation.instance.finishCardUp = false;
@@ -494,7 +498,11 @@ public class PlayerMovement : MonoBehaviour
                                             FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
                                             for (int i = 0; i < GameManager.instance.players.Count; i++)
                                             {
-                                                if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished) finishPlace++;
+                                                if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished)
+                                                {
+                                                    GameManager.instance.players[i].GetComponent<PlayerInfo>().place = finishPlace;
+                                                    finishPlace++;
+                                                }
                                             }
                                             GameManager.instance.playersDone++;
                                             CardAnimation.instance.finishCardUp = false;

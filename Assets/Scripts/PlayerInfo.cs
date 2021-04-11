@@ -26,6 +26,7 @@ public class PlayerInfo : MonoBehaviour
     public string fieldChoice;
     public int[] tokens;
     public int[] spaces = new int[] {0, 0, 0, 0, 0};
+    public int place = 0;
     public bool isPlaying;
 
     // Start is called before the first frame update
