@@ -255,7 +255,6 @@ public class CardAnimation : MonoBehaviour
         emailInput.gameObject.SetActive(false);
         editButton.gameObject.SetActive(false);
         submitButton.gameObject.SetActive(false);
-        blurFadeInOut("neither");
         tShirt.SetActive(false);
         showNameOnce = true;
         emailInput.text = "yourname@email.com";
@@ -690,7 +689,9 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
                 youreTheBossPlayerName.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 playerStartNum = GameManager.instance.currPlayerTurn;
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 setNameAndSprite();
@@ -699,7 +700,9 @@ public class CardAnimation : MonoBehaviour
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
                 careerButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("Career Point");
                 break;
@@ -720,7 +723,9 @@ public class CardAnimation : MonoBehaviour
                 }
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Brand Crisis");
                 setNameAndSprite();
                 break;
@@ -735,7 +740,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPurple;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -750,7 +757,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonGreen;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -765,7 +774,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonRed;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -780,7 +791,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPink;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -795,7 +808,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonYellow;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -810,7 +825,9 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonBlue;
                 }
                 didYouButtons.SetActive(true);
-                blurFadeInOut("gray");
+                blur.gameObject.SetActive(true);
+                grayBlur.gameObject.SetActive(true);
+                StartCoroutine("grayBlurFadeIn");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -823,7 +840,9 @@ public class CardAnimation : MonoBehaviour
                 editButton.transform.localPosition = new Vector3(19.2f, -13.6f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blurFadeInOut("rainbow");
+                blur.gameObject.SetActive(true);
+                rainbowBlur.gameObject.SetActive(true);
+                StartCoroutine("rainbowBlurFadeIn");
                 setNameAndSprite();
                 break;
             case 11:
@@ -835,7 +854,9 @@ public class CardAnimation : MonoBehaviour
                 editButton.transform.localPosition = new Vector3(18.4f, -12.2f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blurFadeInOut("rainbow");
+                blur.gameObject.SetActive(true);
+                rainbowBlur.gameObject.SetActive(true);
+                StartCoroutine("rainbowBlurFadeIn");
                 setNameAndSprite();
                 break;
             case 12:
@@ -847,7 +868,9 @@ public class CardAnimation : MonoBehaviour
                 editButton.transform.localPosition = new Vector3(19, -4.4f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blurFadeInOut("rainbow");
+                blur.gameObject.SetActive(true);
+                rainbowBlur.gameObject.SetActive(true);
+                StartCoroutine("rainbowBlurFadeIn");
                 setNameAndSprite();
                 break;
             default:
@@ -1000,44 +1023,11 @@ public class CardAnimation : MonoBehaviour
         showNameOnce = false;
     }
 
-    void blurFadeInOut(string color)
+    IEnumerator grayBlurFadeIn()
     {
-        if (cardRead)
-        {
-            blur.GetComponent<Image>().material.SetFloat("_Size", 1);
-            grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .375f);
-            rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .75f);
-            StartCoroutine("blurFadeOut");
-        }
-        else
-        {
-            blur.SetActive(true);
+        blur.GetComponent<Image>().material.SetFloat("_Size", 0);
+        grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
 
-            if (color == "gray")
-            {
-                rainbowBlur.SetActive(false);
-                grayBlur.SetActive(true);
-            }
-            else if (color == "rainbow")
-            {
-                grayBlur.SetActive(false);
-                rainbowBlur.SetActive(true);
-            }
-            else if (color == "neither")
-            {
-                grayBlur.SetActive(false);
-                rainbowBlur.SetActive(false);
-            }
-
-            blur.GetComponent<Image>().material.SetFloat("_Size", 0);
-            grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
-            rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
-            StartCoroutine("blurFadeIn");
-        }
-    }
-
-    IEnumerator blurFadeIn()
-    {
         for (float a = 0; a < 1f; a += .03f)
         {
             blur.GetComponent<Image>().material.SetFloat("_Size", a);
@@ -1047,6 +1037,18 @@ public class CardAnimation : MonoBehaviour
                 grayFade.a = a;
                 grayBlur.GetComponent<Image>().color = grayFade;
             }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator rainbowBlurFadeIn()
+    {
+        blur.GetComponent<Image>().material.SetFloat("_Size", 0);
+        rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
+
+        for (float a = 0; a < 1f; a += .03f)
+        {
+            blur.GetComponent<Image>().material.SetFloat("_Size", a);
             if (a <= .75f)
             {
                 Color rainbowFade = rainbowBlur.GetComponent<Image>().color;
@@ -1057,8 +1059,11 @@ public class CardAnimation : MonoBehaviour
         }
     }
 
-    IEnumerator blurFadeOut()
+    IEnumerator grayBlurFadeOut()
     {
+        blur.GetComponent<Image>().material.SetFloat("_Size", 1);
+        grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .375f);
+
         for (float a = 1; a > -1f; a -= .05f)
         {
             blur.GetComponent<Image>().material.SetFloat("_Size", a);
@@ -1068,6 +1073,24 @@ public class CardAnimation : MonoBehaviour
                 grayFade.a = a;
                 grayBlur.GetComponent<Image>().color = grayFade;
             }
+
+            if (a <= 0)
+            {
+                blur.SetActive(false);
+                grayBlur.SetActive(false);
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator rainbowBlurFadeOut()
+    {
+        blur.GetComponent<Image>().material.SetFloat("_Size", 1);
+        rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .75f);
+
+        for (float a = 1; a > -1f; a -= .05f)
+        {
+            blur.GetComponent<Image>().material.SetFloat("_Size", a);
             if (a <= .75f)
             {
                 Color rainbowFade = rainbowBlur.GetComponent<Image>().color;
@@ -1078,10 +1101,18 @@ public class CardAnimation : MonoBehaviour
             if (a <= 0)
             {
                 blur.SetActive(false);
-                grayBlur.SetActive(false);
                 rainbowBlur.SetActive(false);
             }
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void grayCorutine()
+    {
+        StartCoroutine("grayBlurFadeOut");
+    }
+    public void rainbowCorutine()
+    {
+        StartCoroutine("rainbowBlurFadeOut");
     }
 }
