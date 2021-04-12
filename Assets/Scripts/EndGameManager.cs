@@ -24,10 +24,10 @@ public class EndGameManager : MonoBehaviour
 
     private Sprite aBack, bdaBack, mBack, gmmBack, prBack, dBack;
     private Sprite advertAccount, bpManager, salesProf, marketResearchS, mDirector, salesManage, freelancer, healthMarketer, gmTech, gmTechSales, customerProject, bdAnalyst, marketResearchA, sysArch, creativeDirect, researchDirect, mPlanner, uxDesign, uiDesign, contentStrategist, corpCommManager, prDirect;
-    
+
 
     private int currPlayer = 0;
-    private int playerPlace = 0;
+    private int playerPlace = 1;
 
     void Start()
     {
@@ -93,12 +93,12 @@ public class EndGameManager : MonoBehaviour
             
         }
         */
-        if(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice != null) changeFieldDisplay(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice);
+        if (GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice != null) changeFieldDisplay(GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice);
     }
 
     public void swapPanels(TMPro.TextMeshProUGUI text)
     {
-        if(isField)
+        if (isField)
         {
             GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().fieldChoice = text.text;
             selection.GetComponent<TMPro.TextMeshProUGUI>().text = "Nice choice! You selected the " + text.text + " field!";
@@ -313,7 +313,7 @@ public class EndGameManager : MonoBehaviour
         prTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[4].ToString();
         aTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[5].ToString();
         //fLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
-        
+
         cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName;
         //cLearnMore.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName + ", want to learn more or schedule a visit to Ferris State's campus? Enter your email to find out more!";
         fMainAvatar.GetComponent<Image>().sprite = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().avatar;
@@ -324,7 +324,7 @@ public class EndGameManager : MonoBehaviour
     public void nextPlayer()
     {
         playerPlace++;
-        if (playerPlace >= GameManager.instance.currPlayers) SceneManager.LoadScene("resultsScene");
+        if (playerPlace >= GameManager.instance.currPlayers + 1) SceneManager.LoadScene("resultsScene");
         else
         {
             updatePlayers(playerPlace);
@@ -336,6 +336,6 @@ public class EndGameManager : MonoBehaviour
             GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().careerChoice = null;
             swapPanels(null);
         }
-        
+
     }
 }

@@ -2164,7 +2164,7 @@ MonoBehaviour:
     Animation and Game Design students
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28244c37c5a9aba4e921403d4c9889b6, type: 2}
-  m_sharedMaterial: {fileID: 7823782398539012245, guid: 28244c37c5a9aba4e921403d4c9889b6,
+  m_sharedMaterial: {fileID: 4304591781213232104, guid: 28244c37c5a9aba4e921403d4c9889b6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2481,7 +2481,9 @@ MonoBehaviour:
   SFXButt: {fileID: 2120367816}
   QuitButt: {fileID: 0}
   areYouSure: {fileID: 0}
+  quitBlur: {fileID: 0}
   buttonsHidden: 0
+  quitIsOut: 0
 --- !u!114 &1979495438
 MonoBehaviour:
   m_ObjectHideFlags: 0
