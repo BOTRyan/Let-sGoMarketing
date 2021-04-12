@@ -20,7 +20,7 @@ public class LoadResults : MonoBehaviour
     {
         for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
-            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().finishPlace == playerPlace) playerIndex = i;
+            if (GameManager.instance.players[i].GetComponent<PlayerInfo>().place == playerPlace) playerIndex = i;
         }
         playerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[playerIndex].GetComponent<PlayerInfo>().playerName;
         if (GameManager.instance.players[playerIndex] == null) gameObject.SetActive(false);

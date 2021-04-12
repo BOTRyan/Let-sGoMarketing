@@ -303,7 +303,7 @@ public class EndGameManager : MonoBehaviour
     {
         for (int i = 0; i < GameManager.instance.currPlayers; i++)
         {
-            if (GameManager.instance.players[i].GetComponent<PlayerMovement>().finishPlace == place) currPlayer = i;
+            if (GameManager.instance.players[i].GetComponent<PlayerInfo>().place == place) currPlayer = i;
         }
         fPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text = GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().playerName;
         mTokens.GetComponent<TMPro.TextMeshProUGUI>().text = " x " + GameManager.instance.players[currPlayer].GetComponent<PlayerInfo>().tokens[0].ToString();

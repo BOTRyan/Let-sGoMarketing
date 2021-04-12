@@ -12,22 +12,23 @@ public class SendToGoogle : MonoBehaviour
 {
     public GameManager manager;
 
-    //email stuff required. Unsafe: use a burner email
-    const string senderEmail = "fsu.lgm@gmail.com";
-    //const string webhostURL = "http://lgm-emails.000webhostapp.com/emailer.php";
+    //email stuff required. Unsafe: use a burner email on 000webhost
+    const string webhostURL = "https://lgmtest.000webhostapp.com/Emailer2.php";
 
-    const string messagePart1 = ", congrats on your win!\n\n" +
-        "You finished the Let’s Go Marketing game first, so you win a free Ferris State Marketing shirt! All we need is for you to click the following link and enter your information into the form.\n\n" +
-        "<a href=\"https://www.typeform.com/\">Score Your Free Merch Here</a>\n\n";
-    const string messagePart2 = " for your career choice! Awesome pick!\n\n";
-    const string messagePart3 = "Here is some more information related to this selection:\n\n" +
-        "<a href=\"https://graphicdesign.ferris.edu/\">Ferris State Design Program Page</a>\n" +
-        "<a href=\"https://www.ferris.edu/admissions/schedule_visit.htm\">Set up a Campus/Program Tour at Ferris State</a>\n\n" +
-        "We appreciate you playing our game! Please let us know what you think and how we can make it better by completing our feedback survey.\n\n" +
+    //email text parts. Emails are in HTML (they're online)
+    const string messagePart1 = ", congrats on your win!<br><br>" +
+        "You finished the Let\'s Go Marketing game first, so you win a free Ferris State Marketing shirt! All we need is for you to click the following link and enter your information into the form.<br><br>" +
+        "<a href=\"https://www.typeform.com/\">Score Your Free Merch Here</a><br><br>";
+    const string messagePart2 = " for your career choice! Awesome pick!<br><br>";
+    const string messagePart3 = "Here is some more information related to this selection:<br><br>" +
+        "<a href=\"https://graphicdesign.ferris.edu/\">Ferris State Design Program Page</a><br>" +
+        "<a href=\"https://www.ferris.edu/admissions/schedule_visit.htm\">Set up a Campus/Program Tour at Ferris State</a><br><br>" +
+        "We appreciate you playing our game! Please let us know what you think and how we can make it better by completing our feedback survey.<br><br>" +
         "<a href=\"https://ferrisdsgn.typeform.com/to/hIYzD9Jv\">Feedback Survey</a>";
     string compiledMessage;
-    string careerInfo = "Salary\nDescription\n\n";
+    string careerInfo = "Salary<br>Description<br><br>";
 
+    //player data
     string Name;
     string Email;
     string Field;
@@ -40,8 +41,8 @@ public class SendToGoogle : MonoBehaviour
     string YTB, DYK, CP, BC, Normal;
     int Placement;
 
+    //data tracking
     [SerializeField]
-    const string webhostURL = "https://lgm-emails.000webhostapp.com/emailer.php";
     readonly string postURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdOurHMy2joAjqGWQZaCpMzSxhaqo7eR9auIkD22Jlsea-qew/formResponse";
 
     void Start()//find GameManager so that the script can be attached literally anywhere and it doesn't matter (as long as the GameManager has all the data we need)
@@ -55,113 +56,113 @@ public class SendToGoogle : MonoBehaviour
         switch (career)//fill out
         {
             case "Advertising Account Manager":
-                careerInfo = "Average Salary: $62,262/year\n" +
+                careerInfo = "Average Salary: $62,262/year<br>" +
                     "Advertising Account Managers work for advertising agencies developing advertising strategies and campaigns for manufacturing, retailing, and service businesses. They work with advertising \"creatives\" like designers, " +
-                    "copy writers, media production companies, and networks/magazines.\n\n";
+                    "copy writers, media production companies, and networks/magazines.<br><br>";
                 break;
             case "Brand/Product Manager":
-                careerInfo = "Average Salary: $132,840/year\n" +
+                careerInfo = "Average Salary: $132,840/year<br>" +
                     "Brand or Product Managers develop and execute the firm's product, place (distribution), price, and promotion strategies to maximize sales, profits, market share, and customer satisfaction. " + 
-                    "Marketing Managers work with advertising and promotion agencies to promote the firm's or organization's products and services.\n\n";
+                    "Marketing Managers work with advertising and promotion agencies to promote the firm's or organization's products and services.<br><br>";
                 break;
             case "Sales Professional":
-                careerInfo = "Average Salary: $62,080/year\n" +
+                careerInfo = "Average Salary: $62,080/year<br>" +
                     "Sales representatives generally work for manufacturers, wholesalers, or business service firms, selling goods or services to businesses, government agencies, and other organizations. " +
-                    "They contact customers, explain product features, and answer any questions that their customers may have. When working with retailers, they may help arrange promotional programs, store displays, and advertising.\n\n";
+                    "They contact customers, explain product features, and answer any questions that their customers may have. When working with retailers, they may help arrange promotional programs, store displays, and advertising.<br><br>";
                 break;
             case "Marketing Research Specialist":
-                careerInfo = "Average Salary: $50,500/year\n" +
+                careerInfo = "Average Salary: $50,500/year<br>" +
                     "The duties of a marketing research specialist include conducting market research to establish customer trends & habits and assisting with the analyses of marketing data, including campaign results, conversion rates, " +
-                    "and online traffic in order to improve future marketing strategies and campaigns. They perform other duties when needed.\n\n";
+                    "and online traffic in order to improve future marketing strategies and campaigns. They perform other duties when needed.<br><br>";
                 break;
             case "Marketing Director":
-                careerInfo = "Average Salary: $115,000/year\n" +
+                careerInfo = "Average Salary: $115,000/year<br>" +
                     "Marketing Directors evaluate and develop our marketing strategy and marketing plan. They plan, direct, and coordinate marketing efforts. They communicate the marketing plan and research demand for " +
-                    "our products and services.\n\n";
+                    "our products and services.<br><br>";
                 break;
             case "Sales Manager":
-                careerInfo = "Average Salary: $74,750/year\n" +
+                careerInfo = "Average Salary: $74,750/year<br>" +
                     "Sales managers lead a sales team by providing guidance, training, and mentorship, setting sales quotas and goals, creating sales plans, analyzing data, assinging sales territories, " +
-                    "and building their team.\n\n";
+                    "and building their team.<br><br>";
                 break;
             case "Freelance Writer":
-                careerInfo = "Average Salary: $49,400/year\n" +
+                careerInfo = "Average Salary: $49,400/year<br>" +
                     "A freelance writer's job responsibilities involve journal publishing, copy editing, proofreading, indexing, and even graphic designing. Freelance writers are involved in creating works on their own initiative, " +
-                    "keeping the copyright of their works, and selling rights to publishers.\n\n";
+                    "keeping the copyright of their works, and selling rights to publishers.<br><br>";
                 break;
             case "Healthcare Marketer":
-                careerInfo = "Average Salary: $84,000/year\n" +
+                careerInfo = "Average Salary: $84,000/year<br>" +
                     "Healthcare marketing professionals, also called marketing managers, directors, or coordinators, are responsible for developing and executing marketing plans for hospitals, nursing homes, " +
-                    "outpatient care centers, and other medical facilities.\n\n";
+                    "outpatient care centers, and other medical facilities.<br><br>";
                 break;
             case "Graphic Media Technician":
-                careerInfo = "Average Salary: $49,000/year\n" +
+                careerInfo = "Average Salary: $49,000/year<br>" +
                     "Graphic Media Technicians help develop concepts for projects and prepare production materials for press, electronic, or multimedia publishing. You may work for publishing, communications, advertising, " +
-                    "marketing, printing, or multimedia companies.\n\n";
+                    "marketing, printing, or multimedia companies.<br><br>";
                 break;
             case "Graphic Media Technical Sales Representativ":
-                careerInfo = "Average Salary: $49,000/year\n" +
+                careerInfo = "Average Salary: $49,000/year<br>" +
                     "Graphic Media Technical Sales Representative responsibilities include: selling products and servies using solid arguments to prospective customers, performing cost-benefit analyses of existing and potential " +
-                    "customers, maintaining positive business relationships to ensure future sales, and helping inform consumers of processes and related technologies.\n\n";
+                    "customers, maintaining positive business relationships to ensure future sales, and helping inform consumers of processes and related technologies.<br><br>";
                 break;
             case "Customer Service Project Manager":
-                careerInfo = "Average Salary: $75,000/year\n" +
+                careerInfo = "Average Salary: $75,000/year<br>" +
                     "Project managers are the people in charge of a specific project or projects within a company. As the project manager, your job is to plan, budget, oversee, and document all aspects of the specific project " +
-                    "you are working on. Project managers might work by themselves or be in charge of a team to get the job done.\n\n";
+                    "you are working on. Project managers might work by themselves or be in charge of a team to get the job done.<br><br>";
                 break;
             case "Business Data Analyst":
-                careerInfo = "Average Salary: $69,252/year\n" +
+                careerInfo = "Average Salary: $69,252/year<br>" +
                     "Business Data Analysts perform routine business analysis using various techniques, e.g. statistical analysis, explanatory and predictive modeling, and data mining. They research best practices and " +
-                    "support developing the solutions and recommendations for the current business operations.\n\n";
+                    "support developing the solutions and recommendations for the current business operations.<br><br>";
                 break;
             case "Market Research Analyst":
-                careerInfo = "Average Salary: $58,000/year\n" +
-                    "Market Research Analysts perform research and gather data to help a company market its products or services. They gather data on consumer demographics, preferences, needs, and buying habits.\n\n";
+                careerInfo = "Average Salary: $58,000/year<br>" +
+                    "Market Research Analysts perform research and gather data to help a company market its products or services. They gather data on consumer demographics, preferences, needs, and buying habits.<br><br>";
                 break;
             case "System Architect":
-                careerInfo = "Average Salary: $105,000/year\n" +
+                careerInfo = "Average Salary: $105,000/year<br>" +
                     "System Architects devise, build, and maintain networking and computer systems. Communication is a key skill for system architects; job duties for this position include ensuring that client and company " +
-                    "needs are met, offering technical support, and creating instillation instructions for users.\n\n";
+                    "needs are met, offering technical support, and creating instillation instructions for users.<br><br>";
                 break;
             case "Creative Director":
-                careerInfo = "Average Salary: $132,770/year\n" +
+                careerInfo = "Average Salary: $132,770/year<br>" +
                     "A Creative Director is in charge of the creative department at advertising and marketing companies. Their duties include planning company advertisements, monitoring brand campaigns, revising presentations, " +
-                    "and shaping brand standards.\n\n";
+                    "and shaping brand standards.<br><br>";
                 break;
             case "Research Director":
-                careerInfo = "Average Salary: $117,000/year\n" +
+                careerInfo = "Average Salary: $117,000/year<br>" +
                     "Research Directors manage the research budget and the allocation of funds. They design methods for evaluating the effectiveness of research programs and oversee the operation of laboratories and research " +
-                    "sites, ensuring compliance with institutional and governmental regulations.\n\n";
+                    "sites, ensuring compliance with institutional and governmental regulations.<br><br>";
                 break;
             case "Media Planner":
-                careerInfo = "Average Salary: $54,000/year\n" +
+                careerInfo = "Average Salary: $54,000/year<br>" +
                     "Media Planners produce action plans for advertising campaigns from pre-defined marketing objectives. They select media platforms that best suit the brand of product that will be advertised. Typical " +
-                    "responsibilities of the job include producing financial and media plans & forecasts.\n\n";
+                    "responsibilities of the job include producing financial and media plans & forecasts.<br><br>";
                 break;
             case "User Experience Designer":
-                careerInfo = "Average Salary: $90,700/year\n" +
+                careerInfo = "Average Salary: $90,700/year<br>" +
                     "UX Designer responsibilities include: conducting user research and testing, developing wireframes and task flows based on user needs, and collaborating with designers and developers to create " +
-                    "intuitive, user-friendly software.\n\n";
+                    "intuitive, user-friendly software.<br><br>";
                 break;
             case "User Interface Designer":
-                careerInfo = "Average Salary: $80,500/year\n" +
+                careerInfo = "Average Salary: $80,500/year<br>" +
                     "User Interface (UI) Designers work closely with User Experience (UX) Designers and other design specialists. Their job is to make sure that every page and every step a user will experience in their " +
-                    "interaction with the finished product will conform to the overall vision created by UX Designers.\n\n";
+                    "interaction with the finished product will conform to the overall vision created by UX Designers.<br><br>";
                 break;
             case "Content Strategist":
-                careerInfo = "Average Salary: $72,500/year\n" +
+                careerInfo = "Average Salary: $72,500/year<br>" +
                     "Creative professionals in this role oversee content requirements and create content strategy deliverables across a project life cycle. The Content Strategist is often in charge of creating and maintaining " +
-                    "editorial calendars, style guides, taxonomies, metadata frameworks, and content migration plans.\n\n";
+                    "editorial calendars, style guides, taxonomies, metadata frameworks, and content migration plans.<br><br>";
                 break;
             case "Corporate Communications Manager":
-                careerInfo = "Average Salary: $70,401/year\n" +
+                careerInfo = "Average Salary: $70,401/year<br>" +
                     "Communication Managers are in charge of overseeing all internal and external communications for a company, ensuring its message is consistent and engaging. Also known as a Communications Director, their " +
-                    "main duties include preparing detailed media reports, press releases, and marketing materials.\n\n";
+                    "main duties include preparing detailed media reports, press releases, and marketing materials.<br><br>";
                 break;
             case "Public Relations Director":
-                careerInfo = "Average Salary: $82,800/year\n" +
+                careerInfo = "Average Salary: $82,800/year<br>" +
                     "Public Relations Directors develop and execute strategies that are intended to create and uphold a positive public image for clients. By working and forming relationships with various members of the " +
-                    "media, government, and public, directors generate new business oppportunities.\n\n";
+                    "media, government, and public, directors generate new business oppportunities.<br><br>";
                 break;
         }//switch
     }//jobInfo()
@@ -170,51 +171,28 @@ public class SendToGoogle : MonoBehaviour
 
     IEnumerator SendMailRequestToServer(string toName, string toEmail, string toCareer, int toPlacement)
     {
+        //get career text
         jobInfo(toCareer);
-        if(toPlacement == 0)
+
+        //differencees in email for first and other places
+        if(toPlacement == 1)
         {
             compiledMessage = "Hey " + toName + messagePart1 + "You chose " + toCareer + messagePart2 + careerInfo + messagePart3;
         }
         else
         {
-            compiledMessage = "Hey " + toName + ",\n\nYou chose " + toCareer + messagePart2 + careerInfo + messagePart3;
+            compiledMessage = "Hey " + toName + ",<br><br>You chose " + toCareer + messagePart2 + careerInfo + messagePart3;
         }
 
         // Setup form responses
-        /*WWWForm form = new WWWForm();
-        form.AddField("name", "It's me!");
-        form.AddField("fromEmail", senderEmail);
-        form.AddField("toEmail", toEmail);
-        form.AddField("message", compiledMessage);
-
-        // Submit form to our server, then wait
-        UnityWebRequest www = UnityWebRequest.Post(webhostURL, form);
-        Debug.Log("Email sent to " + toEmail);
-
-        yield return www.SendWebRequest();*/
-
-        // Print results
-        /*if (www.error == null)
-        {
-            Debug.Log("WWW Success!: " + www.text);
-        }
-        else
-        {
-            Debug.Log("WWW Error: " + www.error);
-        }*/
-        //if (www.isNetworkError || www.isHttpError) Debug.Log("error: " + www.error);
-        //else Debug.Log("Sent player email");
-
-
         List<IMultipartFormSection> form = new List<IMultipartFormSection>();
-        form.Add(new MultipartFormDataSection("name", "It's me!"));
-        form.Add(new MultipartFormDataSection("fromEmail", senderEmail));
         form.Add(new MultipartFormDataSection("toEmail", toEmail));
         form.Add(new MultipartFormDataSection("message", compiledMessage));
 
         UnityWebRequest www = UnityWebRequest.Post(webhostURL, form);
 
         yield return www.SendWebRequest();
+
         if(www.isNetworkError || www.isHttpError)
         {
             Debug.Log("Error");
@@ -386,39 +364,5 @@ public class SendToGoogle : MonoBehaviour
         //send Duration
         Duration = ((manager.gameTime)/60f).ToString();
         StartCoroutine(PostGameData(Duration));
-
-        StartCoroutine(SendMailRequestToServer());
     }//Send()
-
-
-
-
-
-
-    // Method 2: Server request
-    static IEnumerator SendMailRequestToServer()
-    {
-        // Setup form responses
-        WWWForm form = new WWWForm();
-        form.AddField("name", "It's me!");
-        form.AddField("fromEmail", senderEmail);
-        form.AddField("toEmail", "laij3@ferris.edu");
-        form.AddField("message", "Test copy/paste");
-
-        // Submit form to our server, then wait
-        WWW www = new WWW(webhostURL, form);
-        Debug.Log("Email sent! (Copy/paste)");
-
-        yield return www;
-
-        // Print results
-        if (www.error == null)
-        {
-            Debug.Log("WWW Success!: " + www.text);
-        }
-        else
-        {
-            Debug.Log("WWW Error: " + www.error);
-        }
-    }
 }

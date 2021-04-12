@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     public bool moveOnce = true;
     private Vector3 targetOffsetPosition;
     public bool landedOnCard = false;
-    public int finishPlace = 0;
     private bool hasFinished = false;
     public bool doOnce = true;
     public bool callOnce = true;
@@ -338,14 +337,8 @@ public class PlayerMovement : MonoBehaviour
                                                     FlipCard(12);
                                                 }
                                                 FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
-                                                for (int i = 0; i < GameManager.instance.players.Count; i++)
-                                                {
-                                                    if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished)
-                                                    {
-                                                        GameManager.instance.players[i].GetComponent<PlayerInfo>().place = finishPlace;
-                                                        finishPlace++;
-                                                    }
-                                                }
+                                                GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
+                                                print(GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place);
                                                 GameManager.instance.playersDone++;
                                                 CardAnimation.instance.finishCardUp = false;
                                                 break;
@@ -496,14 +489,8 @@ public class PlayerMovement : MonoBehaviour
                                                 FlipCard(12);
                                             }
                                             FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
-                                            for (int i = 0; i < GameManager.instance.players.Count; i++)
-                                            {
-                                                if (GameManager.instance.players[i].GetComponent<PlayerMovement>().hasFinished)
-                                                {
-                                                    GameManager.instance.players[i].GetComponent<PlayerInfo>().place = finishPlace;
-                                                    finishPlace++;
-                                                }
-                                            }
+                                            GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
+                                            print(GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place);
                                             GameManager.instance.playersDone++;
                                             CardAnimation.instance.finishCardUp = false;
                                             break;
