@@ -385,8 +385,8 @@ public class PlayerMovement : MonoBehaviour
                                                     FlipCard(12);
                                                 }
                                                 FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
-                                                GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
-                                                print(GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place);
+                                                GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
+                                                print(GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place);
                                                 GameManager.instance.playersDone++;
                                                 CardAnimation.instance.finishCardUp = false;
                                                 break;
@@ -537,8 +537,8 @@ public class PlayerMovement : MonoBehaviour
                                                 FlipCard(12);
                                             }
                                             FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
-                                            GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
-                                            print(GameManager.instance.players[yourPlayerNum-1].GetComponent<PlayerInfo>().place);
+                                            GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
+                                            print(GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place);
                                             GameManager.instance.playersDone++;
                                             CardAnimation.instance.finishCardUp = false;
                                             break;
@@ -609,7 +609,7 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<AudioManager>().PlayInSeconds("Card Flip", 1f);
 
         //increase space count
-        switch(val)
+        switch (val)
         {
             case 1:
                 ++spaceArray[0];
@@ -643,12 +643,12 @@ public class PlayerMovement : MonoBehaviour
         CardAnimation.instance.cardRead = false;
         Spinner.instance.canSpin = true;
         Spinner.instance.spinStarted = false;
-        if (currPos >= 54) hasFinished = true;
         if (val >= 2)
         {
             Spinner.instance.Rollednumber.text = "";
         }
         checkPlayerOffset();
+        if (currPos >= 54) hasFinished = true;
         GameManager.instance.currPlayerTurn++;
     }
 
@@ -781,14 +781,14 @@ public class PlayerMovement : MonoBehaviour
         ///  This function updates the dogs sprites to make them animate
         ///  it also flips the x axis of the dog when reaching certain parts of the board
         /// </summary>
-        
+
         if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49))
         {
-            GetComponent<SpriteRenderer>().flipX =  true;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipX =  false;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         if (currPos < 3 || (currPos >= 32 && currPos < 33) || (currPos >= 51 && currPos < 52))
         {
@@ -799,12 +799,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isFacingBack = false;
         }
-        
+
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
         if (walkCounter >= walkSprites.Count)
         {
             walkCounter = 0;
-            if(!isFacingBack || (isFacingBack && isWalkingBack)) blinking = !blinking;
+            if (!isFacingBack || (isFacingBack && isWalkingBack)) blinking = !blinking;
         }
         int walkIndex = Mathf.FloorToInt(walkCounter);
         GetComponent<SpriteRenderer>().sprite = (isFacingBack || (!isFacingBack && isWalkingBack)) ? backWalkSprites[walkIndex] : walkSprites[walkIndex];

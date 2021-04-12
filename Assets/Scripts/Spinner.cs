@@ -70,56 +70,56 @@ public class Spinner : MonoBehaviour
             spinStarted = false;
             float tempAngle = transform.rotation.eulerAngles.z;
 
-            if (tempAngle >= 350 || tempAngle <= 17)
+            if (tempAngle >= 350 || tempAngle <= 21)
             {
                 targetNum = 6;
                 Rollednumber.text = "6";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 17 && tempAngle <= 48)
+            else if (tempAngle > 21 && tempAngle <= 51)
             {
                 targetNum = 3;
                 Rollednumber.text = "3";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 48 && tempAngle <= 79)
+            else if (tempAngle > 51 && tempAngle <= 81)
             {
                 targetNum = 4;
                 Rollednumber.text = "4";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 79 && tempAngle <= 110)
+            else if (tempAngle > 81 && tempAngle <= 111)
             {
                 targetNum = 6;
                 Rollednumber.text = "6";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 110 && tempAngle <= 141)
+            else if (tempAngle > 111 && tempAngle <= 141)
             {
                 targetNum = 5;
                 Rollednumber.text = "5";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 141 && tempAngle <= 172)
+            else if (tempAngle > 141 && tempAngle <= 171)
             {
                 targetNum = 4;
                 Rollednumber.text = "4";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 172 && tempAngle <= 195)
+            else if (tempAngle > 171 && tempAngle <= 200)
             {
                 targetNum = 1;
                 Rollednumber.text = "1";
                 alpha = 1;
                 fadeTimer = 2;
             }
-            else if (tempAngle > 195 && tempAngle <= 230)
+            else if (tempAngle > 200 && tempAngle <= 230)
             {
                 targetNum = 5;
                 Rollednumber.text = "5";
@@ -155,8 +155,6 @@ public class Spinner : MonoBehaviour
                 alpha = 1;
                 fadeTimer = 2;
             }
-            if (Input.GetKey(KeyCode.W)) targetNum = 54;
-            targetNum = 30;
             numPicked = true;
         }
     }
