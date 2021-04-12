@@ -291,25 +291,24 @@ public class PlayerMovement : MonoBehaviour
                     targetPos += Spinner.instance.targetNum;
                 }
 
+                if (targetPos < currPos) isWalkingBack = true;
+                else isWalkingBack = false;
                 // This If, else if chain checks if they player has read the card and if they need to move forwards or backwards
                 // if the player doesn't, it swaps turns
                 if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    isWalkingBack = true;
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
                 else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    isWalkingBack = false;
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
                 else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
-                    isWalkingBack = false;
                     swapTurns(1);
                 }
 
@@ -400,7 +399,7 @@ public class PlayerMovement : MonoBehaviour
                             }
                         }
                     }
-                    else // If the player is moving due to the spinner, move till they reach their target location, and check which space their on
+                    else // If the player is moving due to the spinner, move till they reach their target location, and check which space they're on
                     {
                         delay -= Time.fixedDeltaTime;
                         if (delay <= 0)
@@ -782,24 +781,31 @@ public class PlayerMovement : MonoBehaviour
         ///  it also flips the x axis of the dog when reaching certain parts of the board
         /// </summary>
 
-        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49))
+        if ((currPos < 8 || (currPos > 11 && currPos < 14) || (currPos > 18 && currPos < 23) || (currPos > 27 && currPos < 36) || (currPos > 42 && currPos < 46) || (currPos > 48)) && !isWalkingBack)
         {
+            isFacingBack = false;
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if ((currPos < 9 || (currPos > 12 && currPos < 15) || (currPos > 19 && currPos < 24) || (currPos > 28 && currPos < 37) || (currPos > 43 && currPos < 47) || (currPos > 49)) && isWalkingBack)
+        {
+            isFacingBack = true;
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (currPos < 3 || (currPos >= 32 && currPos < 33) || (currPos >= 51 && currPos < 52))
+        if ((currPos < 3 || (currPos > 31 && currPos < 33) || (currPos > 50 && currPos < 52)) && !isWalkingBack)
         {
             isFacingBack = true;
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        else
+        else if ((currPos < 4 || (currPos > 32 && currPos < 34) || (currPos > 51 && currPos < 53)) && isWalkingBack)
         {
             isFacingBack = false;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
-
+        print(currPos);
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
         if (walkCounter >= walkSprites.Count)
         {
@@ -807,7 +813,7 @@ public class PlayerMovement : MonoBehaviour
             if (!isFacingBack || (isFacingBack && isWalkingBack)) blinking = !blinking;
         }
         int walkIndex = Mathf.FloorToInt(walkCounter);
-        GetComponent<SpriteRenderer>().sprite = (isFacingBack || (!isFacingBack && isWalkingBack)) ? backWalkSprites[walkIndex] : walkSprites[walkIndex];
+        GetComponent<SpriteRenderer>().sprite = (isFacingBack) ? backWalkSprites[walkIndex] : walkSprites[walkIndex];
     }
 
     private void animSit()
@@ -817,6 +823,15 @@ public class PlayerMovement : MonoBehaviour
         ///  and then when sitting, picks the color accordingly
         /// </summary>
 
+        if ((currPos < 8 || (currPos > 11 && currPos < 14) || (currPos > 18 && currPos < 23) || (currPos > 27 && currPos < 36) || (currPos > 42 && currPos < 46) || (currPos > 48)) && !isWalkingBack)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if ((currPos < 9 || (currPos > 12 && currPos < 15) || (currPos > 19 && currPos < 24) || (currPos > 28 && currPos < 37) || (currPos > 43 && currPos < 47) || (currPos > 49)) && isWalkingBack)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else GetComponent<SpriteRenderer>().flipX = false;
         if (baseDog == redSit)
         {
             GetComponent<SpriteRenderer>().sprite = redSit;

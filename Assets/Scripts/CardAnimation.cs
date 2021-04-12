@@ -230,12 +230,6 @@ public class CardAnimation : MonoBehaviour
 
     public void CardDown()
     {
-        // Moved to being when the player pressed the Submit Button
-        //if (emailInput.gameObject.activeSelf)
-        //{
-        //    GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().email = emailInput.text;
-        //}
-
         CardAnimator.SetBool("CardIsUp", false);
         continueButton.SetActive(false);
         chillButton.SetActive(false);
