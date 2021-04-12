@@ -40,13 +40,6 @@ public class ModalFunction : MonoBehaviour
                 gameObject.SetActive(false);
             }
             if (GetComponentInChildren<Image>()) GetComponentInChildren<Image>().color = new Color(1, 1, 1, alpha);
-            modalButton = GetComponentInChildren<Button>();
-            if (modalButton)
-            {
-                modalButton.GetComponent<Image>().color = new Color(1, 1, 1, alpha);
-                modalButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
-                modalButton.GetComponent<Outline>().effectColor = new Color(0, 0, 0, alpha);
-            }
         }
 
         if (fadeInModal)
@@ -58,13 +51,6 @@ public class ModalFunction : MonoBehaviour
             }
 
             if (GetComponentInChildren<Image>()) GetComponentInChildren<Image>().color = new Color(1, 1, 1, alpha);
-            modalButton = GetComponentInChildren<Button>();
-            if (modalButton)
-            {
-                modalButton.GetComponent<Image>().color = new Color(1, 1, 1, alpha);
-                modalButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
-                modalButton.GetComponent<Outline>().effectColor = new Color(0, 0, 0, alpha);
-            }
         }
     }
 

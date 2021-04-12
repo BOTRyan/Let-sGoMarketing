@@ -38,6 +38,7 @@ public class CardAnimation : MonoBehaviour
     public GameObject cardFront;
     public TMPro.TMP_InputField emailInput;
     public GameObject submitButton;
+    public GameObject editButton;
     public GameObject careerButtons;
     public GameObject didYouButtons;
     public GameObject youreTheButtons;
@@ -213,9 +214,18 @@ public class CardAnimation : MonoBehaviour
     public void SubmitEmail()
     {
         GameManager.instance.players[GameManager.instance.currPlayerTurn - 1].GetComponent<PlayerInfo>().email = emailInput.text;
-        emailInput.text = "yourname@email.com";
-        emailInput.gameObject.SetActive(false);
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().interactable = false;
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().textComponent.fontStyle = TMPro.FontStyles.Italic;
         submitButton.gameObject.SetActive(false);
+        editButton.gameObject.SetActive(true);
+    }
+
+    public void editEmail()
+    {
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().interactable = true;
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().textComponent.fontStyle = TMPro.FontStyles.Normal;
+        submitButton.gameObject.SetActive(true);
+        editButton.gameObject.SetActive(false);
     }
 
     public void CardDown()
@@ -245,11 +255,13 @@ public class CardAnimation : MonoBehaviour
         p6hasTakenToken = true;
         cardAvatar.SetActive(false);
         youreTheBossPlayerName.SetActive(false);
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().interactable = true;
+        emailInput.gameObject.GetComponent<TMPro.TMP_InputField>().textComponent.fontStyle = TMPro.FontStyles.Normal;
+        emailInput.text = "yourname@email.com";
         emailInput.gameObject.SetActive(false);
+        editButton.gameObject.SetActive(false);
         submitButton.gameObject.SetActive(false);
-        blur.SetActive(false);
-        grayBlur.SetActive(false);
-        rainbowBlur.SetActive(false);
+        blurFadeInOut("neither");
         tShirt.SetActive(false);
         showNameOnce = true;
         emailInput.text = "yourname@email.com";
@@ -684,8 +696,7 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = youreTheBossFront[currentYoureTheBossNumber];
                 youreTheButtons.SetActive(true);
                 youreTheBossPlayerName.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 playerStartNum = GameManager.instance.currPlayerTurn;
                 FindObjectOfType<AudioManager>().Play("You're the Boss");
                 setNameAndSprite();
@@ -694,8 +705,7 @@ public class CardAnimation : MonoBehaviour
                 cardBack.GetComponent<Image>().sprite = careerPointCardBack;
                 cardFront.GetComponent<Image>().sprite = careerPointCardFront[currentCareerPointNumber];
                 careerButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 setNameAndSprite();
                 FindObjectOfType<AudioManager>().Play("Career Point");
                 break;
@@ -716,8 +726,7 @@ public class CardAnimation : MonoBehaviour
                 }
                 if (currentBrandCrisisNumber < (brandCrisisCardFront.Length - 1)) currentBrandCrisisNumber++;
                 else currentBrandCrisisNumber = 0;
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Brand Crisis");
                 setNameAndSprite();
                 break;
@@ -732,8 +741,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPurple;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -748,8 +756,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonGreen;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -764,8 +771,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonRed;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -780,8 +786,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonPink;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -796,8 +801,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonYellow;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -812,8 +816,7 @@ public class CardAnimation : MonoBehaviour
                     didYouKnowButtons[i].GetComponent<Image>().sprite = didYouKnowButtonBlue;
                 }
                 didYouButtons.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(true);
+                blurFadeInOut("gray");
                 FindObjectOfType<AudioManager>().Play("Did You Know");
                 setNameAndSprite();
                 break;
@@ -821,13 +824,12 @@ public class CardAnimation : MonoBehaviour
                 // First Player Done
                 cardBack.GetComponent<Image>().sprite = doneBackTall;
                 cardFront.GetComponent<Image>().sprite = firstPlayerDone;
-                emailInput.transform.localPosition = new Vector3(-7.9f, -17.3f, 0);
-                submitButton.transform.localPosition = new Vector3(19.2f, -15.7f, 0);
+                emailInput.transform.localPosition = new Vector3(-7.9f, -15.2f, 0);
+                submitButton.transform.localPosition = new Vector3(19.1f, -13.6f, 0);
+                editButton.transform.localPosition = new Vector3(19.2f, -13.6f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(false);
-                rainbowBlur.SetActive(true);
+                blurFadeInOut("rainbow");
                 setNameAndSprite();
                 break;
             case 11:
@@ -836,11 +838,10 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = otherPlayersDone;
                 emailInput.transform.localPosition = new Vector3(-8.6f, -13.8f, 0);
                 submitButton.transform.localPosition = new Vector3(18.4f, -12.2f, 0);
+                editButton.transform.localPosition = new Vector3(18.4f, -12.2f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(false);
-                rainbowBlur.SetActive(true);
+                blurFadeInOut("rainbow");
                 setNameAndSprite();
                 break;
             case 12:
@@ -849,11 +850,10 @@ public class CardAnimation : MonoBehaviour
                 cardFront.GetComponent<Image>().sprite = allPlayersDone;
                 emailInput.transform.localPosition = new Vector3(-8, -6, 0);
                 submitButton.transform.localPosition = new Vector3(19, -4.4f, 0);
+                editButton.transform.localPosition = new Vector3(19, -4.4f, 0);
                 emailInput.gameObject.SetActive(true);
                 submitButton.gameObject.SetActive(true);
-                blur.SetActive(true);
-                grayBlur.SetActive(false);
-                rainbowBlur.SetActive(true);
+                blurFadeInOut("rainbow");
                 setNameAndSprite();
                 break;
             default:
@@ -1004,5 +1004,90 @@ public class CardAnimation : MonoBehaviour
         }
 
         showNameOnce = false;
+    }
+
+    void blurFadeInOut(string color)
+    {
+        if (cardRead)
+        {
+            blur.GetComponent<Image>().material.SetFloat("_Size", 1);
+            grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .375f);
+            rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, .75f);
+            StartCoroutine("blurFadeOut");
+        }
+        else
+        {
+            blur.SetActive(true);
+
+            if (color == "gray")
+            {
+                rainbowBlur.SetActive(false);
+                grayBlur.SetActive(true);
+            }
+            else if (color == "rainbow")
+            {
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(true);
+            }
+            else if (color == "neither")
+            {
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(false);
+            }
+
+            blur.GetComponent<Image>().material.SetFloat("_Size", 0);
+            grayBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
+            rainbowBlur.GetComponent<Image>().color = new Color(.375f, .375f, .375f, 0);
+            StartCoroutine("blurFadeIn");
+        }
+    }
+
+    IEnumerator blurFadeIn()
+    {
+        for (float a = 0; a < 1f; a += .03f)
+        {
+            blur.GetComponent<Image>().material.SetFloat("_Size", a);
+            if (a <= .375f)
+            {
+                Color grayFade = grayBlur.GetComponent<Image>().color;
+                grayFade.a = a;
+                grayBlur.GetComponent<Image>().color = grayFade;
+            }
+            if (a <= .75f)
+            {
+                Color rainbowFade = rainbowBlur.GetComponent<Image>().color;
+                rainbowFade.a = a;
+                rainbowBlur.GetComponent<Image>().color = rainbowFade;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator blurFadeOut()
+    {
+        for (float a = 1; a > -1f; a -= .05f)
+        {
+            blur.GetComponent<Image>().material.SetFloat("_Size", a);
+            if (a <= .375f)
+            {
+                Color grayFade = grayBlur.GetComponent<Image>().color;
+                grayFade.a = a;
+                grayBlur.GetComponent<Image>().color = grayFade;
+            }
+            if (a <= .75f)
+            {
+                Color rainbowFade = rainbowBlur.GetComponent<Image>().color;
+                rainbowFade.a = a;
+                rainbowBlur.GetComponent<Image>().color = rainbowFade;
+            }
+
+            if (a <= 0)
+            {
+                blur.SetActive(false);
+                grayBlur.SetActive(false);
+                rainbowBlur.SetActive(false);
+            }
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

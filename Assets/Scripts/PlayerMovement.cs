@@ -26,17 +26,21 @@ public class PlayerMovement : MonoBehaviour
     public bool callOnce = true;
 
     public Sprite baseDog;
-    public Sprite walk01, walk02, walk03, walk04, walk05, walk06;
-    private Sprite red01, red02, red03, red04, red05, red06, redBlink, redSit;
-    private Sprite blue01, blue02, blue03, blue04, blue05, blue06, blueBlink, blueSit;
-    private Sprite green01, green02, green03, green04, green05, green06, greenBlink, greenSit;
-    private Sprite pink01, pink02, pink03, pink04, pink05, pink06, pinkBlink, pinkSit;
-    private Sprite yel01, yel02, yel03, yel04, yel05, yel06, yelBlink, yelSit;
-    private Sprite purp01, purp02, purp03, purp04, purp05, purp06, purpBlink, purpSit;
+    public Sprite walk01, walk02, walk03, walk04, walk05, walk06, backWalk01, backWalk02, backWalk03, backWalk04, backWalk05, backWalk06;
+
+    private Sprite red01, red02, red03, red04, red05, red06, redBlink, redSit, redBack01, redBack02, redBack03, redBack04, redBack05, redBack06;
+    private Sprite blue01, blue02, blue03, blue04, blue05, blue06, blueBlink, blueSit, blueBack01, blueBack02, blueBack03, blueBack04, blueBack05, blueBack06;
+    private Sprite green01, green02, green03, green04, green05, green06, greenBlink, greenSit, greenBack01, greenBack02, greenBack03, greenBack04, greenBack05, greenBack06;
+    private Sprite pink01, pink02, pink03, pink04, pink05, pink06, pinkBlink, pinkSit, pinkBack01, pinkBack02, pinkBack03, pinkBack04, pinkBack05, pinkBack06;
+    private Sprite yel01, yel02, yel03, yel04, yel05, yel06, yelBlink, yelSit, yelBack01, yelBack02, yelBack03, yelBack04, yelBack05, yelBack06;
+    private Sprite purp01, purp02, purp03, purp04, purp05, purp06, purpBlink, purpSit, purpBack01, purpBack02, purpBack03, purpBack04, purpBack05, purpBack06;
     private List<Sprite> walkSprites = new List<Sprite>();
+    private List<Sprite> backWalkSprites = new List<Sprite>();
     private float walkCounter;
     private bool blinking = false;
     private bool spriteOnce = true;
+    private bool isWalkingBack = false;
+    private bool isFacingBack = false;
 
     private GameObject modal;
 
@@ -51,6 +55,13 @@ public class PlayerMovement : MonoBehaviour
         red06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed6");
         redBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/bulldogRed4Blink");
         redSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/RedSit");
+        redBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogRedBack");
+        redBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBack2");
+        redBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBack3");
+        redBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBack4");
+        redBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBack5");
+        redBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBack6");
+
         blue01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue1");
         blue02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue2");
         blue03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue3");
@@ -59,6 +70,13 @@ public class PlayerMovement : MonoBehaviour
         blue06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue6");
         blueBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Blue4Blink");
         blueSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/BlueSit");
+        blueBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack");
+        blueBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack2");
+        blueBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack3");
+        blueBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack4");
+        blueBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack5");
+        blueBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogBlueBack6");
+
         green01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green1");
         green02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green2");
         green03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green3");
@@ -67,6 +85,13 @@ public class PlayerMovement : MonoBehaviour
         green06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green6");
         greenBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Green4Blink");
         greenSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/GreenSit");
+        greenBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack");
+        greenBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack2");
+        greenBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack3");
+        greenBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack4");
+        greenBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack5");
+        greenBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogGreenBack6");
+
         pink01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink1");
         pink02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink2");
         pink03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink3");
@@ -75,6 +100,13 @@ public class PlayerMovement : MonoBehaviour
         pink06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink6");
         pinkBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Pink4Blink");
         pinkSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PinkSit");
+        pinkBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack");
+        pinkBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack2");
+        pinkBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack3");
+        pinkBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack4");
+        pinkBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack5");
+        pinkBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPinkBack6");
+
         yel01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow1");
         yel02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow2");
         yel03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow3");
@@ -83,6 +115,13 @@ public class PlayerMovement : MonoBehaviour
         yel06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow6");
         yelBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Yellow4Blink");
         yelSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/YellowSit");
+        yelBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack");
+        yelBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack2");
+        yelBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack3");
+        yelBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack4");
+        yelBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack5");
+        yelBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogYellowBack6");
+
         purp01 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple1");
         purp02 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple2");
         purp03 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple3");
@@ -91,6 +130,13 @@ public class PlayerMovement : MonoBehaviour
         purp06 = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple6");
         purpBlink = Resources.Load<Sprite>("Materials/Avatars/Walk Anim/Purple4Blink");
         purpSit = Resources.Load<Sprite>("Materials/Avatars/Sitting/PurpleSit");
+        purpBack01 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack");
+        purpBack02 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack2");
+        purpBack03 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack3");
+        purpBack04 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack4");
+        purpBack05 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack5");
+        purpBack06 = Resources.Load<Sprite>("Materials/Avatars/Back Anim/bulldogPurpleBack6");
+
         spaceArray = gameObject.GetComponent<PlayerInfo>().spaces;
     }
 
@@ -236,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
                     swapTurns(2);
                 }
 
-                // If they player isn't moving, and the spinner picked a number
+                // If the player isn't moving, and the spinner picked a number
                 // Start moving to the targetNum
                 if (Spinner.instance.numPicked && !isMoving)
                 {
@@ -249,18 +295,21 @@ public class PlayerMovement : MonoBehaviour
                 // if the player doesn't, it swaps turns
                 if (CardAnimation.instance.playerMovementEffect < 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
+                    isWalkingBack = true;
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
                 else if (CardAnimation.instance.playerMovementEffect > 0 && landedOnCard && CardAnimation.instance.cardRead)
                 {
+                    isWalkingBack = false;
                     targetPos += CardAnimation.instance.playerMovementEffect;
                     isMoving = true;
                     CardAnimation.instance.playerMovementEffect = 0;
                 }
                 else if (CardAnimation.instance.playerDoesntMove && landedOnCard && CardAnimation.instance.cardRead)
                 {
+                    isWalkingBack = false;
                     swapTurns(1);
                 }
 
@@ -286,10 +335,10 @@ public class PlayerMovement : MonoBehaviour
                             delay = 0f;
                             alpha = 0;
                             currPos--;
-
                             if (currPos == targetPos || currPos <= 0)
                             {
                                 swapTurns(1);
+                                isWalkingBack = false;
                             }
                         }
                     }
@@ -317,7 +366,6 @@ public class PlayerMovement : MonoBehaviour
                                     delay = 0f;
                                     alpha = 0;
                                     currPos++;
-
                                     if (currPos == targetPos || currPos >= 54)
                                     {
                                         switch (currPos)
@@ -733,17 +781,33 @@ public class PlayerMovement : MonoBehaviour
         ///  This function updates the dogs sprites to make them animate
         ///  it also flips the x axis of the dog when reaching certain parts of the board
         /// </summary>
-
-        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49)) GetComponent<SpriteRenderer>().flipX = true;
-        else GetComponent<SpriteRenderer>().flipX = false;
+        
+        if (currPos < 8 || (currPos >= 12 && currPos < 14) || (currPos >= 19 && currPos < 23) || (currPos >= 28 && currPos < 36) || (currPos >= 43 && currPos < 46) || (currPos >= 49))
+        {
+            GetComponent<SpriteRenderer>().flipX =  true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX =  false;
+        }
+        if (currPos < 3 || (currPos >= 32 && currPos < 33) || (currPos >= 51 && currPos < 52))
+        {
+            isFacingBack = true;
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            isFacingBack = false;
+        }
+        
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
         if (walkCounter >= walkSprites.Count)
         {
             walkCounter = 0;
-            blinking = !blinking;
+            if(!isFacingBack || (isFacingBack && isWalkingBack)) blinking = !blinking;
         }
         int walkIndex = Mathf.FloorToInt(walkCounter);
-        GetComponent<SpriteRenderer>().sprite = walkSprites[walkIndex];
+        GetComponent<SpriteRenderer>().sprite = (isFacingBack || (!isFacingBack && isWalkingBack)) ? backWalkSprites[walkIndex] : walkSprites[walkIndex];
     }
 
     private void animSit()
@@ -794,6 +858,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = red04;
             walk05 = red05;
             walk06 = red06;
+            backWalk01 = redBack01;
+            backWalk02 = redBack02;
+            backWalk03 = redBack03;
+            backWalk04 = redBack04;
+            backWalk05 = redBack05;
+            backWalk06 = redBack06;
         }
         else if (baseDog == blueSit)
         {
@@ -803,6 +873,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = blue04;
             walk05 = blue05;
             walk06 = blue06;
+            backWalk01 = blueBack01;
+            backWalk02 = blueBack02;
+            backWalk03 = blueBack03;
+            backWalk04 = blueBack04;
+            backWalk05 = blueBack05;
+            backWalk06 = blueBack06;
         }
         else if (baseDog == greenSit)
         {
@@ -812,6 +888,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = green04;
             walk05 = green05;
             walk06 = green06;
+            backWalk01 = greenBack01;
+            backWalk02 = greenBack02;
+            backWalk03 = greenBack03;
+            backWalk04 = greenBack04;
+            backWalk05 = greenBack05;
+            backWalk06 = greenBack06;
         }
         else if (baseDog == pinkSit)
         {
@@ -821,6 +903,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = pink04;
             walk05 = pink05;
             walk06 = pink06;
+            backWalk01 = pinkBack01;
+            backWalk02 = pinkBack02;
+            backWalk03 = pinkBack03;
+            backWalk04 = pinkBack04;
+            backWalk05 = pinkBack05;
+            backWalk06 = pinkBack06;
         }
         else if (baseDog == yelSit)
         {
@@ -830,6 +918,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = yel04;
             walk05 = yel05;
             walk06 = yel06;
+            backWalk01 = yelBack01;
+            backWalk02 = yelBack02;
+            backWalk03 = yelBack03;
+            backWalk04 = yelBack04;
+            backWalk05 = yelBack05;
+            backWalk06 = yelBack06;
         }
         else if (baseDog == purpSit)
         {
@@ -839,6 +933,12 @@ public class PlayerMovement : MonoBehaviour
             walk04 = purp04;
             walk05 = purp05;
             walk06 = purp06;
+            backWalk01 = purpBack01;
+            backWalk02 = purpBack02;
+            backWalk03 = purpBack03;
+            backWalk04 = purpBack04;
+            backWalk05 = purpBack05;
+            backWalk06 = purpBack06;
         }
         if (spriteOnce)
         {
@@ -848,6 +948,12 @@ public class PlayerMovement : MonoBehaviour
             walkSprites.Add(walk04);
             walkSprites.Add(walk05);
             walkSprites.Add(walk06);
+            backWalkSprites.Add(backWalk01);
+            backWalkSprites.Add(backWalk02);
+            backWalkSprites.Add(backWalk03);
+            backWalkSprites.Add(backWalk04);
+            backWalkSprites.Add(backWalk05);
+            backWalkSprites.Add(backWalk06);
             spriteOnce = false;
         }
 
