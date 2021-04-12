@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
                     swapTurns(2);
                 }
 
-                // If they player isn't moving, and the spinner picked a number
+                // If the player isn't moving, and the spinner picked a number
                 // Start moving to the targetNum
                 if (Spinner.instance.numPicked && !isMoving)
                 {

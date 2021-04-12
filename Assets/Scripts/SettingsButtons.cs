@@ -9,11 +9,15 @@ public class SettingsButtons : MonoBehaviour
     public Button musicButt;
     public Button SFXButt;
     public Button QuitButt;
+    public GameObject areYouSure;
+    public GameObject quitBlur;
     public bool buttonsHidden = true;
+    public bool quitIsOut = false;
 
     void Start()
     {
         buttonsHidden = true;
+        quitIsOut = false;
         SFXButt.gameObject.SetActive(false);
         musicButt.gameObject.SetActive(false);
         if (QuitButt) QuitButt.gameObject.SetActive(false);
@@ -65,10 +69,70 @@ public class SettingsButtons : MonoBehaviour
         else AudioManager.instance.sfxMuted = true;
     }
 
+    public void areYouSureCheck()
+    {
+        if (!quitIsOut)
+        {
+            areYouSure.SetActive(true);
+            quitBlur.SetActive(true);
+            StartCoroutine("blurFadeIn");
+            quitIsOut = true;
+        }
+        buttonsHidden = true;
+    }
+
+    public void keepPlaying()
+    {
+        StartCoroutine("blurFadeOut");
+    }
+
     public void quitGame()
     {
         Destroy(GameManager.instance.gameObject);
         SceneManager.LoadScene("startScene");
+    }
+
+    IEnumerator blurFadeIn()
+    {
+        for (float a = 0; a < 1f; a += .05f)
+        {
+            Color sureFade = areYouSure.GetComponent<Image>().color;
+            Image[] children = areYouSure.GetComponentsInChildren<Image>();
+            sureFade.a = a;
+            foreach (Image i in children)
+            {
+                i.color = sureFade;
+            }
+            areYouSure.GetComponent<Image>().color = sureFade;
+            quitBlur.GetComponent<Image>().material.SetFloat("_Size", a);
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator blurFadeOut()
+    {
+        for (float a = 1; a > -1f; a -= .05f)
+        {
+            Color sureFade = areYouSure.GetComponent<Image>().color;
+            Image[] children = areYouSure.GetComponentsInChildren<Image>();
+            sureFade.a = a;
+            foreach (Image i in children)
+            {
+                i.color = sureFade;
+            }
+            areYouSure.GetComponent<Image>().color = sureFade;
+            quitBlur.GetComponent<Image>().material.SetFloat("_Size", a);
+
+            if (a <= 0)
+            {
+                areYouSure.SetActive(false);
+                quitBlur.SetActive(false);
+                quitIsOut = false;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void buttonVisibility()
