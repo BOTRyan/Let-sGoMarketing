@@ -44,9 +44,6 @@ public class GameManager : MonoBehaviour
     public int currPlayerTurn = 1;
     public int playersDone = 0;
 
-    // private bool doOnce = true;
-
-    // Start is called before the first frame update
     void Start()
     {
         bulldogButtons.Add(bulldog1);

@@ -385,7 +385,6 @@ public class PlayerMovement : MonoBehaviour
                                                 }
                                                 FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
                                                 GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
-                                                print(GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place);
                                                 GameManager.instance.playersDone++;
                                                 CardAnimation.instance.finishCardUp = false;
                                                 break;
@@ -537,7 +536,6 @@ public class PlayerMovement : MonoBehaviour
                                             }
                                             FindObjectOfType<AudioManager>().PlayUninterrupted("Win");
                                             GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place = GameManager.instance.playersDone + 1;
-                                            print(GameManager.instance.players[yourPlayerNum - 1].GetComponent<PlayerInfo>().place);
                                             GameManager.instance.playersDone++;
                                             CardAnimation.instance.finishCardUp = false;
                                             break;
@@ -805,7 +803,6 @@ public class PlayerMovement : MonoBehaviour
             isFacingBack = false;
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        print(currPos);
         if (walkCounter < walkSprites.Count) walkCounter += Time.deltaTime * 12f;
         if (walkCounter >= walkSprites.Count)
         {

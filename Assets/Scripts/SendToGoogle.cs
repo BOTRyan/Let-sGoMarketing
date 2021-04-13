@@ -62,7 +62,7 @@ public class SendToGoogle : MonoBehaviour
                 break;
             case "Brand/Product Manager":
                 careerInfo = "Average Salary: $132,840/year<br>" +
-                    "Brand or Product Managers develop and execute the firm's product, place (distribution), price, and promotion strategies to maximize sales, profits, market share, and customer satisfaction. " + 
+                    "Brand or Product Managers develop and execute the firm's product, place (distribution), price, and promotion strategies to maximize sales, profits, market share, and customer satisfaction. " +
                     "Marketing Managers work with advertising and promotion agencies to promote the firm's or organization's products and services.<br><br>";
                 break;
             case "Sales Professional":
@@ -175,7 +175,7 @@ public class SendToGoogle : MonoBehaviour
         jobInfo(toCareer);
 
         //differencees in email for first and other places
-        if(toPlacement == 1)
+        if (toPlacement == 1)
         {
             compiledMessage = "Hey " + toName + messagePart1 + "You chose " + toCareer + messagePart2 + careerInfo + messagePart3;
         }
@@ -193,7 +193,7 @@ public class SendToGoogle : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if(www.isNetworkError || www.isHttpError)
+        if (www.isNetworkError || www.isHttpError)
         {
             Debug.Log("Error");
         }
@@ -234,7 +234,7 @@ public class SendToGoogle : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if(www.isNetworkError || www.isHttpError) Debug.Log("error: " + www.error);
+        if (www.isNetworkError || www.isHttpError) Debug.Log("error: " + www.error);
         else Debug.Log("Sent player data");
     }
 
@@ -263,14 +263,16 @@ public class SendToGoogle : MonoBehaviour
         {
             Debug.Log("Getting Player " + (i + 1));
             Name = manager.players[i].GetComponent<PlayerInfo>().playerName;
-            Email = manager.players[i].GetComponent<PlayerInfo>().email;
+            // if email is blank, enter "Not Entered" for filler String
+            if (manager.players[i].GetComponent<PlayerInfo>().email != "") Email = manager.players[i].GetComponent<PlayerInfo>().email;
+            else Email = "Not Entered";
             Field = manager.players[i].GetComponent<PlayerInfo>().fieldChoice;
             Color = manager.players[i].GetComponent<PlayerInfo>().avatar.name;
             Color = Color.Substring(0, Color.IndexOf("Sit"));
             Placement = manager.players[i].GetComponent<PlayerInfo>().place;
 
             Career = manager.players[i].GetComponent<PlayerInfo>().careerChoice.name;
-            switch(Career)
+            switch (Career)
             {
                 case "jc-blue1":
                     Career = "Advertising Account Manager";
@@ -338,9 +340,12 @@ public class SendToGoogle : MonoBehaviour
                 case "jc-yellow4":
                     Career = "Public Relations Director";
                     break;
+                default:
+                    Career = "Not Selected";
+                    break;
             }//switch
 
-            
+
             //tokens
             TokenA = manager.players[i].GetComponent<PlayerInfo>().tokens[5].ToString();
             TokenG = manager.players[i].GetComponent<PlayerInfo>().tokens[1].ToString();
@@ -358,11 +363,11 @@ public class SendToGoogle : MonoBehaviour
 
             Debug.Log("Starting Coroutine");
             StartCoroutine(Post(Name, Email, Field, Career, Color, TokenA, TokenG, TokenB, TokenM, TokenD, TokenP, YTB, DYK, CP, BC, Normal));
-            StartCoroutine(SendMailRequestToServer(Name, Email, Career, Placement));
+            if (Email != "" && Email == "Not Entered") StartCoroutine(SendMailRequestToServer(Name, Email, Career, Placement));
         }
 
         //send Duration
-        Duration = ((manager.gameTime)/60f).ToString();
+        Duration = ((manager.gameTime) / 60f).ToString();
         StartCoroutine(PostGameData(Duration));
     }//Send()
 }

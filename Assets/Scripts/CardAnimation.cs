@@ -454,16 +454,19 @@ public class CardAnimation : MonoBehaviour
             case 12:
             case 13:
             case 14:
-                TokenAnimation.instance.isBoss = true;
-                checkBossCard(buttonPressed - 8);
-                if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
-                if (playersPressed >= GameManager.instance.currPlayers)
+                if ((cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[3] || cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[5] || cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[6]) && buttonPressed != 14)
                 {
-                    CardAnimation.instance.continueButton.SetActive(true);
-                    if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
-                    else currentYoureTheBossNumber = 0;
+                    TokenAnimation.instance.isBoss = true;
+                    checkBossCard(buttonPressed - 8);
+                    if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
+                    if (playersPressed >= GameManager.instance.currPlayers)
+                    {
+                        CardAnimation.instance.continueButton.SetActive(true);
+                        if (currentYoureTheBossNumber < (youreTheBossFront.Length - 1)) currentYoureTheBossNumber++;
+                        else currentYoureTheBossNumber = 0;
+                    }
+                    setNameAndSprite();
                 }
-                setNameAndSprite();
                 break;
             default:
                 break;
@@ -634,6 +637,31 @@ public class CardAnimation : MonoBehaviour
                     bossColor = 6;
                     break;
                 case 2:
+                    bossColor = 5;
+                    break;
+                case 3:
+                    bossColor = 4;
+                    break;
+                case 4:
+                    bossColor = 3;
+                    break;
+                case 5:
+                    bossColor = 1;
+                    break;
+                case 6:
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[7])
+        {
+            switch (val)
+            {
+                case 1:
+                    bossColor = 6;
+                    break;
+                case 2:
                     bossColor = 2;
                     break;
                 case 3:
@@ -647,31 +675,6 @@ public class CardAnimation : MonoBehaviour
                     break;
                 case 6:
                     bossColor = 3;
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (youreTheBossFront[currentYoureTheBossNumber] == youreTheBossFrontIdentity[7])
-        {
-            switch (val)
-            {
-                case 1:
-                    bossColor = 1;
-                    break;
-                case 2:
-                    bossColor = 5;
-                    break;
-                case 3:
-                    bossColor = 4;
-                    break;
-                case 4:
-                    bossColor = 3;
-                    break;
-                case 5:
-                    bossColor = 1;
-                    break;
-                case 6:
                     break;
                 default:
                     break;

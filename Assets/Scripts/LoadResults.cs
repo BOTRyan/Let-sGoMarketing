@@ -161,6 +161,5 @@ public class LoadResults : MonoBehaviour
                 break;
         }
         backdrop.color = tempColor;
-        print(tempColor);
     }
 }

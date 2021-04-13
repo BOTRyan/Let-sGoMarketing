@@ -71,6 +71,7 @@ public class TokenInfo : MonoBehaviour
         switch (playerWhoPressed)
         {
             case 1:
+                print(playersInfo[0].tokens[tokenType - 1]);
                 playersInfo[0].tokens[tokenType - 1]++;
                 UIPlayerInfo.instance.setTokenAmounts();
                 break;

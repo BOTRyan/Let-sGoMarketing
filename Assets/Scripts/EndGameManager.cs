@@ -282,7 +282,7 @@ public class EndGameManager : MonoBehaviour
                 congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "Kudos on your new career path, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 2:
-                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "I'm imporessed! Nice choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
+                congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "I'm impressed! Nice choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
                 break;
             case 3:
                 congratsPlayer.GetComponent<TMPro.TextMeshProUGUI>().text = "What an awesome career choice, " + cPlayerName.GetComponent<TMPro.TextMeshProUGUI>().text + "!";
