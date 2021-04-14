@@ -454,7 +454,9 @@ public class CardAnimation : MonoBehaviour
             case 12:
             case 13:
             case 14:
-                if ((cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[3] || cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[5] || cardFront.GetComponent<Image>().sprite == youreTheBossFrontIdentity[6]) && buttonPressed != 14)
+                Sprite f = cardFront.GetComponent<Image>().sprite;
+                if (buttonPressed == 14 && (f == youreTheBossFrontIdentity[0] || f == youreTheBossFrontIdentity[3] || f == youreTheBossFrontIdentity[5] || f == youreTheBossFrontIdentity[6])) { }
+                else
                 {
                     TokenAnimation.instance.isBoss = true;
                     checkBossCard(buttonPressed - 8);

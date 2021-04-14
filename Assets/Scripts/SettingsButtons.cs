@@ -13,6 +13,7 @@ public class SettingsButtons : MonoBehaviour
     public GameObject quitBlur;
     public bool buttonsHidden = true;
     public bool quitIsOut = false;
+    public SendToGoogle googleScript;
 
     void Start()
     {
@@ -88,7 +89,9 @@ public class SettingsButtons : MonoBehaviour
 
     public void quitGame()
     {
+        googleScript.SendData();
         Destroy(GameManager.instance.gameObject);
+        Destroy(FindObjectOfType<CameraControl>().gameObject);
         SceneManager.LoadScene("startScene");
     }
 

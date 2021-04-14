@@ -164,6 +164,9 @@ public class SendToGoogle : MonoBehaviour
                     "Public Relations Directors develop and execute strategies that are intended to create and uphold a positive public image for clients. By working and forming relationships with various members of the " +
                     "media, government, and public, directors generate new business oppportunities.<br><br>";
                 break;
+            default:
+                careerInfo = "N/A";
+                break;
         }//switch
     }//jobInfo()
 
@@ -266,12 +269,15 @@ public class SendToGoogle : MonoBehaviour
             // if email is blank, enter "Not Entered" for filler String
             if (manager.players[i].GetComponent<PlayerInfo>().email != "") Email = manager.players[i].GetComponent<PlayerInfo>().email;
             else Email = "Not Entered";
-            Field = manager.players[i].GetComponent<PlayerInfo>().fieldChoice;
+            if (manager.players[i].GetComponent<PlayerInfo>().fieldChoice != "") Field = manager.players[i].GetComponent<PlayerInfo>().fieldChoice;
+            else Field = "Not Selected";
             Color = manager.players[i].GetComponent<PlayerInfo>().avatar.name;
             Color = Color.Substring(0, Color.IndexOf("Sit"));
             Placement = manager.players[i].GetComponent<PlayerInfo>().place;
 
-            Career = manager.players[i].GetComponent<PlayerInfo>().careerChoice.name;
+            if (manager.players[i].GetComponent<PlayerInfo>().careerChoice != null) Career = manager.players[i].GetComponent<PlayerInfo>().careerChoice.name;
+            else Career = "Not Selected";
+
             switch (Career)
             {
                 case "jc-blue1":
