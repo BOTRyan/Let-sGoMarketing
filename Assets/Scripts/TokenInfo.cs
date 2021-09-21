@@ -15,7 +15,7 @@ public class TokenInfo : MonoBehaviour
     public int tokenType = 0;
     public int color = 0;
     private List<PlayerInfo> playersInfo = new List<PlayerInfo>();
-   // private bool infoOnce = true;
+    // private bool infoOnce = true;
 
     private bool startLerp = false;
     private float animDelay = 1;
@@ -31,13 +31,12 @@ public class TokenInfo : MonoBehaviour
         tokenType = TokenAnimation.tokenColor;
         for (int i = 0; i < GameManager.instance.players.Count; i++)
         {
-            playersInfo.Add(GameManager.instance.players[i].GetComponent<PlayerInfo>()) ;
+            playersInfo.Add(GameManager.instance.players[i].GetComponent<PlayerInfo>());
         }
     }
 
     void FixedUpdate()
-    {  
-
+    {
         if (startLerp)
         {
             if (Vector3.Distance(transform.position, endPosition) <= 4)
@@ -71,7 +70,6 @@ public class TokenInfo : MonoBehaviour
         switch (playerWhoPressed)
         {
             case 1:
-                print(playersInfo[0].tokens[tokenType - 1]);
                 playersInfo[0].tokens[tokenType - 1]++;
                 UIPlayerInfo.instance.setTokenAmounts();
                 break;

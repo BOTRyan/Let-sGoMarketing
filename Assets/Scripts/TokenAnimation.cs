@@ -43,16 +43,8 @@ public class TokenAnimation : MonoBehaviour
 
     public void SpawnToken(int player, int color)
     {
-        if (!isBoss)
-        {
-            tokenColor = color;
-            playerWhoPressed = player;
-        }
-        else
-        {
-            tokenColor = CardAnimation.instance.bossColor;
-            playerWhoPressed = CardAnimation.instance.playersPressed + 1;
-        }
+        tokenColor = color;
+        playerWhoPressed = player;
         GetButtonLocationsAndColor(player);
         Instantiate(token, buttonLocation, Quaternion.identity, canvas.transform);
         FindObjectOfType<AudioManager>().PlayUninterrupted("Token Added");

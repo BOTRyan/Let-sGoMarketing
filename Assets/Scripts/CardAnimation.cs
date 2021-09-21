@@ -460,6 +460,7 @@ public class CardAnimation : MonoBehaviour
                 {
                     TokenAnimation.instance.isBoss = true;
                     checkBossCard(buttonPressed - 8);
+
                     if (playersPressed < GameManager.instance.currPlayers) playersPressed++;
                     if (playersPressed >= GameManager.instance.currPlayers)
                     {
@@ -682,7 +683,8 @@ public class CardAnimation : MonoBehaviour
                     break;
             }
         }
-        if (playersPressed < GameManager.instance.currPlayers) TokenAnimation.instance.SpawnToken(playersPressed + 1, bossColor);
+        int currPos = (playerStartNum + playersPressed <= GameManager.instance.currPlayers) ? playerStartNum + playersPressed - 1 : playerStartNum + playersPressed - GameManager.instance.currPlayers - 1;
+        if (playersPressed < GameManager.instance.currPlayers) TokenAnimation.instance.SpawnToken(currPos + 1, bossColor);
     }
 
     public void SpriteSwap(int card)
